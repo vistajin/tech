@@ -1,0 +1,3 @@
+Hive <> BigQuery
+HBase <> BigTable
+MongoDb <> DataStore
