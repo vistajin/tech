@@ -3,7 +3,9 @@ Cloud BigTable - High-throughput writes of wide-column data
 BigQuery - Warehousing structured data
 TensorFlow - Create, test new machine learning methods
 Cloud Datalab - Develop Big Data algorithms interactively in Python
-Cloud ML Engine- No-ops, custom machine learning applications at scale
+Cloud ML Engine - No-ops, custom machine learning applications at scale
 Vision API - Automatically reject inappropriate image content
 Translate API - Build application to monitor Spanish twitter feed
 Speech API - Transcribe customer support calls
+Cloud Pub/Sub - Decoupling producers and consumers of data in large organizations and complex systems
+Cloud Dataflow - Scalable, fault-tolerant multi-step processing of data
