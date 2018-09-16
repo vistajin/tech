@@ -23,3 +23,11 @@ B Pub/Sub	A. Controls to handle late-arriving and out-of-order data
 A Dataflow	B. Global message queue
 D BigQuery	C. Latency in the order of milliseconds when querying against overwhelming volume
 C Bigtable	D. Query data as it arrives from streaming pipelines
+
+=====================================================
+The Dataflow models provides constructs that map to the four questions that are relevant in any out-of-order data processing pipeline:
+Questions	Constructs
+_B_ 1. What results are calculated?	A. Answered via Event-time windowing
+_A_ 2. Where in event time are results calculated?	B. Answered via transformations
+_D_ 3. When in processing time are results materialized?	C. Answered via Accumulation modes
+_C_ 4. How do refinements of results relate?	D. Answered via Watermarks, triggers, and allowed lateness.
