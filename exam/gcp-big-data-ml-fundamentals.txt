@@ -7,5 +7,19 @@ Cloud ML Engine - No-ops, custom machine learning applications at scale
 Vision API - Automatically reject inappropriate image content
 Translate API - Build application to monitor Spanish twitter feed
 Speech API - Transcribe customer support calls
+
+=====================================================
 Cloud Pub/Sub - Decoupling producers and consumers of data in large organizations and complex systems
 Cloud Dataflow - Scalable, fault-tolerant multi-step processing of data
+
+=====================================================
+Dataflow offers the following that makes it easy to create resilient streaming pipelines when working with unbounded data:(Select all 2 correct responses)
+* Ability to flexibly reason about time
+* Controls to ensure correctness
+  Global message bus to buffer messages
+  SQL support to query in-process results
+
+B Pub/Sub	A. Controls to handle late-arriving and out-of-order data
+A Dataflow	B. Global message queue
+D BigQuery	C. Latency in the order of milliseconds when querying against overwhelming volume
+C Bigtable	D. Query data as it arrives from streaming pipelines
