@@ -42,3 +42,22 @@ Which of the following is true for Data Studio ?
 Data Studio can issue queries to BigQuery
 * True
   False
+
+=====================================================
+Which of the following are true about Cloud Bigtable?
+(Mark all 3 correct responses)
+* Offers very low-latency in the order of milliseconds
+* Ideal for >1TB data
+* Great for time-series data
+  Support for SQL
+
+Cloud Bigtable learns access patterns and attempts to distribute reads and storage across nodes evenly
+* True
+  False
+  
+Which of the following can help improve performance of Bigtable?
+(Select all 3 correct responses)
+* Change schema to minimize data skew
+* Clients and Bigtable are in same zone
+  Use HDD instead of SDD
+* Add more nodes
