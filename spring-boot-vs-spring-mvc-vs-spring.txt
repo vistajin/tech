@@ -3,3 +3,5 @@ http://www.springboottutorial.com/spring-boot-vs-spring-mvc-vs-spring
 https://www.cnblogs.com/leihuazhe/p/7743479.html
 
 https://www.edureka.co/blog/interview-questions/microservices-interview-questions/
+
+https://www.edureka.co/blog/microservices-with-spring-boot
