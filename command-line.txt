@@ -1,0 +1,3 @@
+gcloud dataproc clusters create my-cluster --zone us-central1-a -- master-machine-type n1-standard-1 --master-boot-disk-size 50 --num-workers 2 --worker-machine-type n1-standard-1 --worker-boot-disk-size 50 --notwork=default
+
+gsutil mb -c regional -l us-central1 gs//$DEVSHELL_PROJECT_ID
