@@ -13,3 +13,16 @@ rpm -qa | grep httpd
 ansible appgroup -m service -a "name=httpd state=started" -s
 
 ansible all -m copy -a "src=/tmp/xxx dest=xxxx" -s
+
+
+https://www.youtube.com/watch?v=QFovsdxjv0Q
+ansible-playbook apache.yml -i /etc/ansible/hosts -l appgroupxxx
+
+cat /etc/ansible/hosts
+[appgroupxxx]
+server1
+server2
+
+[dbgroup]
+dbserver1
+dbserver2
