@@ -1,2 +1,6 @@
 youtube
 https://www.youtube.com/watch?v=tJVkERqw8SI&list=PLLsor6GJ_BEEC9jUSc760iqaOx6u5lqRA
+
+
+Ansible Tower
+https://www.youtube.com/watch?v=1nnHBoEI1A4&list=PLKse5vnrrZ2nFKgH1So7KQeAi17BxzCmo
