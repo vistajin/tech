@@ -1,0 +1,15 @@
+https://www.youtube.com/watch?v=lRwGkO3PtB8
+
+ansible all -m ping -o
+ansible all -m shell -a "uname -a; df -h" -v
+
+vi /etc/sudoers
+ansadm ALL=NOPASSWD: ALL
+
+ansible appgroup -m yum -a "name=httpd state=present" -s
+
+rpm -qa | grep httpd
+
+ansible appgroup -m service -a "name=httpd state=started" -s
+
+ansible all -m copy -a "src=/tmp/xxx dest=xxxx" -s
