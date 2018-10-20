@@ -17,3 +17,7 @@ sudo gedit /etc/shadowsocks.json
 ------------
 
 sudo sslocal -c /etc/shadowsocks.json start
+
+
+
+sudo miredo
