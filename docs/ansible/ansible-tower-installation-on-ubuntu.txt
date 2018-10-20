@@ -1,0 +1,5 @@
+download installation zip file:
+https://releases.ansible.com/ansible-tower/setup/?C=M;O=D
+
+tar xvzf ansible-tower-setup-latest.tar.gz
+cd ansible-tower-setup-3.3.0-1
