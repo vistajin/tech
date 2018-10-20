@@ -1,0 +1,7 @@
+curl -O https://pkg.jenkins.io/debian/jenkins-ci.org.key
+sudo apt-key add jenkins-ci.org.key
+sudo nano /etc/apt/sources.list
+>>> deb https://pkg.jenkins.io/debian-stable binary/
+
+sudo apt-get update
+sudo apt-get install jenkins
