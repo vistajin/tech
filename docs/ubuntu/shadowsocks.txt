@@ -23,4 +23,3 @@ sudo sslocal -c /etc/shadowsocks.json start
 sudo miredo
 
 
----> use in terminal: export ALL_PROXY=socks5://127.0.0.1:1080
