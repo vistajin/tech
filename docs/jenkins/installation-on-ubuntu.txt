@@ -5,3 +5,8 @@ sudo nano /etc/apt/sources.list
 
 sudo apt-get update
 sudo apt-get install jenkins
+
+sudo systemctl stop jenkins.service
+sudo systemctl start jenkins.service
+sudo systemctl enable jenkins.service
+cat /var/lib/jenkins/secrets/initialAdminPassword
