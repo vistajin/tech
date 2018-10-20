@@ -1,0 +1,19 @@
+sudo apt install shadowsocks
+ssserver -h
+sudo gedit /etc/shadowsocks.json
+
+-----------
+{  
+  "server":"35.229.189.199",  
+  "server_port": 11360,
+  "local_address": "127.0.0.1",  
+  "local_port":1234,  
+  "password":"*******",  
+  "timeout":300,
+  "method":"aes-256-cfb",  
+  "fast_open": true,  
+  "workers": 2
+}  
+------------
+
+sudo sslocal -c /etc/shadowsocks.json start
