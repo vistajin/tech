@@ -1,0 +1,5 @@
+sudo proxychains4 apt-get update
+sudo proxychains4 apt-get install software-properties-common
+sudo proxychains4 apt-add-repository ppa:ansible/ansible
+sudo proxychains4 apt-get update
+sudo proxychains4 apt-get install ansible
