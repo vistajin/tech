@@ -1,0 +1,5 @@
+docker run <image>
+docker start <name|id>
+docker stop <name|id>
+docker ps [-a include stopped containers]
+docker rm <name|id>
