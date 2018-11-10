@@ -8,3 +8,6 @@ kubectl get deploy
 kubectl delete deploy mypod  ----> will delete mypod too
 
 gcloud container clusters resize
+
+
+kubectl create -f example.yaml
