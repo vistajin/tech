@@ -1,2 +1,10 @@
 
+
+kubectl run mypod --image=nginx
+kubectl get pod
+kubectl describe pod mypod-xxxx-xxx
+kubectl delete pod mypod-xxxx-xxx   ----> will create another pod mypod-yyyy-yyy auto
+kubectl get deploy
+kubectl delete deploy mypod  ----> will delete mypod too
+
 gcloud container clusters resize
