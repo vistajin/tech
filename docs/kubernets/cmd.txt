@@ -1,5 +1,4 @@
 
-
 kubectl run mypod --image=nginx
 kubectl get pod
 kubectl describe pod mypod-xxxx-xxx
@@ -10,5 +9,15 @@ kubectl delete deploy mypod  ----> will delete mypod too
 gcloud container clusters resize
 
 
-kubectl create -f example.yaml
+kubectl create -f example.yml
 kubectl delete pod redix-nginx ----> will delete pod directly
+
+kubectl create -f example2.yml
+kubectl get rs  ---> get replication controller
+kubectl get pods
+kubectl delete pod deployment-example-xxxxx ---> this will recreate new pod auto
+kubectl scale --replicas=6 deployment/deployment-example
+kubectl describe deployment/deployment-example
+kubectl set image deployment/deployment-example ngigx=nginx:1.9.9
+
+
