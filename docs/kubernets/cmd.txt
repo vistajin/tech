@@ -11,3 +11,4 @@ gcloud container clusters resize
 
 
 kubectl create -f example.yaml
+kubectl delete pod redix-nginx ----> will delete pod directly
