@@ -1,0 +1,20 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: deployment-example
+spec:
+  replicas: 4
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:1.9.2
+        ports:
+        - containerPort: 80
+        resouces:
+          requests:
+            cpu: 100m
+            memory: 100M1
