@@ -1,0 +1,12 @@
+apiVersion: v1
+kind：Service
+metadata:
+  name: nginx
+  labels:
+    app: nginx
+spec:
+  ports:
+    - name: web-frontend
+      port: 80
+  selector:
+    app: nginx ### select by label of the deployment
