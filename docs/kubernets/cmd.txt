@@ -22,3 +22,7 @@ kubectl set image deployment/deployment-example ngigx=nginx:1.9.9
 
 
 https://www.youtube.com/watch?v=ltxnqr1nNNs&list=PLLoiAAwyFWAhjBlXaALYzDuNrf5oNN0jV&index=4
+
+kubectl get svc
+kubectl describe svc nginx
+
