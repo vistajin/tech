@@ -1,0 +1,11 @@
+Service Types:
+1. cluster IP
+   defualt
+   local IP (Cluster), not reachable from outside
+2. NodePort:
+   IP of the Node, IP range 30000 - 32767, accesable from outside
+3. LoadBalance
+   Cloud provider
+   Internet access
+4. External Name   
+   Internal DB
