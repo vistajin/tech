@@ -9,3 +9,5 @@ Service Types:
    Internet access
 4. External Name   
    Internal DB
+   
+Create service before create deployment
