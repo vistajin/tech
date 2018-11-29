@@ -1,0 +1,35 @@
+http://www.shirlman.com/tec/20160507/367
+
+Install mongodb 3.2.10
+https://docs.mongodb.com/master/tutorial/install-mongodb-on-windows/
+
+C:\Users\Vista>cd "C:\Program Files\MongoDB\Server\3.2\bin"
+C:\Program Files\MongoDB\Server\3.2\bin>mongod --dbpath F:\PROJECT\weicai\mongodb
+
+
+
+F:\PROJECT\weicai\parse-server-master>npm install -g parse-server mongodb-runner
+
+parse-server --appId 123 --masterKey 123 --databaseURI mongodb://@localhost
+
+npm install –g parse-dashboard
+npm install -g parse-dashboard
+
+parse-dashboard --appId 123 --masterKey 123 --serverURL "http://localhost:1337/parse" --appName weicaiApp
+
+parse-dashboard --conifg parse-dashboard-config.json –allowInsecure
+
+
+
+Ubuntu:
+sudo service mongod start
+
+sudo parse-server --appId wc880101 --masterKey *** --databaseURI mongodb://@localhost --allowClientClassCreation false --enableAnonymousUsers false --readOnlyMasterKey vj12345
+
+parse-dashboard --appId wc880101 --masterKey *** --serverURL "http://localhost:1337/parse" --appName weicaiApp
+
+
+
+
+CRUD for nodejs+express+mongodb
+https://zellwk.com/blog/crud-express-mongodb/
