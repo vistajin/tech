@@ -1,6 +1,6 @@
 JDK8
 Maven or Gradle
-IntelliJ Educational Tool
+IntelliJ Educational Tool: https://www.jetbrains.com/education
 Google Cloud SDK (optional)
 Eclipse with Cloud dataflow plugin (optional)
 Apache Beam Archetype and be able to generate a sample project:
