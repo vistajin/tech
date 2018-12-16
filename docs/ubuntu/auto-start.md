@@ -20,9 +20,9 @@ WantedBy=multi-user.target
 <pre><code>sudo nano /etc/rc.local</code></pre>
 
 3. Add shell script that want to run when start up:
-<pre><code>
+<pre><bash>
 sudo sslocal -c /etc/shadowsocks.json
-</code></pre>
+</code></bash>
 
 And then run below command:
 <pre><code>
