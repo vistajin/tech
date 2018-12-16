@@ -1,6 +1,8 @@
-1. Create rc-local.service: sudo nano /etc/systemd/system/rc-local.service
-<pre><code>
-[Unit]
+1. Create rc-local.service: 
+```bash
+sudo nano /etc/systemd/system/rc-local.service
+```
+<pre><code>[Unit]
 Description=/etc/rc.local Compatibility
 ConditionPathExists=/etc/rc.local
 
