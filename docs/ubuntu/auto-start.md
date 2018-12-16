@@ -22,7 +22,7 @@ WantedBy=multi-user.target
 3. Add shell script that want to run when start up:
 <pre><bash>
 sudo sslocal -c /etc/shadowsocks.json
-</code></bash>
+</bash></pre>
 
 And then run below command:
 <pre><code>
