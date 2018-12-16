@@ -1,5 +1,5 @@
 1. Create rc-local.service: 
-```bash
+```sh
 sudo nano /etc/systemd/system/rc-local.service
 ```
 <pre><code>[Unit]
