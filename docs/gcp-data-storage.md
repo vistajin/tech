@@ -1,13 +1,13 @@
-##bigtable
+## bigtable
 * GCP HBase
 * Columnar store, easy to add column on the fly
 * Bigtable -> Create instance
-** instance name
-** instance ID
-** Instance type: production | Development
-** Cluster ID
-** Zone
-** Storage type: SSD | HDD
+  * instance name
+  * instance ID
+  * Instance type: production | Development
+  * Cluster ID
+  * Zone
+  * Storage type: SSD | HDD
 
 
 ## Datastore
