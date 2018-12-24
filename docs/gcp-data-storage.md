@@ -1,5 +1,6 @@
 ## bigtable
 * GCP HBase
+* NoSQL
 * Columnar store, easy to add column on the fly
 * Bigtable -> Create instance
   * instance name
@@ -16,10 +17,14 @@
 
 ## Datastore
 * Document database
+* NoSQL
 * Query execution time depends on query result, independent on size of whole dataset
 * Support automic transactions
 * Kind=Table, Entity=Row, Property=Field
 
 ## BigQuery
 * GCP Hive: Schema-on-read
-* OLAP
+* OLAP, Analytics, warehouse
+* Project -> Dataset -> Table
+* Loading data: Batch loads | Streaming loads
+* Query & view data: Interactive query | Batch query | Views | Partitioned tables
