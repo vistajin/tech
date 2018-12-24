@@ -38,3 +38,5 @@ local SSD is actually attached to the server hosting the VM instance
 
 ------------deploy application to app engine------------
 gcloud app deploy app.yml
+
+gcloud beta bigtable instances list
