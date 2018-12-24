@@ -28,3 +28,19 @@
 * Project -> Dataset -> Table
 * Loading data: Batch loads | Streaming loads
 * Query & view data: Interactive query | Batch query | Views | Partitioned tables
+* create new dataset: bq mk dataset-name
+* Show datasets: bq ls
+* Describe dataset: bq show dataset-name
+* Describe table: bq show project-id:dataset.table
+* View data in table: bq head -n 10 project-id:dataset.table
+* Query data using sql: bq query "select xxx"
+* Load data:
+~~~
+bq load --source-format=CSV dataset.table gs://xxx.txt column-name-1:data-type,column-name-2:data-type
+~~~
+* Export data:
+~~~
+bq extract dataset.table gs://xxxx/xx.txt
+~~~
+
+
