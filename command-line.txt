@@ -28,3 +28,13 @@ gcloud beta pubsub topics create myTopic
 gcloud beta pubsub subscriptions create --topic myTopic mySubscription
 gcloud beta pubsub topics publish myTopic "hello"
 gcloud beta pubsub subscriptions pull --auto-ack mySubscription
+
+------------attach a disk to an vm instance----------------
+gcloud compute disks create my-disk --size=100GB --zone us-central1-f
+gcloud compute instances atatch-disk my-instance --disk my-disk --zone us-central1-f
+ls -l /dev/disk/by-id
+
+local SSD is actually attached to the server hosting the VM instance
+
+------------deploy application to app engine------------
+gcloud app deploy app.yml
