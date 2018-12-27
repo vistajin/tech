@@ -37,9 +37,10 @@ INTERLEAVE IN PARENT Accomodation ON DELETE CASCADE
 ~~~
 
 
-## bigtable
+## Bigtable
 * GCP HBase
 * NoSQL
+* Time series, IoT
 * Columnar store, easy to add column on the fly
 * Bigtable -> Create instance
   * instance name
