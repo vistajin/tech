@@ -1,7 +1,7 @@
 1. Create rc-local.service: 
-```sh
+~~~bash
 sudo nano /etc/systemd/system/rc-local.service
-```
+~~~
 <pre><code>[Unit]
 Description=/etc/rc.local Compatibility
 ConditionPathExists=/etc/rc.local
@@ -42,7 +42,7 @@ exit 0
 </code></pre>
 
 3. And then run below command:
-```sh
+~~~sh
 sudo chmod +x /etc/rc.local
 sudo systemctl enable rc-local
-```
+~~~
