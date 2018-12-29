@@ -10,11 +10,13 @@ sudo make install-config
 sudo nano /etc/proxychains.conf
 ~~~
 
+~~~bash
 [ProxyList]
 # add proxy here ...
 # meanwile
 # defaults set to "tor"
 socks5  127.0.0.1 1080
+~~~
 
 ### Usage:
 sudo proxychains4 apt-get update
