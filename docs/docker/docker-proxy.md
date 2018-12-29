@@ -27,3 +27,17 @@ sudo systemctl restart docker.service
 
 sudo kubeadm config images pull
 ~~~
+
+### Test result -- Success
+~~~bash
+XXX@XXX-pc:~$ sudo kubeadm config images pull
+sudo kubeadm config images pulI1229 21:53:04.335565   18737 version.go:94] could not fetch a Kubernetes version from the internet: unable to get URL "https://dl.k8s.io/release/stable-1.txt": Get https://storage.googleapis.com/kubernetes-release/release/stable-1.txt: dial tcp [2404:6800:4008:c07::80]:443: connect: network is unreachable
+I1229 21:53:04.335601   18737 version.go:95] falling back to the local client version: v1.13.1
+[config/images] Pulled k8s.gcr.io/kube-apiserver:v1.13.1
+[config/images] Pulled k8s.gcr.io/kube-controller-manager:v1.13.1
+[config/images] Pulled k8s.gcr.io/kube-scheduler:v1.13.1
+[config/images] Pulled k8s.gcr.io/kube-proxy:v1.13.1
+[config/images] Pulled k8s.gcr.io/pause:3.1
+[config/images] Pulled k8s.gcr.io/etcd:3.2.24
+[config/images] Pulled k8s.gcr.io/coredns:1.2.6
+~~~
