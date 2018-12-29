@@ -1,7 +1,9 @@
 
 
+### Install
 https://docs.docker.com/install/linux/docker-ce/ubuntu/#install-docker-ce-1
 
+~~~sh
 sudo apt-get update
 
 sudo apt-get install \
@@ -28,3 +30,9 @@ sudo apt-get install docker-ce
 sudo apt-get install docker-ce=18.06.1~ce~3-0~ubuntu
 
 sudo docker run hello-world
+~~~
+
+### Uninstall
+~~~sh
+sudo apt-get remove docker-ce
+~~~
