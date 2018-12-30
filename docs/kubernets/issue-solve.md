@@ -6,6 +6,4 @@ The connection to the server 192.168.31.24:6443 was refused - did you specify th
 ~~~
 
 #### Solution
-~~~sh
-export KUBECONFIG=$HOME/admin.conf
-~~~
+
