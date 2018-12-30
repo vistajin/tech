@@ -91,10 +91,9 @@ error execution phase wait-control-plane: couldn't initialize a Kubernetes clust
 ### Create cluster again -- success
 ~~~sh
 sudo kubeadm reset
-$ sudo kubeadm init --apiserver-advertise-address=127.0.0.1
-W1229 23:08:52.461345   26980 common.go:159] WARNING: overriding requested API server bind address: requested "127.0.0.1", actual "192.168.31.24"
-I1229 23:08:54.668929   26980 version.go:94] could not fetch a Kubernetes version from the internet: unable to get URL "https://dl.k8s.io/release/stable-1.txt": Get https://storage.googleapis.com/kubernetes-release/release/stable-1.txt: dial tcp [2404:6800:4008:c07::80]:443: connect: network is unreachable
-I1229 23:08:54.668984   26980 version.go:95] falling back to the local client version: v1.13.1
+$ sudo kubeadm init --apiserver-advertise-address 192.168.31.24 --pod-network-cidr=10.244.0.0/16
+I1230 10:31:10.666741   21193 version.go:94] could not fetch a Kubernetes version from the internet: unable to get URL "https://dl.k8s.io/release/stable-1.txt": Get https://storage.googleapis.com/kubernetes-release/release/stable-1.txt: dial tcp [2404:6800:4008:c07::80]:443: connect: network is unreachable
+I1230 10:31:10.666852   21193 version.go:95] falling back to the local client version: v1.13.1
 [init] Using Kubernetes version: v1.13.1
 [preflight] Running pre-flight checks
 [preflight] Pulling images required for setting up a Kubernetes cluster
@@ -104,19 +103,19 @@ I1229 23:08:54.668984   26980 version.go:95] falling back to the local client ve
 [kubelet-start] Writing kubelet configuration to file "/var/lib/kubelet/config.yaml"
 [kubelet-start] Activating the kubelet service
 [certs] Using certificateDir folder "/etc/kubernetes/pki"
-[certs] Generating "ca" certificate and key
-[certs] Generating "apiserver-kubelet-client" certificate and key
-[certs] Generating "apiserver" certificate and key
-[certs] apiserver serving cert is signed for DNS names [vistajin-pc kubernetes kubernetes.default kubernetes.default.svc kubernetes.default.svc.cluster.local] and IPs [10.96.0.1 192.168.31.24]
-[certs] Generating "etcd/ca" certificate and key
-[certs] Generating "etcd/peer" certificate and key
-[certs] etcd/peer serving cert is signed for DNS names [vistajin-pc localhost] and IPs [192.168.31.24 127.0.0.1 ::1]
-[certs] Generating "etcd/server" certificate and key
-[certs] etcd/server serving cert is signed for DNS names [vistajin-pc localhost] and IPs [192.168.31.24 127.0.0.1 ::1]
-[certs] Generating "etcd/healthcheck-client" certificate and key
-[certs] Generating "apiserver-etcd-client" certificate and key
 [certs] Generating "front-proxy-ca" certificate and key
 [certs] Generating "front-proxy-client" certificate and key
+[certs] Generating "etcd/ca" certificate and key
+[certs] Generating "etcd/server" certificate and key
+[certs] etcd/server serving cert is signed for DNS names [vistajin-pc localhost] and IPs [192.168.31.24 127.0.0.1 ::1]
+[certs] Generating "etcd/peer" certificate and key
+[certs] etcd/peer serving cert is signed for DNS names [vistajin-pc localhost] and IPs [192.168.31.24 127.0.0.1 ::1]
+[certs] Generating "etcd/healthcheck-client" certificate and key
+[certs] Generating "apiserver-etcd-client" certificate and key
+[certs] Generating "ca" certificate and key
+[certs] Generating "apiserver" certificate and key
+[certs] apiserver serving cert is signed for DNS names [vistajin-pc kubernetes kubernetes.default kubernetes.default.svc kubernetes.default.svc.cluster.local] and IPs [10.96.0.1 192.168.31.24]
+[certs] Generating "apiserver-kubelet-client" certificate and key
 [certs] Generating "sa" key and public key
 [kubeconfig] Using kubeconfig folder "/etc/kubernetes"
 [kubeconfig] Writing "admin.conf" kubeconfig file
@@ -129,13 +128,13 @@ I1229 23:08:54.668984   26980 version.go:95] falling back to the local client ve
 [control-plane] Creating static Pod manifest for "kube-scheduler"
 [etcd] Creating static Pod manifest for local etcd in "/etc/kubernetes/manifests"
 [wait-control-plane] Waiting for the kubelet to boot up the control plane as static Pods from directory "/etc/kubernetes/manifests". This can take up to 4m0s
-[apiclient] All control plane components are healthy after 18.505136 seconds
+[apiclient] All control plane components are healthy after 17.506117 seconds
 [uploadconfig] storing the configuration used in ConfigMap "kubeadm-config" in the "kube-system" Namespace
 [kubelet] Creating a ConfigMap "kubelet-config-1.13" in namespace kube-system with the configuration for the kubelets in the cluster
 [patchnode] Uploading the CRI Socket information "/var/run/dockershim.sock" to the Node API object "vistajin-pc" as an annotation
 [mark-control-plane] Marking the node vistajin-pc as control-plane by adding the label "node-role.kubernetes.io/master=''"
 [mark-control-plane] Marking the node vistajin-pc as control-plane by adding the taints [node-role.kubernetes.io/master:NoSchedule]
-[bootstrap-token] Using token: oleyd1.icivhb2wopqzfn5m
+[bootstrap-token] Using token: ervnfa.bq3nwxfodm5ogy04
 [bootstrap-token] Configuring bootstrap tokens, cluster-info ConfigMap, RBAC Roles
 [bootstraptoken] configured RBAC rules to allow Node Bootstrap tokens to post CSRs in order for nodes to get long term certificate credentials
 [bootstraptoken] configured RBAC rules to allow the csrapprover controller automatically approve CSRs from a Node Bootstrap Token
@@ -159,5 +158,5 @@ Run "kubectl apply -f [podnetwork].yaml" with one of the options listed at:
 You can now join any number of machines by running the following on each node
 as root:
 
-  kubeadm join 192.168.31.24:6443 --token oleyd1.icivhb2wopqzfn5m --discovery-token-ca-cert-hash sha256:a06e5d9bb0a158cfc92add0ace8f837c48a9973d7710c73111710443188e5bef
+  kubeadm join 192.168.31.24:6443 --token ervnfa.bq3nwxfodm5ogy04 --discovery-token-ca-cert-hash sha256:16087e9aa7721989546cdcd76913ff8ef748b01e71d57ec910904173c40bbcd9
 ~~~
