@@ -36,3 +36,17 @@ sudo docker run hello-world
 ~~~sh
 sudo apt-get remove docker-ce
 ~~~
+
+### Proxy
+sudo nano /etc/systemd/system/docker.service.d/http-proxy.conf
+~~~sh
+[Service]
+#Environment="HTTP_PROXY=http://127.0.0.1:8119/"
+#Environment="HTTPS_PROXY=http://127.0.0.1:8119/"
+Environment="HTTP_PROXY=socks5://127.0.0.1:1080"
+Environment="HTTPS_PROXY=socks5://127.0.0.1:1080"
+#Environment="NO_PROXY=localhost,127.0.0.1,m1empwb1.mirror.aliyuncs.com,docker.$
+~~~
+
+systemctl daemon-reload
+systemctl restart docker
