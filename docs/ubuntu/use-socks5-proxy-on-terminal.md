@@ -51,3 +51,6 @@ export http_proxy="http://127.0.0.1:8123/"
 export https_proxy="https://127.0.0.1:8123/"
 ~~~
 ### Node: port is 8123, not 1080!
+
+### Docker Proxy
+path: /etc/systemd/system/docker.service.d/http-proxy.conf
