@@ -45,14 +45,39 @@ RUN touch abc.txt
 RUN mkdir newfolder
 .....
 ----------
-sudo docker build -t "ubuntu2" /test
+sudo docker build -t "ubuntu2" .
+Sending build context to Docker daemon   76.3MB
+Step 1/4 : FROM ubutu:8888
+ ---> 4d6b039199a1
+Step 2/4 : MAINTAINER VistaJIN
+ ---> Running in 2ee367968a5e
+Removing intermediate container 2ee367968a5e
+ ---> 82ca0e88781a
+Step 3/4 : RUN touch abc.txt
+ ---> Running in 95ee6e52dbf6
+Removing intermediate container 95ee6e52dbf6
+ ---> ce2b56a9cb25
+Step 4/4 : RUN mkdir newfolder
+ ---> Running in c6050159b181
+Removing intermediate container c6050159b181
+ ---> b37c19d35054
+Successfully built b37c19d35054
+Successfully tagged ubuntu2:latest
 ~~~
 
 3. import from local template
 Template online: https://wiki.openvz.org/Download/template/precreated
 ~~~sh
 wget http://download.openvz.org/template/precreated/contrib/oracle-7-x86_64-minimal-20170709.tar.xz
-cat xx | docker import - oracle:7
+cat oracle-7-x86_64-minimal-20170709.tar.xz | sudo docker import - oracle:7
+sha256:210e38f6023d030c61e0c72553bb7a30075407b1c8bbd4570886e2a0df10fe3d
+sudo docker images
+REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
+oracle              7                   210e38f6023d        10 seconds ago      417MB
+ubutu               8888                4d6b039199a1        23 hours ago        64.2MB
+ubuntu              latest              ccc6e87d482b        3 weeks ago         64.2MB
+hello-world         latest              fce289e99eb9        13 months ago       1.84kB
+k8s.gcr.io/pause    3.1                 da86e6ba6ca1        2 years ago         742kB
 ~~~
 
 ### XXXX
