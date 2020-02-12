@@ -33,9 +33,27 @@ ubutu               8888                4d6b039199a1        36 seconds ago      
 ubuntu              latest              ccc6e87d482b        3 weeks ago         64.2MB
 ~~~
 2. user Dockerfile
+~~~sh
+cd /
+mkdir test
+cd test
+nano Dockerfile
+----------
+FROM ubuntu:8888
+MAINTAINER VistaJIN
+RUN touch abc.txt
+RUN mkdir newfolder
+.....
+----------
+sudo docker build -t "ubuntu2" /test
+~~~
 
 3. import from local template
 Template online: https://wiki.openvz.org/Download/template/precreated
+~~~sh
+wget http://download.openvz.org/template/precreated/contrib/oracle-7-x86_64-minimal-20170709.tar.xz
+cat xx | docker import - oracle:7
+~~~
 
 ### XXXX
 ~~~sh
