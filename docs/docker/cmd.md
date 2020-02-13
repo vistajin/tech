@@ -80,6 +80,23 @@ hello-world         latest              fce289e99eb9        13 months ago       
 k8s.gcr.io/pause    3.1                 da86e6ba6ca1        2 years ago         742kB
 ~~~
 
+### Delete Image
+~~~sh
+sudo docker rmi ubutu:8888
+~~~
+
+### Save/Backup Image
+~~~sh
+sudo docker save -o hello-world.tar hello-world:latest
+------------------------------------------------------
+-rw-------  1 root     root        12800 2月  13 15:23 hello-world.tar
+~~~
+
+### Load Image
+~~~sh
+sudo docker load -i hello-world.tar
+~~~
+
 ### XXXX
 ~~~sh
 docker run <image>
