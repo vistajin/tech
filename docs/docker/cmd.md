@@ -109,7 +109,20 @@ https://docs.docker.com/engine/reference/commandline/login/#credentials-store
 
 Login Succeeded
 ```
+### Tag an Image
+```sh
+sudo docker tag fce2 vistajin/hello:first
 
+sudo docker images
+REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
+hello-world         latest              fce289e99eb9        13 months ago       1.84kB
+vistajin/hello      first               fce289e99eb9        13 months ago       1.84kB
+```
+
+### Upload Image to Docker Hub
+```sh
+sudo docker push vistajin/hello:first
+```
 
 ### XXXX
 ~~~sh
