@@ -118,6 +118,15 @@ REPOSITORY          TAG                 IMAGE ID            CREATED             
 hello-world         latest              fce289e99eb9        13 months ago       1.84kB
 vistajin/hello      first               fce289e99eb9        13 months ago       1.84kB
 ```
+### Create Local Repository & Upload Image
+```sh
+sudo docker pull registry
+docker run -d -v /registry:/home/docker-registry -p 5000:5000 --restart=always --privileged=true --name registry registry:latest
+sudo docker tag hello-world:latest localhost:5000/hello-world:latest
+sudo docker push localhost:5000/hello-world
+curl http://localhost:5000/v2/_catalog
+{"repositories":["hello-world"]}
+```
 
 ### Upload Image to Docker Hub
 ```sh
