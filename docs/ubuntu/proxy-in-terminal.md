@@ -13,3 +13,13 @@ git config --global http.sslverify "false"
 ```
 
 ```
+
+
+### Add cert to terminal
+
+```sh
+cd /usr/local/share/ca-certificates
+sudo mkdir corp
+sudo cp ~/Downloads/XX-Net-3.14.0/data/gae_proxy/certs/* corp
+sudo update-ca-certificates
+```
