@@ -44,3 +44,30 @@ I1229 21:53:04.335601   18737 version.go:95] falling back to the local client ve
 
 ### Reference
 https://docs.docker.com/config/daemon/systemd/
+
+
+### x509: certificate signed by unknown authority.
+~~~
+sudo docker run hello-world
+Unable to find image 'hello-world:latest' locally
+docker: Error response from daemon: Get https://registry-1.docker.io/v2/: x509: certificate signed by unknown authority.
+See 'docker run --help'.
+~~~
+
+#### solution
+```sh
+sudo nano /lib/systemd/system/docker.service
+```
+Replace:
+~~~
+ExecStart=/usr/bin/dockerd -H fd:// --containerd=/run/containerd/containerd.sock
+~~~
+With: 
+~~~
+ExecStart=/usr/bin/dockerd --insecure-registry https://127.0.0.1:5000 -H fd:// --containerd=/run/containerd/containerd.sock
+~~~
+
+```sh
+sudo systemctl daemon-reload
+sudo systemctl restart docker
+```
