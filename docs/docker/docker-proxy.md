@@ -41,3 +41,6 @@ I1229 21:53:04.335601   18737 version.go:95] falling back to the local client ve
 [config/images] Pulled k8s.gcr.io/etcd:3.2.24
 [config/images] Pulled k8s.gcr.io/coredns:1.2.6
 ~~~
+
+### Reference
+https://docs.docker.com/config/daemon/systemd/
