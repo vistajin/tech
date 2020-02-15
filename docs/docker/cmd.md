@@ -97,6 +97,20 @@ sudo docker save -o hello-world.tar hello-world:latest
 sudo docker load -i hello-world.tar
 ~~~
 
+### Login Docker Hub
+```sh
+sudo docker login
+Login with your Docker ID to push and pull images from Docker Hub. If you don't have a Docker ID, head over to https://hub.docker.com to create one.
+Username: XXXXX
+Password: 
+WARNING! Your password will be stored unencrypted in /home/XXXX/.docker/config.json.
+Configure a credential helper to remove this warning. See
+https://docs.docker.com/engine/reference/commandline/login/#credentials-store
+
+Login Succeeded
+```
+
+
 ### XXXX
 ~~~sh
 docker run <image>
