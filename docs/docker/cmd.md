@@ -132,6 +132,17 @@ curl http://localhost:5000/v2/_catalog
 ```sh
 sudo docker push vistajin/hello:first
 ```
+#### note: don't know why it hits connection reset by peer if use proxy.
+
+### Show containers
+```sh
+sudo docker ps -a
+```
+
+### Start stopped container
+```sh
+sudo docker start <first-4-digits-container-id>
+```
 
 ### XXXX
 ~~~sh
