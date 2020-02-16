@@ -139,10 +139,21 @@ sudo docker push vistajin/hello:first
 sudo docker ps -a
 ```
 
-### Start stopped container
+### Start a stopped container
 ```sh
 sudo docker start <first-4-digits-container-id>
 ```
+
+### Run container in background
+```sh
+sudo docker run -d -c "command"
+```
+
+### Show container log
+```sh
+sudo docker logs <first-4-digits-container-id>
+```
+
 
 ### XXXX
 ~~~sh
