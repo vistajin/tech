@@ -71,3 +71,7 @@ ExecStart=/usr/bin/dockerd --insecure-registry https://127.0.0.1:5000 -H fd:// -
 sudo systemctl daemon-reload
 sudo systemctl restart docker
 ```
+
+### read: connection reset by peer when run docker push with proxy
+#### Solution
+Remove the docker proxy
