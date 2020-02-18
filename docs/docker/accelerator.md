@@ -1,6 +1,7 @@
 
 ### 阿里云
 控制台-》容器镜像服务-》镜像加速器
+https://cr.console.aliyun.com/cn-shenzhen/instances/mirrors
 ```sh
 sudo mkdir -p /etc/docker
 sudo tee /etc/docker/daemon.json <<-'EOF'
