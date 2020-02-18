@@ -13,12 +13,82 @@ docker pull ubuntu
 sudo docker images
 ~~~
 
-### Run Image
+### Run Image - Create container
 ~~~sh
 sudo docker run -ti ubuntu:latest /bin/bash
 root@f3a357dec9d9:/# mkdir test
 root@f3a357dec9d9:/# touch abc.txt
 root@f3a357dec9d9:/# exit
+=====
+docker run -itd --name=mycentos centos:7
+-i :表示以交互模式运行容器(让容器的标准输入保持打开)
+-d:表示后台运行容器,并返回容器ID
+-t:为容器重新分配一个伪输入终端--name:为容器指定名称
+~~~
+
+### Show all containers
+~~~sh
+sudo docker ps -a
+~~~
+
+### Show running containers
+~~~sh
+sudo docker ps
+~~~
+
+### Stop container
+~~~sh
+sudo docker stop CONTAINER_ID / CONTAINER_NAME
+~~~
+
+### Stop all containers
+~~~sh
+docker stop $(docker ps -a -q)
+~~~
+
+### Start container
+~~~sh
+sudo docker start CONTAINER_ID / NAME
+~~~
+
+### Restart container
+~~~sh
+sodu docker restart CONTAINER_ID / NAME
+~~~
+
+### Delete container
+~~~sh
+sudo docker rm CONTAINER_ID / NAME
+~~~
+
+### Force delete container
+~~~sh
+sudo docker rm -f CONTAINER_ID / NAME
+~~~
+
+### Check container info
+~~~sh
+sudo docker inspect CONTAINER_ID / NAME
+~~~
+
+### Enter container
+~~~sh
+sudo docker exec -it CONTAINER_ID / NAME /bin/sh
+~~~
+
+### Copy file from host to container
+~~~sh
+sudo docker cp /path/to/host/file.txt CONTAINER_NAME:/path/to/container
+~~~
+
+### Copy file from container to host
+~~~sh
+sudo docker cp CONTAINER_NAME:/path/to/container/file.txt /path/to/host
+~~~
+
+### Attach file to container (sync file in between, changes in either side will be applied to the other)
+~~~sh
+sudo docker -it -v /path/to/host/:/path/to/container iamge:tag
 ~~~
 
 ### Create Image
