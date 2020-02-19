@@ -125,6 +125,24 @@ Removing intermediate container c6050159b181
 Successfully built b37c19d35054
 Successfully tagged ubuntu2:latest
 ~~~
+#### Note: show docker build history:
+~~~sh
+sudo docker history name:tag
+~~~
+
+#### Dockerfile Syntax
+https://docs.docker.com/engine/reference/builder/
+FROM       - Base image
+MAINTAINER - Author
+COPY       - Copy file from host to container, the path is relative path of current Dockerfile
+ADD        - COPY and then extract if the file is .tar.gz
+WORKDIR    - Set current working dir
+ENV        - Set environment variable
+EXPOSE     - Expose container port
+RUN        - Execute when build image
+ENTRYPOINT - Execute when run container, when more than one, only execute the last one.
+CMD        - Execute when run container, when more than one, only execute the last one. Can be overrided by parameter
+
 
 3. import from local template
 Template online: https://wiki.openvz.org/Download/template/precreated
