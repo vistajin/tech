@@ -227,18 +227,28 @@ sudo docker logs <first-4-digits-container-id>
 ```
 
 
-### XXXX
-~~~sh
-docker run <image>
-docker start <name|id>
-docker stop <name|id>
-docker ps [-a include stopped containers]
-docker rm <name|id>
-
-docker run -d --name web1 -p 8081:80 tutum/hello-world
-docker stop web1
-docker start web1
-
-docker build -t xxx/xxx .
-docker push xxx
+### Make an image with JAVA environment (with Tomcat)
 ~~~
+FROM ubuntu:latest
+ADD jdk-8u211-linux-x64.tar.gz /usr/local
+RUN mv /usr/local/jdk1.8.0_211 /usr/local/jdk
+ENV JAVA_HOME=/usr/local/jdk
+ENV JRE_HOME=$JAVA_HOME/jre
+ENV CLASSPATH=$JAVA_HOME/lib:$JRE_HOME/lib:$CLASSPATH
+ENV PATH=$JAVA_HOME/bin:$JRE_HOME/bin:$PATH
+ADD apache-tomcat-8.5.35.tar.gz /usr/local
+RUN mv /usr/local/apache-tomcat-8.5.35 /usr/local/tomcat
+EXPOSE 8080
+ENTRYPOINT ["/usr/local/tomcat/bin/catalina.sh","run"]
+~~~
+Build:
+```sh
+sudo docker build -t myubuntu:java-dev .
+```
+Start container
+~~~sh
+sudo docker run -itd -p 9080:8080 -v /home/vistajin/baidunetdiskdownload/test:/usr/local/tomcat/webapps/ROOT myubuntu:java-dev /bin/bash
+nano /home/vistajin/baidunetdiskdownload/test/index.html
+~~~
+Test: http://localhost:9080/
+
