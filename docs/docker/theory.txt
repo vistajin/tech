@@ -16,3 +16,18 @@ Hypervisor
 -----------------------------
 Host OS
 
+
+
+                 Intenet
+                    |
+                    |
+            Host Network Card
+                    |
+                    |
+  -------Docker0 Network Card-----------
+  |         (ip addr to show)          |
+  |                 |                  |
+  |                 |                  |
+Container1       Container2        Container3
+Network Card     Network Card      Network Card
+
