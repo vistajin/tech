@@ -30,12 +30,14 @@ Bridge Mode (default)
                     |
   -------Docker0 Network Card-----------
   |         (ip addr to show)          |
+  |             (172.0.0.1)            |
+  |             (gateway)              |
   |                 |                  | 
   | (bridge)        | (bridge)         | (bridge)
   |                 |                  |
 Container1       Container2        Container3
 Network Card     Network Card      Network Card
-
+(172.0.0.2)      (172.0.0.3)       (172.0.0.x)
 ==================================================
 Host Mode: docker run --net=host
 ==================================================
