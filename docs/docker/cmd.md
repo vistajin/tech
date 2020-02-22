@@ -66,7 +66,7 @@ sudo docker rm CONTAINER_ID / NAME
 sudo docker rm -f CONTAINER_ID / NAME
 ~~~
 
-### Check container info
+### Check container info (such as the container's IP address)
 ~~~sh
 sudo docker inspect CONTAINER_ID / NAME
 ~~~
@@ -261,3 +261,10 @@ sudo docker network ls
 ```sh
 sudo docker run --net=host ....
 ```
+
+### Link to another container
+```sh
+sudo docker run --link <another_container_name>
+```
+Benefit: don't need to care about what is the IP of another container, current container can access another container by its name
+
