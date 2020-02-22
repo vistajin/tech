@@ -1,0 +1,42 @@
+gcloud dataproc clusters create my-cluster --zone us-central1-a -- master-machine-type n1-standard-1 --master-boot-disk-size 50 --num-workers 2 --worker-machine-type n1-standard-1 --worker-boot-disk-size 50 --notwork=default
+
+gcloud dataproc clusters creates create test-cluster --scopes=cloud-plateform --tags codelab --zone=central1-c
+Enable gcloud commands on the Dataproc cluster: --scopes=cloud-platform
+
+gcloud dataproc jobs submit spark --cluster test-cluster --class org.apache.spark.examples.SparkPi --jar file:///user/lib/spark/examples/jars/spark-examples.jar -- 1000
+
+gcloud dataproc jobs list --cluster test-cluster
+
+gcloud dataproc jobs wait job_id
+
+gcloud dataproc clusters describe test-cluster
+
+gcloud dataproc clusters update test-cluster --num-preemptible-workers=2
+
+gcloud compute ssh test-cluster-m --zone=us-central1-c
+
+gcloud dataproc clusters list
+
+gcloud compute instances describe test-cluster-m --zone us-central1-c
+
+gcloud compute firewall-rules list
+
+gsutil mb -c regional -l us-central1 gs//$DEVSHELL_PROJECT_ID
+
+gcloud components install beta
+gcloud beta pubsub topics create myTopic
+gcloud beta pubsub subscriptions create --topic myTopic mySubscription
+gcloud beta pubsub topics publish myTopic "hello"
+gcloud beta pubsub subscriptions pull --auto-ack mySubscription
+
+------------attach a disk to an vm instance----------------
+gcloud compute disks create my-disk --size=100GB --zone us-central1-f
+gcloud compute instances atatch-disk my-instance --disk my-disk --zone us-central1-f
+ls -l /dev/disk/by-id
+
+local SSD is actually attached to the server hosting the VM instance
+
+------------deploy application to app engine------------
+gcloud app deploy app.yml
+
+gcloud beta bigtable instances list
