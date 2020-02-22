@@ -9,3 +9,8 @@ sudo ufw default deny  # not allow any access by default
 默认的 incoming 策略更改为 “deny”
 （请相应地更新你的防火墙规则）
 ```
+### Bridge related
+```sh
+ip addr
+sudo brctl show
+```
