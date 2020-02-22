@@ -17,18 +17,34 @@ Hypervisor
 Host OS
 
 
+==================================================
+Bridge Mode (default)
+==================================================
 
                  Intenet
                     |
                     |
             Host Network Card
                     |
-                    | (NAT)
+                    | (NAT = Network Address Translation)
                     |
   -------Docker0 Network Card-----------
   |         (ip addr to show)          |
-  | (brige)         | (brige)          | (brige)
+  |                 |                  | 
+  | (bridge)        | (bridge)         | (bridge)
   |                 |                  |
 Container1       Container2        Container3
 Network Card     Network Card      Network Card
+
+==================================================
+Host Mode: docker run --net=host
+==================================================
+                 Intenet
+                    |
+                    |
+            Host Network Card
+                    |
+                    |
+            Host mode container --> no ip address, use host ip and port
+        (netstat -tunlp | grep port)
 
