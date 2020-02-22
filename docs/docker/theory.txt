@@ -1,20 +1,21 @@
+-----------------------------
 app1    | app2     | app3    ----
------------------------------   |---> containers
+-----------------------------   |---> Containers
 lib/bin |lib/bin   | lib/bin ----
 -----------------------------
-container engine
+      Container Engine
 -----------------------------
-Host OS
+          Host OS
 
 
-
+-----------------------------
 app1    | app2     | app3    ----
 -----------------------------   |---> VMs
 Guest OS|Guest OS  |Guest OS ----
 -----------------------------
-Hypervisor
+         Hypervisor
 -----------------------------
-Host OS
+          Host OS
 
 
 ==================================================
@@ -37,7 +38,14 @@ Bridge Mode (default)
   |                 |                  |
 Container1       Container2        Container3
 Network Card     Network Card      Network Card
-(172.0.0.2)      (172.0.0.3)       (172.0.0.x)
+(172.0.0.2)      (172.0.0.3)       (172.0.0.4)
+
+172.0.0.x can connect with each other as they are in the same sub network of docker
+but usually we won't use IP to communicate.
+Instead use container name, this need to run the container using parameter --link <container_name_to_access>:
+docker run --link xxx
+This is single direction communicate.
+
 ==================================================
 Host Mode: docker run --net=host
 ==================================================
