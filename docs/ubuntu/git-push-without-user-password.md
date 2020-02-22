@@ -5,6 +5,10 @@ origin	https://github.com/vistajin/dataflow-training.git (fetch)
 origin	https://github.com/vistajin/dataflow-training.git (push)
 
 $ git remote add origin git@github.com:vistajin/dataflow-training.git
+
+in case: >>> fatal: 远程 origin 已经存在。run below and add again
+$ git remote rm origin
+
 $ ssh-keygen -t rsa -b 4096 -C "528189@qq.com"
 $ eval "$(ssh-agent -s)"
 $ ssh-add ~/.ssh/id_rsa
