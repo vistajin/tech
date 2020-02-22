@@ -48,3 +48,7 @@ Host Mode: docker run --net=host
             Host mode container --> no ip address, use host ip and port
         (netstat -tunlp | grep port)
 
+==================================================
+None Mode: docker run --net=none
+==================================================
+No IP, disconnect mode, for test only
