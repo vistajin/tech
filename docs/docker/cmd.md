@@ -252,3 +252,12 @@ nano /home/vistajin/baidunetdiskdownload/test/index.html
 ~~~
 Test: http://localhost:9080/
 
+### Show network mode
+```sh
+sudo docker network ls
+```
+
+### Start container in host mode
+```sh
+sudo docker run --net=host ....
+```
