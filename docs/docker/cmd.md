@@ -221,6 +221,11 @@ sudo docker start <first-4-digits-container-id>
 sudo docker run -d -c "command"
 ```
 
+### Run container with super root mode (can run systemctl)
+```sh
+sudo docer run --priviledged=true ...
+```
+
 ### Show container log
 ```sh
 sudo docker logs <first-4-digits-container-id>
