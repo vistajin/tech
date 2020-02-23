@@ -290,3 +290,16 @@ sudo docker run --link <another_container_name>
 ```
 Benefit: don't need to care about what is the IP of another container, current container can access another container by its name
 
+
+### Install docker compose
+```sh
+sudo pip install -i https://pypi.tuna.tsinghua.edu.cn/simple docker-compose==1.24.1
+
+sudo docker-compose --version
+```
+### Docker compose related
+```sh
+sudo docker-compose ps
+
+```
+
