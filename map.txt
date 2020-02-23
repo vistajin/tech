@@ -1,4 +1,0 @@
-Hive <> BigQuery
-HBase <> BigTable
-MongoDb <> DataStore
-Spark <> Dataflow

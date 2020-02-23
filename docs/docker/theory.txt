@@ -46,6 +46,11 @@ Instead use container name, this need to run the container using parameter --lin
 docker run --link xxx
 This is single direction communicate.
 
+To enable multi direction communication, need to create bridge and connect container with the bridge:
+docker network create -d bridge bridge_name
+docker network connect bridge_name container_1
+docker network connect bridge_name container_2
+
 ==================================================
 Host Mode: docker run --net=host
 ==================================================
@@ -62,3 +67,6 @@ Host Mode: docker run --net=host
 None Mode: docker run --net=none
 ==================================================
 No IP, disconnect mode, for test only
+
+
+

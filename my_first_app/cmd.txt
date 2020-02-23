@@ -1,5 +1,0 @@
-dev_appserver.py ./
-
-gcloud app deploy app.yml
-
-curl https://vjxxnet01.appspot.com/

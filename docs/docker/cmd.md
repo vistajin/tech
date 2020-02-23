@@ -252,10 +252,22 @@ nano /home/vistajin/baidunetdiskdownload/test/index.html
 ~~~
 Test: http://localhost:9080/
 
+### Create network mode
+```sh
+sudo docker network create -d bridge <bridge_name>
+```
+
 ### Show network mode
 ```sh
 sudo docker network ls
 ```
+
+### Connect container with bridge
+```sh
+sudo docker network connect <bridge_name> <container_1>
+sudo docker network connect <bridge_name> <container_2>
+```
+Then container_1 can access container_2 and vervise.
 
 ### Start container in host mode
 ```sh
