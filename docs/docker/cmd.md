@@ -88,8 +88,11 @@ sudo docker cp CONTAINER_NAME:/path/to/container/file.txt /path/to/host
 
 ### Attach file to container (sync file in between, changes in either side will be applied to the other)
 ~~~sh
-sudo docker -it -v /path/to/host/:/path/to/container iamge:tag
+sudo docker run -it -v /path/to/host/:/path/to/container iamge:tag --name <container_1>
+sudo docker run -it --volumns-from <container_1> iamge:tag --name <container_2>
 ~~~
+Tips: use docker inspect to check "Mounts", destination is container path, source is host path
+Tips: in dockerfile, use VOLUME ["/path/to/container"], in this way, the post path (source) is not modifiable.
 
 ### Create Image
 1. modify based on existing (container -> image)
@@ -256,6 +259,8 @@ sudo docker run -itd -p 9080:8080 -v /home/vistajin/baidunetdiskdownload/test:/u
 nano /home/vistajin/baidunetdiskdownload/test/index.html
 ~~~
 Test: http://localhost:9080/
+
+
 
 ### Create network mode
 ```sh
