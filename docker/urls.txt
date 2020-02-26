@@ -1,6 +1,15 @@
 play with docker:
 https://labs.play-with-docker.com/
 
+aliyun image repository:
+https://cr.console.aliyun.com/cn-shanghai/instances/repositories
+
+Harbor:
+https://github.com/goharbor/harbor/releases
+
+Hub Docke:
+https://hub.docker.com/
+
 https://www.youtube.com/watch?v=DgoKjlDteEA&list=PLifxs-ivI_0Sq9Q7_tNPsYcratDh5sq34
 
 http://wiki.zenoss.org/download/core/drich_slides/DockerSlides.pdf
