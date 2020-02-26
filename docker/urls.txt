@@ -10,6 +10,9 @@ https://github.com/goharbor/harbor/releases
 Hub Docke:
 https://hub.docker.com/
 
+Wordpress:
+https://docs.docker.com/compose/wordpress/
+
 https://www.youtube.com/watch?v=DgoKjlDteEA&list=PLifxs-ivI_0Sq9Q7_tNPsYcratDh5sq34
 
 http://wiki.zenoss.org/download/core/drich_slides/DockerSlides.pdf
