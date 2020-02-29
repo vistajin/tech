@@ -75,6 +75,28 @@ CREATE TABLE t1 (..., FOREIGN KEY (b, c) REFERENCES other_table (c1, c2));
 ...REFERENCES orders ON DELETE CASCADE/RESTRICT...
 ```
 
+#### Change column type
+```sql
+ALTER TABLE products ALTER COLUMN price TYPE numeric(10,2);
+```
+
+#### Change table name
+```sql
+ALTER TABLE products RENAME TO items;
+```
+
+#### Grant permission
+```sql
+GRANT UPDATE ON table_name TO user_name;
+GRANT ALL ON table_name TO user_name;
+REVOKE ALL ON table_name FROM PUBLIC;
+
+with grant option -- 
+```
+
+#### Row security policy
+http://www.postgres.cn/docs/11/ddl-rowsecurity.html
+
 #### Transaction
 ```sql
 BEGIN;
