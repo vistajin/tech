@@ -119,7 +119,7 @@ SELECT sum(salary) OVER w, avg(salary) OVER w
 #### Inherits
 ```sql
 CREATE TABLE T2 (...) INHERITS (T1);
-SELECT * FROM T1; -- This will also select T2
+SELECT * FROM T1; -- This will also select T2, equals to: SELECT * FROM T1*;
 SELECT * FROM ONLY T1; -- UPDATE, DELETE also support ONLY
 ```
 #### Function
@@ -141,4 +141,57 @@ SELECT concat_lower_or_upper(a => 'Hello', b => 'World');
 SELECT concat_lower_or_upper(a => 'Hello', uppercase => true, b => 'World');
 SELECT concat_lower_or_upper(a => 'Hello', uppercase => true, b => 'World');
 SELECT concat_lower_or_upper('Hello', 'World', uppercase => true);
+```
+
+#### Schema
+```sh
+CREATE SCHEMA myschema;
+CREATE SCHEMA myschema;
+DROP SCHEMA myschema CASCADE; -- all objects like tables, views will be dropped too
+CREATE SCHEMA schema_name AUTHORIZATION user_name;
+-- 以pg_开头的模式名被保留用于系统目的，所以不能被用户所创建。
+-- default SCHEMA is "public"
+SHOW search_path;
+SET search_path TO myschema,public;
+REVOKE CREATE ON SCHEMA public FROM PUBLIC;
+-- 第一个“public”是方案，第二个“public”指的是“每一个用户”。第一种是一个标识符，第二种是一个关键词
+-- pg_catalog
+ALTER ROLE user SET search_path = "$user"; -- remove public schema for user
+```
+
+#### Partition 表分区
+```sh
+CREATE TABLE measurement (
+    city_id         int not null,
+    logdate         date not null,
+    peaktemp        int,
+    unitsales       int
+) PARTITION BY RANGE (logdate);  -- 按照记录日期分区
+
+CREATE TABLE measurement_y2007m11 PARTITION OF measurement
+    FOR VALUES FROM ('2007-11-01') TO ('2007-12-01');
+    
+CREATE TABLE measurement_y2006m02 PARTITION OF measurement
+    FOR VALUES FROM ('2006-02-01') TO ('2006-03-01')
+    PARTITION BY RANGE (peaktemp); -- 创建子分区
+    
+CREATE TABLE measurement_y2008m01 (
+    CHECK ( logdate >= DATE '2008-01-01' AND logdate < DATE '2008-02-01' )
+) INHERITS (measurement);  -- 使用继承
+ALTER TABLE measurement_y2006m02 NO INHERIT measurement; -- 保留独立表数据
+
+DROP TABLE measurement_y2006m02;  -- 删除数据（快速）， need ACCESS EXCLUSIVE lock
+
+ALTER TABLE measurement DETACH PARTITION measurement_y2006m02;  -- even better option to remove old data
+
+SET enable_partition_pruning = on;
+```
+
+#### Return value from insert/update/delete
+```sql
+INSERT INTO users (firstname, lastname) VALUES ('Joe', 'Cool') RETURNING id;
+UPDATE products SET price = price * 1.10
+  WHERE price <= 99.99
+  RETURNING name, price AS new_price;
+DELETE FROM products WHERE obsoletion_date = 'today' RETURNING *;
 ```
