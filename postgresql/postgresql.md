@@ -19,10 +19,12 @@ http://www.postgres.cn/docs/11/install-short.html
 https://www.postgresql.org/download/linux/ubuntu/
 - docker
 https://hub.docker.com/_/postgres
+```sh
 sudo docker run --name postgres -e POSTGRES_PASSWORD=abc123 -d postgres
 sudo docker exec -it 0830b402c800 /bin/bash
 su postgres
 psql
 SELECT version();
+```
 
 ### createdb / dropdb / psql
