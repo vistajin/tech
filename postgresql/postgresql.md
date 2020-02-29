@@ -29,7 +29,44 @@ SELECT version();
 
 ### createdb / dropdb / psql
 
-#### show databases: \l
-#### change current database: \c db_name
-#### show tables: \dt
-#### load data from file: COPY table_name FROM '/path/to/some/file.txt'
+#### show databases: 
+```
+\l
+```
+#### change current database: 
+```
+\c db_name
+```
+#### show tables: 
+```
+\dt
+```
+#### load data from file: 
+```sql
+COPY table_name FROM '/path/to/some/file.txt'
+```
+#### Transaction
+```sql
+BEGIN;
+COMMIT;
+SAVEPOINT the_point;
+ROLLBACK TO the_point;
+```
+#### Window function
+```sql
+SELECT depname, empno, salary, avg(salary) OVER (PARTITION BY depname) FROM empsalary;
+SELECT depname, empno, salary, rank() OVER (PARTITION BY depname ORDER BY salary DESC) FROM empsalary;
+SELECT salary, sum(salary) OVER () FROM empsalary;
+SELECT salary, sum(salary) OVER (partition by depname) FROM empsalary;
+SELECT salary, sum(salary) OVER (ORDER BY salary) FROM empsalary;
+SELECT sum(salary) OVER w, avg(salary) OVER w
+  FROM empsalary
+  WINDOW w AS (PARTITION BY depname ORDER BY salary DESC);
+```
+
+#### Inherits
+```sql
+CREATE TABLE T2 (...) INHERITS (T1);
+SELECT * FROM T1; -- This will also select T2
+SELECT * FROM ONLY T1; -- UPDATE, DELETE also support ONLY
+```
