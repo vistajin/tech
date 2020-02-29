@@ -28,3 +28,8 @@ SELECT version();
 ```
 
 ### createdb / dropdb / psql
+
+#### show databases: \l
+#### change current database: \c db_name
+#### show tables: \dt
+#### load data from file: COPY table_name FROM '/path/to/some/file.txt'
