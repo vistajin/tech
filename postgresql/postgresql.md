@@ -144,7 +144,7 @@ SELECT concat_lower_or_upper('Hello', 'World', uppercase => true);
 ```
 
 #### Schema
-```sh
+```sql
 CREATE SCHEMA myschema;
 CREATE SCHEMA myschema;
 DROP SCHEMA myschema CASCADE; -- all objects like tables, views will be dropped too
@@ -160,7 +160,7 @@ ALTER ROLE user SET search_path = "$user"; -- remove public schema for user
 ```
 
 #### Partition 表分区
-```sh
+```sql
 CREATE TABLE measurement (
     city_id         int not null,
     logdate         date not null,
