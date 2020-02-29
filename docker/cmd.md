@@ -47,6 +47,11 @@ sudo docker stop CONTAINER_ID / CONTAINER_NAME
 docker stop $(docker ps -a -q)
 ~~~
 
+### Kill all containers
+~~~sh
+sudo docker rm  $(sudo docker ps -a -q)
+~~~
+
 ### Start container
 ~~~sh
 sudo docker start CONTAINER_ID / NAME
