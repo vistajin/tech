@@ -195,3 +195,27 @@ UPDATE products SET price = price * 1.10
   RETURNING name, price AS new_price;
 DELETE FROM products WHERE obsoletion_date = 'today' RETURNING *;
 ```
+
+#### Join table
+```sql
+t1 CROSS JOIN t2 -- equals to t1,t2, equals to JOIN, equals to INNER JOIN
+on t1.xx = t2.xx -- two xx column
+using(xx)        -- one xx column
+```
+
+#### GROUPING SETS,CUBE, ROLLUP
+```sql
+SELECT brand, size, sum(sales) FROM items_sold GROUP BY GROUPING SETS ((brand), (size), ());
+-- 计算和值for不同的brand,size组合，（）表示所有值都可以，即计算总数
+
+SELECT brand, size, sum(sales) FROM items_sold GROUP BY ROLLUP ((brand), (size));
+SELECT brand, size, sum(sales) FROM items_sold GROUP BY CUBE ((brand), (size));
+-- http://www.postgres.cn/docs/11/queries-table-expressions.html
+```
+
+#### Combine Query
+```sql
+UNION [ALL]
+INTERSECT [ALL]
+EXCEPT [ALL]
+```
