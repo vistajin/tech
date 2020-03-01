@@ -266,3 +266,9 @@ CREATE TYPE mood AS ENUM ('sad', 'ok', 'happy');
 -- sort order is the sequence in definition, i.e. sad < ok < happy
 -- can add new value but can't remove, can change enum name, can't change order.
 ```
+
+#### lateral
+```sql
+SELECT * FROM foo, LATERAL (SELECT * FROM bar WHERE bar.id = foo.bar_id) ss;
+-- 在LATERAL(这里可以关联(引用)lateral左边的表或子句)  
+```
