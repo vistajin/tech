@@ -272,3 +272,18 @@ CREATE TYPE mood AS ENUM ('sad', 'ok', 'happy');
 SELECT * FROM foo, LATERAL (SELECT * FROM bar WHERE bar.id = foo.bar_id) ss;
 -- 在LATERAL(这里可以关联(引用)lateral左边的表或子句)  
 ```
+#### 特殊数据类型
+- serial, bigserial, smallserial
+- money (lc_monetary)
+- bytea
+- boolean
+- point,line,lseg,box,path,polygon,circle
+- cidr,inet,macaddr,macaddr8
+- bit
+- tsvector,tsquery 文本搜索
+- UUID
+- XML
+- JSON,JSONB
+- ARRAY
+- Combination -- CREATE TYPE xxx AS
+- range：int4range,int8range,numrange,tsrange,tstzrange,daterange
