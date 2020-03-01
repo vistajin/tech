@@ -219,3 +219,50 @@ UNION [ALL]
 INTERSECT [ALL]
 EXCEPT [ALL]
 ```
+
+#### With Clause
+```sql
+WITH RECURSIVE -- 允许在查询中查找自己，也就是递归
+
+WITH RECURSIVE pseudo-entity-name(column-names) AS (
+    Initial-SELECT
+UNION ALL
+    Recursive-SELECT using pseudo-entity-name
+)
+Outer-SELECT using pseudo-entity-name
+
+-- 例子1：
+WITH RECURSIVE t(n) AS (  -- n是列名
+    VALUES (1)            -- t表刚开始只有一个值1
+  UNION ALL
+    SELECT n+1 FROM t WHERE n < 100 -- 第一次执行到这里n=1, 小于100，满足条件于是有了新的值n+1=2
+                                    -- 如果没有RECURSIVE，这t表在这里是不能被引用到
+                                    -- 接着继续select直到n=100，最终t表的值为1,2,3,...,100
+)
+SELECT sum(n) FROM t;
+
+-- 例子2：
+WITH RECURSIVE factorial(F,n) AS ( -- 表factorial，列名：F，n
+    SELECT 1 F, 3 n                -- 初始表值：1，3
+UNION ALL
+    SELECT F*n F, n-1 n from factorial where n>1 -- n=3，大于1，表新值：3，2
+                                                 -- n=2，大于1，表新值：6，1
+)
+SELECT F from factorial where n=1;               -- F=6
+```
+
+#### Date time funcitons
+```sql
+select  date '2001-09-28' + integer '7';
+select date '2001-09-28' + interval '1 hour';
+--https://www.postgresql.org/docs/9.1/functions-datetime.html
+```
+
+#### Enum type
+```sql
+CREATE TYPE mood AS ENUM ('sad', 'ok', 'happy'); 
+-- case sensitive
+-- can't compare with other enum, need convert to test if need ::text
+-- sort order is the sequence in definition, i.e. sad < ok < happy
+-- can add new value but can't remove, can change enum name, can't change order.
+```
