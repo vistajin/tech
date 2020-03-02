@@ -287,3 +287,14 @@ SELECT * FROM foo, LATERAL (SELECT * FROM bar WHERE bar.id = foo.bar_id) ss;
 - ARRAY
 - Combination -- CREATE TYPE xxx AS
 - range：int4range,int8range,numrange,tsrange,tstzrange,daterange
+- domain: CREATE DOMAIN posint AS integer CHECK (VALUE > 0);
+- OID: WITH OIDS, default_with_oids
+- pg_lsn: 日志序列号
+- 伪类型: any, anyelement, anyenum, anyrange,cstring, ....
+
+#### 包含运算符：@>, 被包含：<@，重叠：&&，完全在左边：<<，完全在右边：>>，邻接：-|-
+```sql
+select ARRAY[1,4,3] @> ARRAY[3,1,3];  -- t
+select ARRAY[1,4,3] @> ARRAY[3,1,6];  -- f
+https://www.postgresql.org/docs/current/functions-range.html
+```
