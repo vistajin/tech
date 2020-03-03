@@ -292,9 +292,12 @@ SELECT * FROM foo, LATERAL (SELECT * FROM bar WHERE bar.id = foo.bar_id) ss;
 - pg_lsn: 日志序列号
 - 伪类型: any, anyelement, anyenum, anyrange,cstring, ....
 
-#### 包含运算符：@>, 被包含：<@，重叠：&&，完全在左边：<<，完全在右边：>>，邻接：-|-
+#### 包含运算符：@>, 被包含：<@，重叠：&&，完全在左边：<<，完全在右边：>>，邻接：-|-，匹配：@@ or @@@，后面紧跟：<->
 ```sql
 select ARRAY[1,4,3] @> ARRAY[3,1,3];  -- t
 select ARRAY[1,4,3] @> ARRAY[3,1,6];  -- f
-https://www.postgresql.org/docs/current/functions-range.html
+-- https://www.postgresql.org/docs/current/functions-range.html
+to_tsvector('fat cats ate rats') @@ to_tsquery('cat & rat') -- true
+to_tsquery('fat') <-> to_tsquery('rat') -- 'fat' <-> 'rat'
+-- http://www.postgres.cn/docs/11/functions-textsearch.html
 ```
