@@ -301,3 +301,13 @@ to_tsvector('fat cats ate rats') @@ to_tsquery('cat & rat') -- true
 to_tsquery('fat') <-> to_tsquery('rat') -- 'fat' <-> 'rat'
 -- http://www.postgres.cn/docs/11/functions-textsearch.html
 ```
+
+#### Index
+```sql
+CREATE INDEX test1_lower_col1_idx ON test1 (lower(col1));
+CREATE INDEX people_names ON people ((first_name || ' ' || last_name));
+CREATE INDEX orders_unbilled_index ON orders (order_nr)
+    WHERE billed is not true;
+CREATE UNIQUE INDEX tests_success_constraint ON tests (subject, target)
+    WHERE success;
+```
