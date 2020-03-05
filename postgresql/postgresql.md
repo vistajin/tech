@@ -49,6 +49,11 @@ COPY table_name FROM '/path/to/some/file.txt'
 #### Create Table
 ```sql
 create table t2(like t1);
+CREATE TABLE test1 (
+    a text COLLATE "de_DE",
+    b text COLLATE "es_ES",
+);
+-- COLLATE 类似语言编码，不同COLLATE排序不同。数据库，索引等都可指定COLLATE
 ```
 
 #### Default value
@@ -340,8 +345,10 @@ CREATE UNIQUE INDEX tests_success_constraint ON tests (subject, target)
 如果select的字段都包含在index中，postgres将会进行索引扫描而不回表。Index-Only 扫描不支持表达式。
 ```sql
 explain (analyze,verbose,timing,costs,buffers) select id,c1,c2,c3,info,crt_time from t1 where id=1;
-create index idx_t1_1 on t1 (id) include(c1,c2,c3,info,crt_time); -- other columns stored in index leaf page，无需到堆取数据
-create index idx_t2_1 on t2 (id,c1,c2,c3,info,crt_time); -- index size big, insert much slower than include
+create index idx_t1_1 on t1 (id) include(c1,c2,c3,info,crt_time);
+-- other columns stored in index leaf page，无需到堆取数据
+create index idx_t2_1 on t2 (id,c1,c2,c3,info,crt_time);
+-- index size big, insert much slower than include
 ```
 
 #### 
