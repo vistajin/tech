@@ -46,6 +46,11 @@ SELECT version();
 COPY table_name FROM '/path/to/some/file.txt'
 ```
 
+#### Create Table
+```sql
+create table t2(like t1);
+```
+
 #### Default value
 ```sql
 CREATE TABLE products (product_no integer, name text, price numeric DEFAULT 9.99);
@@ -303,11 +308,37 @@ to_tsquery('fat') <-> to_tsquery('rat') -- 'fat' <-> 'rat'
 ```
 
 #### Index
+- B-tree: default. 只有B-tree能够被声明为唯一, PostgreSQL会自动为定义了一个唯一约束或主键的表创建一个唯一索引
+```sql
+CREATE INDEX test2_info_nulls_low ON test2 (info NULLS FIRST);
+CREATE UNIQUE INDEX name ON table (column [, ...]);
+```
+- Hash: 只能处理简单等值比较
+```sql
+CREATE INDEX name ON table USING HASH (column);
+```
+- GiST
+- SP-GiST
+- GIN
+- BRIN
+
+#### 表达式索引
 ```sql
 CREATE INDEX test1_lower_col1_idx ON test1 (lower(col1));
 CREATE INDEX people_names ON people ((first_name || ' ' || last_name));
+```
+####  部分索引
+```sql
 CREATE INDEX orders_unbilled_index ON orders (order_nr)
     WHERE billed is not true;
 CREATE UNIQUE INDEX tests_success_constraint ON tests (subject, target)
     WHERE success;
+```
+
+#### Index Only Scan
+如果select的字段都包含在index中，postgres将会进行索引扫描而不回表。
+```sql
+explain (analyze,verbose,timing,costs,buffers) select id,c1,c2,c3,info,crt_time from t1 where id=1;
+create index idx_t1_1 on t1 (id) include(c1,c2,c3,info,crt_time); -- other columns stored in index leaf page，无需到堆取数据
+create index idx_t2_1 on t2 (id,c1,c2,c3,info,crt_time); -- index size big, insert much slower than include
 ```
