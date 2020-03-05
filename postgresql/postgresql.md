@@ -312,6 +312,7 @@ to_tsquery('fat') <-> to_tsquery('rat') -- 'fat' <-> 'rat'
 ```sql
 CREATE INDEX test2_info_nulls_low ON test2 (info NULLS FIRST);
 CREATE UNIQUE INDEX name ON table (column [, ...]);
+CREATE UNIQUE INDEX idx_t1_ab ON t1 USING btree (a, b) INCLUDE (c);
 ```
 - Hash: 只能处理简单等值比较
 ```sql
@@ -335,10 +336,21 @@ CREATE UNIQUE INDEX tests_success_constraint ON tests (subject, target)
     WHERE success;
 ```
 
-#### Index Only Scan
-如果select的字段都包含在index中，postgres将会进行索引扫描而不回表。
+#### Index Only Scan - 覆盖索引 Converting index
+如果select的字段都包含在index中，postgres将会进行索引扫描而不回表。Index-Only 扫描不支持表达式。
 ```sql
 explain (analyze,verbose,timing,costs,buffers) select id,c1,c2,c3,info,crt_time from t1 where id=1;
 create index idx_t1_1 on t1 (id) include(c1,c2,c3,info,crt_time); -- other columns stored in index leaf page，无需到堆取数据
 create index idx_t2_1 on t2 (id,c1,c2,c3,info,crt_time); -- index size big, insert much slower than include
 ```
+
+#### 
+
+
+
+
+
+
+
+
+
