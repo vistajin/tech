@@ -351,7 +351,19 @@ create index idx_t2_1 on t2 (id,c1,c2,c3,info,crt_time);
 -- index size big, insert much slower than include
 ```
 
-#### 
+####  analyze
+
+```sql
+-- check analyze history
+select * from pg_stat_user_tables;
+-- run analyze
+analyze [VERBOSE] [TABLE_NAME] [COLUMN_NAME];
+-- analyze就起到一个更新统计信息的作用, 使PostgreSQL采用更加合理的查询。
+EXPLAIN ANALYZE SELECT/UPDATE/DELETE
+explain (analyze true,buffers true) select * from ...
+```
+
+
 
 
 
