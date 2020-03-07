@@ -27,11 +27,13 @@ psql
 SELECT version();
 ```
 
-### createdb / dropdb / psql
+### 反斜杠命令
 
 #### show databases: 
 ```
+psql -l
 \l
+SELECT datname FROM pg_database;
 ```
 #### change current database: 
 ```
@@ -41,12 +43,62 @@ SELECT version();
 ```
 \dt
 ```
+#### describe table
+
+```sql
+\d table_name
+```
+
+#### show timing
+
+```sql
+\timing
+```
+
+#### show role/user
+
+```sql
+\du
+create role role_name;
+drop role role_name;
+SELECT rolname FROM pg_roles;
+createuser name
+dropuser name
+```
+
+
+
+### 一些命令
+
 #### load data from file: 
+
 ```sql
 COPY table_name FROM '/path/to/some/file.txt'
 ```
 
+#### create/drop db
+
+```sql
+psql / createdb / dropdb
+CREATE DATABASE db_name; -- createdb db_name
+CREATE DATABASE dbname OWNER rolename; -- createdb -O rolename dbname
+CREATE DATABASE dbname TEMPLATE template0; -- createdb -T template0 dbname
+-- 模板数据库
+select * from pg_database where datistemplate is true;
+```
+
+
+
+#### Tablespace 表空间
+
+```sql
+CREATE TABLESPACE fastspace LOCATION '/ssd1/postgresql/data';
+```
+
+
+
 #### Create Table
+
 ```sql
 create table t2(like t1);
 CREATE TABLE test1 (
@@ -54,9 +106,14 @@ CREATE TABLE test1 (
     b text COLLATE "es_ES",
 );
 -- COLLATE 类似语言编码，不同COLLATE排序不同。数据库，索引等都可指定COLLATE
+
+ALTER TABLE some_table OWNER TO <some_one>;
 ```
 
+### Knowledge points
+
 #### Default value
+
 ```sql
 CREATE TABLE products (product_no integer, name text, price numeric DEFAULT 9.99);
 CREATE TABLE products (product_no integer DEFAULT nextval('products_product_no_seq'), ...);
@@ -155,7 +212,6 @@ SELECT concat_lower_or_upper('Hello', 'World', uppercase => true);
 
 #### Schema
 ```sql
-CREATE SCHEMA myschema;
 CREATE SCHEMA myschema;
 DROP SCHEMA myschema CASCADE; -- all objects like tables, views will be dropped too
 CREATE SCHEMA schema_name AUTHORIZATION user_name;
@@ -302,7 +358,14 @@ SELECT * FROM foo, LATERAL (SELECT * FROM bar WHERE bar.id = foo.bar_id) ss;
 - pg_lsn: 日志序列号
 - 伪类型: any, anyelement, anyenum, anyrange,cstring, ....
 
-#### 包含运算符：@>, 被包含：<@，重叠：&&，完全在左边：<<，完全在右边：>>，邻接：-|-，匹配：@@ or @@@，后面紧跟：<->
+#### 特殊运算符
+
+包含运算符：@>, 被包含：<@，重叠：&&
+
+完全在左边：<<，完全在右边：>>，邻接：-|-，
+
+匹配：@@ or @@@，后面紧跟：<->
+
 ```sql
 select ARRAY[1,4,3] @> ARRAY[3,1,3];  -- t
 select ARRAY[1,4,3] @> ARRAY[3,1,6];  -- f
@@ -359,8 +422,28 @@ select * from pg_stat_user_tables;
 -- run analyze
 analyze [VERBOSE] [TABLE_NAME] [COLUMN_NAME];
 -- analyze就起到一个更新统计信息的作用, 使PostgreSQL采用更加合理的查询。
+-- 例如update或者insert某个表后，不执行analyze，那么explain看到的结果不会发生变化
 EXPLAIN ANALYZE SELECT/UPDATE/DELETE
 explain (analyze true,buffers true) select * from ...
+```
+
+#### Explain
+
+```sql
+EXPLAIN (format JSON/XML/YAML) SELECT ....
+
+SELECT relpages, reltuples FROM pg_class WHERE relname = '<table_name>';
+mydb=# SELECT relpages, reltuples FROM pg_class WHERE relname = 't1';
+ relpages | reltuples 
+----------+-----------
+        1 |         4
+-- 开销 = relpages + 0.01 * reltuples = 1.04
+mydb=# EXPLAIN SELECT * FROM t1;
+                    QUERY PLAN                    
+--------------------------------------------------
+ Seq Scan on t1  (cost=0.00..1.04 rows=4 width=9)
+(1 row)
+
 ```
 
 
