@@ -93,7 +93,11 @@ select * from pg_database where datistemplate is true;
 
 ```sql
 CREATE TABLESPACE fastspace LOCATION '/ssd1/postgresql/data';
+SET default_tablespace = space1;
+select * from pg_tablespace;
 ```
+
+`pg_global`表空间被用于共享系统目录。pg_default 默认表空间
 
 
 
