@@ -66,6 +66,12 @@ createuser name
 dropuser name
 ```
 
+#### show tablespace
+
+```sql
+\db
+```
+
 
 
 ### 一些命令
@@ -113,6 +119,27 @@ CREATE TABLE test1 (
 
 ALTER TABLE some_table OWNER TO <some_one>;
 ```
+
+
+
+#### initdb
+
+```sql
+initdb --locale=sv_SE
+initdb --locale=fr_BE.UTF-8
+initdb --locale=fr_CA --lc-monetary=en_US
+```
+
+```
+1.创建pg的data主目录，以及其所有子目录 
+2.生成配置文件postgresql.conf 
+3.创建template1数据库 
+4.对template1数据库加载初始化数据 
+5.复制template1到template0数据库 
+6.复制template1到postgres数据库
+```
+
+
 
 ### Knowledge points
 
