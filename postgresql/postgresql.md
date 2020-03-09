@@ -139,6 +139,16 @@ initdb --locale=fr_CA --lc-monetary=en_US
 6.复制template1到postgres数据库
 ```
 
+#### vacuum
+
+垃圾收集并根据需要分析一个数据库。适度运行标准`VACUUM`运行比少量运行`VACUUM FULL`要更好。`TRUNCATE`会立刻移除该表的整个内容，而不需要一次后续的`VACUUM`或`VACUUM FULL`来回收现在未被使用的磁盘空间。
+
+```plsql
+vacuum verbose analyze t1;
+vacuum full t1;
+vacuum full verbose;
+```
+
 
 
 ### Knowledge points

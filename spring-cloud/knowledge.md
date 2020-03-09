@@ -5,6 +5,8 @@
 - [x] Availability（可用性）
 - [x] Partition tolerance（分区容错性）
 
+eureka 2.x discontinued
+
 #### Server
 
 - self preservation mode, default enabled, not recommend to turn off
@@ -16,9 +18,7 @@ server:
   enable-self-preservation: false
 ```
 
-
-
-
+http://cloud.spring.io/spring-cloud-netflix/single/spring-cloud-netflix.html#spring-cloud-eureka-server
 
 #### Client
 
@@ -31,4 +31,9 @@ eureka:
       defaultZone: http://localhost:8761/eureka/
 ```
 
-- 
+http://cloud.spring.io/spring-cloud-netflix/single/spring-cloud-netflix.html#netflix-eureka-client-starter
+
+
+
+### Ribbon
+
