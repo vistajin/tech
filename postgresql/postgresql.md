@@ -149,7 +149,24 @@ vacuum full t1;
 vacuum full verbose;
 ```
 
+#### autovacuum
 
+- `autovacuum_naptime` (`integer`): postgresql.conf or command line, default 60s
+- `autovacuum_max_workers` (`integer`): set when start up, default 3
+- `log_autovacuum_min_duration` (`integer`)： postgresql.conf or command line, default -1 means no log, if N then log all clean action that longer than N ms
+
+#### 重建索引
+
+- reindex
+
+  ```sql
+  reindex index xxx
+  reindex table xxx
+  ```
+- alter index / drop index
+  ```sql
+  CREATE INDEX CONCURRENTLY
+  ```
 
 ### Knowledge points
 
@@ -487,7 +504,9 @@ mydb=# EXPLAIN SELECT * FROM t1;
 
 ```
 
+#### pgBader - The PostgreSQL log analyzer
 
+https://pgbadger.darold.net/
 
 
 
