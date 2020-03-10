@@ -37,3 +37,24 @@ http://cloud.spring.io/spring-cloud-netflix/single/spring-cloud-netflix.html#net
 
 ### Ribbon
 
+Client Side Load Balancer: https://cloud.spring.io/spring-cloud-netflix/multi/multi_spring-cloud-ribbon.html
+
+- RestTemplate
+
+```java
+@Bean
+@LoadBalanced
+public RestTemplate restTemplate() {
+    return new RestTemplate();
+}
+```
+
+- LoadBalancerClient
+
+```java
+@AutoWired
+private LoadBalancerClient loadBalancer;
+
+ServiceInstance instance = loadBalancer.choose("service-id");
+```
+
