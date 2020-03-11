@@ -508,7 +508,28 @@ mydb=# EXPLAIN SELECT * FROM t1;
 
 https://pgbadger.darold.net/
 
+#### pg_ctl
 
+```plsql
+pg_ctl status
+pg_ctl initdb -D /var/lib/postgresql/data2
+/usr/lib/postgresql/12/bin/pg_ctl -D /var/lib/postgresql/data2 -l logfile start
+pg_ctl -o "-F -p 5433" restart
+```
+
+#### backup
+
+1. SQL转储
+
+   ```sql
+   pg_dump dbname > dumpfile
+   ```
+
+   
+
+2. 文件系统级别备份
+
+3. 连续归档和时间点恢复（PITR）
 
 
 
