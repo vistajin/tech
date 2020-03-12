@@ -27,6 +27,27 @@ psql
 SELECT version();
 ```
 
+### Client Authentication
+
+- pg_hba.conf (host based authentication)
+
+```properties
+# TYPE  DATABASE        USER            ADDRESS                 METHOD
+
+# "local" is for Unix domain socket connections only
+local   all             all                                     trust
+# IPv4 local connections:
+host    all             all             127.0.0.1/32            trust
+# IPv6 local connections:
+host    all             all             ::1/128                 trust
+```
+
+```sql
+select * from pg_hba_file_rules;
+```
+
+
+
 ### 反斜杠命令
 
 #### show databases: 
@@ -504,6 +525,8 @@ mydb=# EXPLAIN SELECT * FROM t1;
 
 ```
 
+### 数据库管理
+
 #### pgBader - The PostgreSQL log analyzer
 
 https://pgbadger.darold.net/
@@ -521,17 +544,58 @@ pg_ctl -o "-F -p 5433" restart
 
 1. SQL转储
 
-   ```sql
+   ##### pg_dump
+
+   - dump based on template0
+   - run ANALYZE after dump
+   - no role and table space will be dump
+
+   ```plsql
    pg_dump dbname > dumpfile
+   psql dumpfile < dbname
+   psql --set ON_ERROR_STOP=on dbname < infile
+   -- transaction mode, rollback when any error
+   psql -1 dbname < infile
+   psql --single-transaction dbname < infile
+   -- dump db from another server
+   pg_dump -h host1 dbname | psql -h host2 dbname
+   -- dump and zip, used for large size db
+   pg_dump dbname | gzip > filename.gz
+   gunzip -c filename.gz | psql dbname
+   cat filename.gz | gunzip | psql dbname
+   -- dump and split in files
+   pg_dump dbname | split -b 1m - filename
+   cat filename* | psql dbname
+   -- dump to other format which is not psql format
+   pg_dump -Fc dbname > filename
+   pg_restore -d dbname filename
+   -- dump in multiple threads
+   pg_dump -j num -F d -f out.dir dbname
+   pg_restore -j dbname filename
+   ```
+
+   #### pg_dumpall
+
+   - will dump roles and table space
+
+   ```sql
+   pg_dumpall > dumpfile
+   psql -f dumpfile postgres
    ```
 
    
 
 2. 文件系统级别备份
 
+   - must stop db
+
+   ```shell
+   tar -cf backup.tar /usr/local/pgsql/data
+   ```
+
 3. 连续归档和时间点恢复（PITR）
 
-
+#### high availability
 
 
 
