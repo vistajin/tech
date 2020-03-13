@@ -540,6 +540,19 @@ pg_ctl initdb -D /var/lib/postgresql/data2
 pg_ctl -o "-F -p 5433" restart
 ```
 
+#### different replication solutions
+
+https://www.postgresql.org/docs/12/different-replication-solutions.html
+
+- Shared Disk Failover: NAS, no sync as only one db copy
+- File System (Block Device) Replication
+- Write-Ahead Log (WAL) Shipping: built-in streaming replication
+- Logical Replication
+- Trigger-Based Master-Standby Replication
+- Statement-Based Replication Middleware
+- Asynchronous Multimaster Replication
+- Synchronous Multimaster Replication
+
 #### backup
 
 1. SQL转储
