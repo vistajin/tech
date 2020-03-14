@@ -27,6 +27,28 @@ psql
 SELECT version();
 ```
 
+#### New DB user
+
+- In linux:
+
+```she
+adduser user1
+```
+
+- postgres sql:
+
+```sql
+CREATE USER user1 WITH PASSWORD 'password';
+CREATE DATABASE db1 OWNER user1;
+GRANT ALL PRIVILEGES ON DATABASE db1 to user1;
+ctrl+d
+psql -U user1 -d db1 -h 127.0.0.1 -p 5432
+-- or
+user1@0830b402c919:/$ psql -d db1 -h 127.0.0.1 -p 5432
+```
+
+
+
 ### Client Authentication
 
 - pg_hba.conf (host based authentication)
