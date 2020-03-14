@@ -545,12 +545,66 @@ pg_ctl -o "-F -p 5433" restart
 https://www.postgresql.org/docs/12/different-replication-solutions.html
 
 - Shared Disk Failover: NAS, no sync as only one db copy
+
 - File System (Block Device) Replication
+
 - Write-Ahead Log (WAL) Shipping: built-in streaming replication
+
+  - WAL的中心概念是数据文件（存储着表和索引）的修改在写入磁盘之前，必须先记入日志记录
+
+  - wal contain a history of all changes made to the database.
+
+  - max_wal_size: default 1GB
+
+  - similar to Oracle REDO log
+
+  - fsync, default on, 更新数据写入磁盘时系统必须等待WAL的写入完成. if off, 提高了性能，无法保证在系统崩溃时最近的事务能够得到恢复
+
+  - synchronous_commit：默认值是ON，表明必须等待WAL完成后才返回事务状态信息。OFF对于数据的一致性不存在风险，能够为系统的性能带来不小的提升。SET LOCAL synchronous_commit TO OFF
+
+  - http://postgres.cn/docs/11/runtime-config-wal.html
+
+    ```sql
+    alter system set wal_level= 'replica';
+    alter system set archive_mode= 'on';
+    alter system set archive_command = '/bin/cp -i %p /pgdata/10/archive_wal/%f';
+    select pg_switch_wal();
+    ```
+
+  - Monitor what are writen to WAL (pg_waldump)
+
+    ```sql
+    select * from pg_ls_waldir() order by modification asc;
+               name           |   size   |      modification      
+    --------------------------+----------+------------------------
+     000000010000000000000009 | 16777216 | 2020-03-14 12:50:25+00
+     00000001000000000000000A | 16777216 | 2020-03-14 12:55:19+00
+     000000010000000000000008 | 16777216 | 2020-03-14 12:58:59+00
+    
+    make some create table/insert/delete actions then run below command pg_waldump
+    ```
+
+    ```sql
+    pg_waldump -f $PGDATA/pg_wal/000000010000000000000008
+    ---------------------------------------------------------------
+    rmgr: Heap        len (rec/tot):     54/    54, tx:        668, lsn: 0/08001140, prev 0/08001108, desc: DELETE off 4 flags 0x00 KEYS_UPDATED , blkref #0: rel 1663/16384/16917 blk 0
+    rmgr: Transaction len (rec/tot):     34/    34, tx:        668, lsn: 0/08001178, prev 0/08001140, desc: COMMIT 2020-03-14 12:58:51.756115 UTC
+    rmgr: Standby     len (rec/tot):     50/    50, tx:          0, lsn: 0/080011A0, prev 0/08001178, desc: RUNNING_XACTS nextXid 669 latestCompletedXid 668 oldestRunningXid 669
+    rmgr: Standby     len (rec/tot):     50/    50, tx:          0, lsn: 0/080011D8, prev 0/080011A0, desc: RUNNING_XACTS nextXid 669 latestCompletedXid 668 oldestRunningXid 669
+    rmgr: XLOG        len (rec/tot):    114/   114, tx:          0, lsn: 0/08001210, prev 0/080011D8, desc: CHECKPOINT_ONLINE redo 0/80011D8; tli 1; prev tli 1; fpw true; xid 0:669; oid 25109; multi 1; offset 0; oldest xid 480 in DB 13408; oldest multi 1 in DB 16384; oldest/newest commit timestamp xid: 0/0; oldest running xid 669; online
+    rmgr: Standby     len (rec/tot):     50/    50, tx:          0, lsn: 0/08001288, prev 0/08001210, desc: RUNNING_XACTS nextXid 669 latestCompletedXid 668 oldestRunningXid 669
+    ```
+
+    lsn: Log Sequence Number
+
 - Logical Replication
+
 - Trigger-Based Master-Standby Replication
+
 - Statement-Based Replication Middleware
+
 - Asynchronous Multimaster Replication
+
 - Synchronous Multimaster Replication
 
 #### backup
