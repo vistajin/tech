@@ -68,6 +68,12 @@ host    all             all             ::1/128                 trust
 select * from pg_hba_file_rules;
 ```
 
+- set path
+
+```
+hba_file (string)
+```
+
 
 
 ### 反斜杠命令
@@ -687,6 +693,75 @@ https://www.postgresql.org/docs/12/different-replication-solutions.html
 #### high availability
 
 
+
+### Configuration
+
+#### postgresql.conf
+
+- postgresql.conf path
+
+```
+/var/lib/postgresql/data/postgresql.conf
+```
+- reload postgresql.conf
+
+```
+pg_ctl reload
+```
+
+```sql
+select pg_reload_conf();
+```
+
+- show current take effect config
+
+```sql
+select * from pg_file_settings;
+```
+
+- include other conf
+
+```c
+include 'filename'
+include_if_exists 'filename'
+include_dir 'directory'
+```
+
+- set path
+
+```
+config_file (string)
+```
+
+
+
+#### postgresql.auto.conf
+
+- same path as postgresql.conf, don't edit manually, updated by ALTER SYSTEM
+- load when postgresql.conf is loaded, override postgresql.conf
+
+#### current session
+
+```
+set SESSION | LOCAL variable = | to value
+select * from  pg_settings;
+```
+
+#### shell
+
+```
+postgres -c log_connections=yes -c log_destination='syslog'
+env PGOPTIONS="-c geqo=off -c statement_timeout=5min" psql
+```
+
+
+
+#### show settings
+
+```sql
+show all;
+select current_setting('application_name');
+```
 
 
 
