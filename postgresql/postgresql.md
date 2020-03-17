@@ -692,6 +692,12 @@ https://www.postgresql.org/docs/12/different-replication-solutions.html
 
 #### high availability
 
+- patroni: 一个模板, 通过python来构建一个高可用的postgresql的解决方案, 使用的数据同步方式是postgresql的流复制方式
+
+github: https://github.com/zalando/patroni
+
+doc: https://patroni.readthedocs.io/en/latest/
+
 
 
 ### Configuration
