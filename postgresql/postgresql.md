@@ -700,7 +700,7 @@ doc: https://patroni.readthedocs.io/en/latest/
 
 
 
-### Configuration
+### 配置 Configuration
 
 #### postgresql.conf
 
@@ -771,3 +771,32 @@ select current_setting('application_name');
 
 
 
+### 并发控制 Concurrency Control
+
+- MVCC - Multi Version Concurrency Control，MVCC中，对查询（读）数据的锁请求与写数据的锁请求不冲突。
+
+- Default Isolation level: Read Uncommitted = Read Committed
+- SET TRANSACTION ... ...
+
+| Isolation level  | Dirty Read                 | Nonrepeatable Read | Phantom Read               | Serialization Anormaly |
+| ---------------- | -------------------------- | ------------------ | -------------------------- | ---------------------- |
+| Read uncommitted | **Allowed, but not in PG** | Possible           | Possible                   | Possible               |
+| Read committed   | Not possible               | Possible           | Possible                   | Possible               |
+| Repeatable read  | Not possible               | Not possible       | **Allowed, but not in PG** | Possible               |
+| Serializable     | Not possible               | Not possible       | Not possible               | Not possible           |
+
+- locks: http://www.postgres.cn/docs/11/explicit-locking.html
+
+- check locks: 
+
+  ```sql
+   select * from pg_locks;
+   SELECT * FROM pg_locks pl LEFT JOIN pg_stat_activity psa ON pl.pid = psa.pid;
+   SELECT * FROM pg_locks pl LEFT JOIN pg_prepared_xacts ppx
+      ON pl.virtualtransaction = '-1/' || ppx.transaction;
+      select pg_blocking_pids(<pid>);
+  ```
+
+  
+
+  
