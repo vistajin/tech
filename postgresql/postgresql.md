@@ -774,9 +774,11 @@ select current_setting('application_name');
 ### 并发控制 Concurrency Control
 
 - MVCC - Multi Version Concurrency Control，MVCC中，对查询（读）数据的锁请求与写数据的锁请求不冲突。
+- show transaction_isolation;
 
 - Default Isolation level: Read Uncommitted = Read Committed
 - SET TRANSACTION ... ...
+- postgresql.conf: default_transaction_isolation = 'read committed'
 
 | Isolation level  | Dirty Read                 | Nonrepeatable Read | Phantom Read               | Serialization Anormaly |
 | ---------------- | -------------------------- | ------------------ | -------------------------- | ---------------------- |
