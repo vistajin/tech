@@ -79,10 +79,11 @@ hba_file (string)
 ### 反斜杠命令
 
 #### show databases: 
-```
+```sql
 psql -l
 \l
 SELECT datname FROM pg_database;
+select  pg_database.datname, pg_database_size(pg_database.datname) AS size from pg_database;
 ```
 #### change current database: 
 ```
@@ -773,9 +774,10 @@ select current_setting('application_name');
 
 ### 并发控制 Concurrency Control
 
+#### 事务隔离
+
 - MVCC - Multi Version Concurrency Control，MVCC中，对查询（读）数据的锁请求与写数据的锁请求不冲突。
 - show transaction_isolation;
-
 - Default Isolation level: Read Uncommitted = Read Committed
 - SET TRANSACTION ... ...
 - postgresql.conf: default_transaction_isolation = 'read committed'
@@ -787,6 +789,8 @@ select current_setting('application_name');
 | Repeatable read  | Not possible               | Not possible       | **Allowed, but not in PG** | Possible               |
 | Serializable     | Not possible               | Not possible       | Not possible               | Not possible           |
 
+#### 锁 Lock
+
 - locks: http://www.postgres.cn/docs/11/explicit-locking.html
 
 - check locks: 
@@ -797,8 +801,37 @@ select current_setting('application_name');
    SELECT * FROM pg_locks pl LEFT JOIN pg_prepared_xacts ppx
       ON pl.virtualtransaction = '-1/' || ppx.transaction;
       select pg_blocking_pids(<pid>);
+    -- 查询存在锁的数据表
+   select a.locktype,a.database,a.pid,a.mode,a.relation,b.relname -- ,sa.*
+  from pg_locks a
+  join pg_class b on a.relation = b.oid 
+  inner join  pg_stat_activity sa on a.pid=sa.procpid;
+  -- 查询某个表内,状态为lock的锁及关联的查询语句
+  select a.locktype,a.database,a.pid,a.mode,a.relation,b.relname -- ,sa.*
+  from pg_locks a
+  join pg_class b on a.relation = b.oid 
+  inner join  pg_stat_activity sa on a.pid=sa.procpid
+  where a.database=382790774  and sa.waiting_reason='lock'
+  order by sa.query_start;
   ```
-
   
-
+- 表级锁
   
+  ```sql
+  LOCK table table_name;
+  ```
+  
+  
+  
+- 行级锁
+
+```sql
+select * from table where f = 1 for update;
+select * from table where f = 1 for update nowait; -- 55P03 if already locked by others
+-- 连表查询加锁时，不支持单边连接形式，例如：
+select u.*,r.* from db_user u left join db_role r on u.roleid=r.id for update;
+-- 支持以下形式，并锁住了两个表中关联的数据：
+select u.*,r.* from db_user u, db_role r where u.roleid=r.id for update;
+
+```
+
