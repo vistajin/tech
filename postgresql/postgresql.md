@@ -819,6 +819,17 @@ select current_setting('application_name');
   
   ```sql
   LOCK table table_name;
+  -- 查找锁住表的query， 例如 t1 被锁
+  select oid, relname from pg_class where relname = 't1';
+  select locktype,database,pid,relation ,mode from pg_locks where relation=<上一步的oid>;
+  select usename,query,xact_start,pid from pg_stat_activity where pid=<上一步的pid>;
+  -- mydb=# select usename,query,xact_start,pid from pg_stat_activity where pid=116;
+  -- usename  |     query      |          xact_start          | pid 
+  --      ----------+--------------+--------------------------+-----
+  -- postgres | lock table t1; | 2020-03-19 13:45:37.75263+00 | 116
+  -- (1 row)
+  -- 强行终止
+  select pg_terminate_backend(<上一步的pid>); 
   ```
   
   
