@@ -826,7 +826,7 @@ select current_setting('application_name');
   -- mydb=# select usename,query,xact_start,pid from pg_stat_activity where pid=116;
   -- usename  |     query      |          xact_start          | pid 
   --      ----------+--------------+--------------------------+-----
-  -- postgres | lock table t1; | 2020-03-19 13:45:37.75263+00 | 116
+  --   postgres | lock table t1; | 2020-03-19 13:45:37.75263+00 | 116
   -- (1 row)
   -- 强行终止
   select pg_terminate_backend(<上一步的pid>); 
