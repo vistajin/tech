@@ -220,12 +220,29 @@ vacuum full verbose;
 
 ### Knowledge points
 
+#### Dollar Quoting
+
+```sql
+SELECT $$hello's the name of the game$$;
+SELECT E'hello\'s the name of the game';
+SELECT $vista$hello's the name of the $$ game$vista$;
+```
+
+
+
 #### Default value
 
 ```sql
 CREATE TABLE products (product_no integer, name text, price numeric DEFAULT 9.99);
 CREATE TABLE products (product_no integer DEFAULT nextval('products_product_no_seq'), ...);
 CREATE TABLE products (product_no SERIAL, ...);
+
+CREATE TABLE described(a int);
+COMMENT ON TABLE described IS $$I'm describing this,
+including newlines and an apostrophe in the contraction "I'm."$$;
+
+CREATE TABLE json(data json);
+INSERT INTO json(data) VALUES ($${"quotation": "'there is no time like the present'"}$$);
 ```
 
 #### Constrains
