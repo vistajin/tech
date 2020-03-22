@@ -11,7 +11,37 @@
 - 进程模式
 - 只支持堆表（oracle），不支持索引组织表（oracle，mysql），全表扫面快
 
+### Overview
+
+- Cluster (initdb)
+  - Database(s) (CREATE DATABASE) 
+    - Schema(s) (CREATE SCHEMA) 
+      - Table(s)
+        - Row(s)
+        - Column(s)
+      - View(s)
+      - Index(s)
+      - Function(s)
+      - Sequence(s)
+      - Other(s)
+
+### Physical Structure
+
+Table          <-------->Datafile(s)
+Index          <-------->Datafile(s)
+Toast          <-------->Datafile(s)
+Sequence <-------->Datafile(s)
+​                                       Controlfile
+            Archived<----WALs
+
+Note: Datafile default size = 1GB (./configuration --help:  --with-segsize=SEGSIZE)
+
+### Process Structure
+
+![](/home/vistajin/tech/postgresql/postgresql-proc-structure.png)
+
 ### 安装
+
 - 无需root权限
 - 源码安装
 http://www.postgres.cn/docs/11/install-short.html
