@@ -112,6 +112,7 @@ hba_file (string)
 ```sql
 psql -l
 \l
+\l+
 SELECT datname FROM pg_database;
 select  pg_database.datname, pg_database_size(pg_database.datname) AS size from pg_database;
 ```
@@ -161,6 +162,14 @@ dropuser name
 
 
 ### 一些命令
+
+#### Restart
+
+```
+pg_ctl restart -m fast
+```
+
+
 
 #### load data from file: 
 
