@@ -152,6 +152,12 @@ dropuser name
 \db
 ```
 
+#### switch display mode (column to row) 切换显示模式（行<->列）
+
+```
+\x
+```
+
 
 
 ### 一些命令
@@ -250,6 +256,19 @@ vacuum full verbose;
 
 ### Knowledge points
 
+#### Materialized Views 物化视图 （since 9.3）
+
+```sql
+CREATE MATERIALIZED VIEW mymatview AS SELECT * FROM mytab WITH NO DATA;
+CREATE UNIQUE INDEX rental_category ON mymatview (category);
+-- 全量刷新，更快但阻塞select
+REFRESH MATERIALIZED VIEW mymatview;
+-- 增量刷新，更慢但不阻塞select，since 9.4
+REFRESH MATERIALIZED VIEW CONCURRENTLY rental_by_category;
+```
+
+https://www.postgresql.org/docs/9.3/rules-materializedviews.html
+
 #### Dollar Quoting
 
 ```sql
@@ -257,8 +276,6 @@ SELECT $$hello's the name of the game$$;
 SELECT E'hello\'s the name of the game';
 SELECT $vista$hello's the name of the $$ game$vista$;
 ```
-
-
 
 #### Default value
 
