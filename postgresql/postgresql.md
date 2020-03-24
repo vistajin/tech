@@ -263,6 +263,15 @@ vacuum full verbose;
   CREATE INDEX CONCURRENTLY
   ```
 
+#### Install Extension 安装索引
+
+```sql
+create extension pageinspect;
+select * from fsm_page_contents(get_raw_page('t2', 'main', 0));
+```
+
+
+
 ### Knowledge points
 
 #### Materialized Views 物化视图 （since 9.3）
