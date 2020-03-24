@@ -40,6 +40,71 @@ Note: Datafile default size = 1GB (./configuration --help:  --with-segsize=SEGSI
 
 ![](/home/vistajin/tech/postgresql/postgresql-proc-structure.png)
 
+source code: src/backend/postmaster
+
+- postmaster - 所有数据库进程的主进程（负责坚挺和fork子进程）
+- startup - 主要用于数据库恢复的进程
+- syslogger - 记录系统日志
+- pgstat - 收集统计信息
+- pgarch - 如果开启了归档，那么postmaster会fork一个归档进程
+- checkpointer - 负责检查点的进程
+- bgwriter - 负责把shared buffer中的脏数据写入磁盘的进程
+- autovacuum launcher -- 负责回收垃圾数据的进程，如果开启了autovacuum的话，那么postmaster会fork这个进程
+- autovacuum worker - 负责回收垃圾数据的worker进程，是launcher进程fork出来的。
+
+### Physical Structure 物理结构
+
+- Where is the physical file of an object?
+
+  ```sql
+  create tablespace my_space location '/var/lib/postgresql/tablespace';
+  create table tt1 (key int) tablespace my_space;
+  select * from pg_relation_filepath('tt1');
+              pg_relation_filepath             
+  ---------------------------------------------
+   pg_tblspc/16957/PG_12_201909212/16384/16958
+  (1 row)
+  ```
+
+  <$PGDATA>/pg_tblspc/<tablespace_oid>/<PG_Version>/<db_oid>/<filenode_oid>
+
+  ```bash
+  lrwxrwxrwx 1 postgres postgres 30 Mar 24 13:19 16957 -> /var/lib/postgresql/tablespace
+  postgres@0830b402c800:/$ ls -l $PGDATA/pg_tblspc/16957
+  lrwxrwxrwx 1 postgres postgres 30 Mar 24 13:19 /var/lib/postgresql/data/pg_tblspc/16957 -> /var/lib/postgresql/tablespace
+  postgres@0830b402c800:/$ ls -l /var/lib/postgresql/tablespace
+  total 4
+  drwx------ 3 postgres postgres 4096 Mar 24 13:19 PG_12_201909212
+  postgres@0830b402c800:/$ ls -l /var/lib/postgresql/tablespace/PG_12_201909212/16384/16958 
+  -rw------- 1 postgres postgres 0 Mar 24 13:19 /var/lib/postgresql/tablespace/PG_12_201909212/16384/16958
+  ```
+
+- One Page (8K)
+
+  ^^^^^^^^^^^^^^^^^^^^^^
+
+  PageHeaderData (24Bytes)
+
+  ^^^^^^^^^^^^^^^^^^^^^^
+
+  ItemIdData (Array of (offset, length)) pairs pointing to the actual items, 4 bytes per item)
+
+  ^^^^^^^^^^^^^^^^^^^^^^
+
+  Fres Space (The unallocated space. New item pointers are allocated from the start of this area, new items from the end)
+
+  ^^^^^^^^^^^^^^^^^^^^^^
+
+  Items (The actual items themselves)
+
+  ^^^^^^^^^^^^^^^^^^^^^^
+
+  Special Space (Index access method specific data. Different methods store different data. Empty in ordinary tables. Ab access method shoud always initialize its pages with PageInit and then set its own opaque fields)
+
+  ^^^^^^^^^^^^^^^^^^^^^^
+
+  
+
 ### 安装
 
 - 无需root权限
@@ -108,7 +173,16 @@ hba_file (string)
 
 ### 反斜杠命令
 
+#### Show Help for command
+
+```sql
+\h create tablespace
+```
+
+
+
 #### show databases: 
+
 ```sql
 psql -l
 \l
@@ -159,7 +233,18 @@ dropuser name
 \x
 ```
 
+#### List function filter by keyword
 
+```sql
+\df *.*read_file*
+                                    List of functions
+   Schema   |       Name       | Result data type |      Argument data types      | Type 
+------------+------------------+------------------+-------------------------------+------
+ pg_catalog | pg_read_file     | text             | text                          | func
+ pg_catalog | pg_read_file     | text             | text, bigint, bigint          | func
+ pg_catalog | pg_read_file     | text             | text, bigint, bigint, boolean | func
+ pg_catalog | pg_read_file_old | text             | text, bigint, bigint          | func
+```
 
 ### 一些命令
 
@@ -660,6 +745,8 @@ https://www.postgresql.org/docs/12/different-replication-solutions.html
 - File System (Block Device) Replication
 
 - Write-Ahead Log (WAL) Shipping: built-in streaming replication
+
+  - write WAL  = XLOG
 
   - WAL的中心概念是数据文件（存储着表和索引）的修改在写入磁盘之前，必须先记入日志记录
 
