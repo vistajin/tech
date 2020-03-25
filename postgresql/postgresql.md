@@ -246,6 +246,14 @@ dropuser name
  pg_catalog | pg_read_file_old | text             | text, bigint, bigint          | func
 ```
 
+#### Verbose 
+
+```
+\set VERBOSITY verbose
+```
+
+
+
 ### 一些命令
 
 #### Restart
@@ -355,6 +363,13 @@ create extension pageinspect;
 select * from fsm_page_contents(get_raw_page('t2', 'main', 0));
 ```
 
+#### Comment table
+
+```sql
+comment on table table_name is 'xxx xxx xx';
+\dt+
+```
+
 
 
 ### Knowledge points
@@ -372,6 +387,60 @@ REFRESH MATERIALIZED VIEW CONCURRENTLY rental_by_category;
 
 https://www.postgresql.org/docs/9.3/rules-materializedviews.html
 
+#### 类型转换 type convert/cast
+
+```sql
+select E'abc\\';
+select cast('1 hour' as interval);
+select '1 hour'::interval;
+select interval '1 hour';
+```
+
+#### 隐藏字段
+
+```sql
+---1.oid 
+oid是object identifier的简写,其相关的参数设置default_with_oids设置一般默认是false,或者创建表时指定with (oids=false)，其值长度32bit,实际的数据库系统应用中并不能完全保证其唯一性; 
+---2.tableoid 
+是表对象的一个唯一标识符，可以和pg_class中的oid联合起来查看 
+---3.xmin 
+是插入的事务标识符,是用来标识不同事务下的一个版本控制。每一次更新该行都会改变这个值。可以和mvcc版本结合起来看 
+---4.xmax 
+是删除更新的事务标识符，如果该值不为0，则说明该行数据当前还未提交或回滚。比如设置begin事务时可以明显看到该值的变化 
+---5.cmin 
+插入事务的命令标识符,从0开始 
+---6.cmax 
+删除事务的命令标识符，或者为0 
+---7.ctid 
+是每行数据在表中的一个物理位置标识符，和oracle的rowid类似，但有一点不同，当表被vacuum full或该行值被update时该值可能会改变。所以定义表值的唯一性最好还是自己创建一个序列值的主键列来标识比较合适。不过使用该值去查询时速度还是非常快的。
+-- 相同事务ID
+insert into test select generate_series(1,3),repeat('kenyon',2);
+```
+
+#### Function state 函数三态
+
+- Immutable: if output is the same when input parameters are the same, can declare it as immutable
+
+  ```sql
+  alter function nextval(regclass)  immutable;
+  ```
+
+- Stable: stable at where clause, mutable in select
+
+  ```sql
+  alter function nextval(regclass) stable;
+  ```
+
+- Volatile
+
+  ```sql
+  alter function nextval(regclass) stable;
+  ```
+
+  
+
+
+
 #### Dollar Quoting
 
 ```sql
@@ -379,6 +448,32 @@ SELECT $$hello's the name of the game$$;
 SELECT E'hello\'s the name of the game';
 SELECT $vista$hello's the name of the $$ game$vista$;
 ```
+
+#### Prepare statement
+
+```sql
+mydb=# prepare ps(int) as select * from t1 where num = $1;
+PREPARE
+mydb=# execute ps(1);
+ num |  name  
+-----+--------
+   1 | aaaaaa
+(1 row)
+```
+
+#### Transaction 事务操作
+
+```sql
+BEGIN;
+COMMIT;
+ROLLBACK;
+SAVEPOINT a;
+ROLLBACK to a;
+-- 即使执行过程中出错仍然可以继续后续语句，只是自动rollback 出错的语句。
+\set ON_ERROR_ROLLBACK on
+```
+
+
 
 #### Default value
 
@@ -445,6 +540,12 @@ BEGIN;
 COMMIT;
 SAVEPOINT the_point;
 ROLLBACK TO the_point;
+-- 一个事物最大2^32条SQL（因为cmin，cmax的长度是4bytes）
+-- 事务可以执行DDL，DML，DCL
+-- 事务不能执行：
+create tablespace
+create database
+-- 事务不能使用concurrently并行创建索引
 ```
 #### Window function
 ```sql
@@ -539,9 +640,10 @@ DELETE FROM products WHERE obsoletion_date = 'today' RETURNING *;
 
 #### Join table
 ```sql
-t1 CROSS JOIN t2 -- equals to t1,t2, equals to JOIN, equals to INNER JOIN
+cross join -- 笛卡尔
+t1,t2, equals to JOIN, equals to INNER JOIN
 on t1.xx = t2.xx -- two xx column
-using(xx)        -- one xx column
+using(xx)        -- one xx column,  equals to NATURAL JOIN
 ```
 
 #### GROUPING SETS,CUBE, ROLLUP
@@ -561,7 +663,28 @@ INTERSECT [ALL]
 EXCEPT [ALL]
 ```
 
+#### distinct on
+
+```sql
+create table a6(id integer, name varchar(10));
+insert into a6 values(1, ' 001');
+insert into a6 values(1, '002');
+insert into a6 values(2, '003');
+insert into a6 values(2, '004');
+select distinct on (id) id, name from a6;
+id | name
+---+--------
+1 | 001
+2 | 003
+(2 rows)
+---- 如果加上order by的话，可以选出每个distinct字段内的最大最小值，相当于group by了
+---- 可以distinct on多个列
+```
+
+
+
 #### With Clause
+
 ```sql
 WITH RECURSIVE -- 允许在查询中查找自己，也就是递归
 
