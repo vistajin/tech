@@ -952,6 +952,24 @@ mydb=# EXPLAIN SELECT * FROM t1;
 
 ```
 
+#### Full-text search, 全文检索
+
+- default config in postgresql.conf
+
+  ```properties
+  default_text_search_config = 'pg_catalog.english'
+  ```
+
+- List of text search configurations
+
+  ```
+  \dF
+  ```
+
+#### pg_trgm 近似匹配
+
+
+
 ### 数据库管理
 
 #### pgBader - The PostgreSQL log analyzer
