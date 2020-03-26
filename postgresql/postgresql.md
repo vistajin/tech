@@ -356,11 +356,77 @@ vacuum full verbose;
   CREATE INDEX CONCURRENTLY
   ```
 
-#### Install Extension 安装索引
+#### Install Extension 安装插件
 
 ```sql
 create extension pageinspect;
 select * from fsm_page_contents(get_raw_page('t2', 'main', 0));
+
+create table hot_test (id int primary key, info text);
+insert into hot_test values(1, 'vista');
+-- below can functions are from pageinspect
+select * from page_header(get_raw_page('hot_test', 0));
+    lsn    | checksum | flags | lower | upper | special | pagesize | version | prune_xid 
+-----------+----------+-------+-------+-------+---------+----------+---------+-----------
+ 0/92528C8 |        0 |     0 |    28 |  8152 |    8192 |     8192 |       4 |         0
+(1 row)
+
+select * from heap_page_items(get_raw_page('hot_test', 0));
+ lp | lp_off | lp_flags | lp_len | t_xmin | t_xmax | t_field3 | t_ctid | t_infomask2 | t_infomask | t_hoff | t_bits | t_oid |         t_data         
+----+--------+----------+--------+--------+--------+----------+--------+-------------+------------+--------+--------+-------+---------------
+---------
+  1 |   8152 |        1 |     34 |    700 |      0 |        0 | (0,1)  |           2 |       2050 |     24 |        |       | \x010000000d76
+69737461
+(1 row)
+
+select * from page_header(get_raw_page('hot_test_pkey', 0));
+    lsn    | checksum | flags | lower | upper | special | pagesize | version | prune_xid 
+-----------+----------+-------+-------+-------+---------+----------+---------+-----------
+ 0/9252928 |        0 |     0 |    64 |  8176 |    8176 |     8192 |       4 |         0
+(1 row)
+
+select * from heap_page_items(get_raw_page('hot_test_pkey', 0));
+ lp | lp_off | lp_flags | lp_len | t_xmin | t_xmax | t_field3 | t_ctid | t_infomask2 | t_infomask | t_hoff | t_bits | t_oid | t_data 
+----+--------+----------+--------+--------+--------+----------+--------+-------------+------------+--------+--------+-------+--------
+  1 |  12642 |        2 |      2 |        |        |          |        |             |            |        |        |       | 
+  2 |      4 |        0 |      0 |        |        |          |        |             |            |        |        |       | 
+  3 |      1 |        0 |      0 |        |        |          |        |             |            |        |        |       | 
+  4 |      0 |        0 |      0 |        |        |          |        |             |            |        |        |       | 
+  5 |      1 |        0 |      0 |        |        |          |        |             |            |        |        |       | 
+  6 |      0 |        0 |      0 |        |        |          |        |             |            |        |        |       | 
+  7 |      0 |        0 |      0 |        |        |          |        |             |            |        |        |       | 
+  8 |      0 |        0 |      0 |        |        |          |        |             |            |        |        |       | 
+  9 |      0 |        0 |      0 |        |        |          |        |             |            |        |        |       | 
+ 10 |      0 |        0 |  24568 |        |        |          |        |             |            |        |        |       | 
+(10 rows)
+
+update hot_test set info = 'VistaJIN' where id = 1;
+-- run above pageinspect sql to see the differences
+vacuum hot_test;
+
+mydb=# select * from heap_page_items(get_raw_page('hot_test', 0));
+ lp | lp_off | lp_flags | lp_len | t_xmin | t_xmax | t_field3 | t_ctid | t_infomask2 | t_infomask | t_hoff | t_bits | t_oid |            t_
+data            
+----+--------+----------+--------+--------+--------+----------+--------+-------------+------------+--------+--------+-------+--------------
+----------------
+  1 |   8152 |        1 |     34 |    700 |    701 |        0 | (0,2)  |       16386 |        258 |     24 |        |       | \x010000000d7
+669737461
+  2 |   8112 |        1 |     37 |    701 |      0 |        0 | (0,2)  |       32770 |      10242 |     24 |        |       | \x01000000135
+6697374614a494e
+(2 rows)
+
+mydb=# vacuum hot_test ;
+VACUUM
+mydb=# select * from heap_page_items(get_raw_page('hot_test', 0));
+ lp | lp_off | lp_flags | lp_len | t_xmin | t_xmax | t_field3 | t_ctid | t_infomask2 | t_infomask | t_hoff | t_bits | t_oid |            t_
+data            
+----+--------+----------+--------+--------+--------+----------+--------+-------------+------------+--------+--------+-------+--------------
+----------------
+  1 |      2 |        2 |      0 |        |        |          |        |             |            |        |        |       | 
+  2 |   8152 |        1 |     37 |    701 |      0 |        0 | (0,2)  |       32770 |      10498 |     24 |        |       | \x01000000135
+6697374614a494e
+(2 rows)
+
 ```
 
 #### Comment table
@@ -437,9 +503,14 @@ insert into test select generate_series(1,3),repeat('kenyon',2);
   alter function nextval(regclass) stable;
   ```
 
+
+- Check
+
+  ```sql
+  select  proname,proargtypes,provolatile from pg_proc where ...
+  ```
+
   
-
-
 
 #### Dollar Quoting
 
@@ -510,6 +581,19 @@ CREATE TABLE products (product_no integer, ..., UNIQUE(product_no));
 CREATE TABLE orders (..., product_no integer REFERENCES products (product_no), ...);
 CREATE TABLE t1 (..., FOREIGN KEY (b, c) REFERENCES other_table (c1, c2));
 ...REFERENCES orders ON DELETE CASCADE/RESTRICT...
+
+------------------------------------------------Index exclude using---------------------------------------------------------------
+CREATE EXTENSION btree_gist;
+CREATE TABLE test (
+    user_id INTEGER, startend TSTZRANGE, EXCLUDE USING gist (user_id WITH =,startend WITH &&)
+);
+mydb=# insert into test values (1, '[2020-03-01 14:30+08:00, 2020-03-01 15:30:+08:00)');
+INSERT 0 1
+mydb=# insert into test values (1, '[2020-04-01 14:30+08:00, 2020-04-01 15:30:+08:00)');
+INSERT 0 1
+mydb=# insert into test values (1, '[2020-03-01 15:00+08:00, 2020-03-01 16:00:+08:00)');
+ERROR:  conflicting key value violates exclusion constraint "test_user_id_startend_excl"
+DETAIL:  Key (user_id, startend)=(1, ["2020-03-01 07:00:00+00","2020-03-01 08:00:00+00")) conflicts with existing key (user_id, startend)=(1, ["2020-03-01 06:30:00+00","2020-03-01 07:30:00+00")).
 ```
 
 #### Change column type
@@ -774,6 +858,30 @@ to_tsquery('fat') <-> to_tsquery('rat') -- 'fat' <-> 'rat'
 ```
 
 #### Index
+- 索引相关的配置
+
+  ```
+  enable_bitmapscan = on
+  enable_hashagg = on
+  enable_hashjoin = on
+  enable_indexscan = on
+  enable_material = on
+  enable_mergejoin = on
+  enable_nestloop = on
+  enable_seqscan = on
+  enable_sort = on
+  enable_tidscan = on
+  ```
+
+  ```sql
+  create table test (c1 int, c2 int);
+  insert into test selcect 1, generate_series(1, 10000);
+  create index idx_text_1 on test(c1, c2);
+  set enable_seqscan = off;
+  -- Now it can use idx_text_1 for below sql
+  select * from test where c2 = 100;
+  ```
+
 - B-tree: default. 只有B-tree能够被声明为唯一, PostgreSQL会自动为定义了一个唯一约束或主键的表创建一个唯一索引
 ```sql
 CREATE INDEX test2_info_nulls_low ON test2 (info NULLS FIRST);
