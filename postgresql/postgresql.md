@@ -936,7 +936,16 @@ explain (analyze true,buffers true) select * from ...
 #### Explain
 
 ```sql
-EXPLAIN (format JSON/XML/YAML) SELECT ....
+EXPLAIN [option] statement
+option:
+ANALYZE  -- 执行statement，得到真实的运行时间以及统计信息
+VERBOSE -- 输出详细信息
+COSTS       -- 输出cost值，默认打开
+BUFFERS  -- 输出本次query shared 或 local buffer的信息，包括命中，未命中，脏写
+TIMING      -- 输出时间开销
+FORMAT {TEXT|XML|JSON|YAML}  -- 输出格式
+
+explain (verbose,analyze,costs,buffers,timing) select * from cities ;
 
 SELECT relpages, reltuples FROM pg_class WHERE relname = '<table_name>';
 mydb=# SELECT relpages, reltuples FROM pg_class WHERE relname = 't1';
@@ -951,6 +960,43 @@ mydb=# EXPLAIN SELECT * FROM t1;
 (1 row)
 
 ```
+
+- Cost calculation related table & view
+
+  pg_stats
+
+  ```sql
+  select * from pg_stats where tablename = 'xxx' and attname = 'field1';
+  ```
+
+  pg_class: relpages, reltuples
+
+- Parameters
+
+  seq_page_cost: 全表扫描的单个数据块的代价因子
+
+  random_page_cost: 索引扫描的单个数据块的代价因子
+
+  cpu_tuple_cost: 处理每条记录的CPU开销代价因子
+
+  cpu_index_tuple_cost: 索引扫描时每个索引条目的CPU开销代价因子
+
+  cpu_operator_cost: 操作符或函数的开销代价因子
+
+```sql
+select * from pg_proc where proname = 'int4lt'; -- procost = 1
+```
+
+- auto_explain plug-in: monitor sql which execution time is long
+
+  ```shell
+  vi $PGDATA/postgresql.conf
+  shared_preload_libraries='pg_stat_statements,auto_explain'
+  auto_explain.log_min_duration=100ms
+  pg_ctl restart -m fast
+  ```
+
+  
 
 #### Full-text search, 全文检索
 
