@@ -108,10 +108,43 @@ source code: src/backend/postmaster
 ### 安装
 
 - 无需root权限
+
 - 源码安装
-http://www.postgres.cn/docs/11/install-short.html
+  http://www.postgres.cn/docs/11/install-short.html
+
+  
+
+  https://ftp.postgresql.org/pub/source/v12.2/postgresql-12.2.tar.bz2
+
+  ```shell
+  sudo apt-get install libreadline6 libreadline6-dev
+  sudo apt-get install zlib1g-dev
+  
+  ./configure
+  make
+  su
+  make install
+  adduser postgres
+  mkdir /usr/local/pgsql/data
+  chown postgres /usr/local/pgsql/data
+  su - postgres
+  /usr/local/pgsql/bin/initdb -D /usr/local/pgsql/data
+  /usr/local/pgsql/bin/postgres -D /usr/local/pgsql/data >logfile 2>&1 &
+  /usr/local/pgsql/bin/createdb test
+  /usr/local/pgsql/bin/psql test
+  ln -s /usr/local/pgsql/bin/psql /usr/bin/
+  vi ~/.bashrc
+  export PGDATA=/usr/local/pgsql/data
+  source .bashrc
+  # check port
+netstat -anp | grep postgres
+  ```
+
+  
+  
 - 下载deb安装
-https://www.postgresql.org/download/linux/ubuntu/
+  https://www.postgresql.org/download/linux/ubuntu/
+
 - docker
 https://hub.docker.com/_/postgres
 ```sh
@@ -122,7 +155,7 @@ psql
 SELECT version();
 ```
 
-#### New DB user
+### New DB user
 
 - In linux:
 
@@ -1309,4 +1342,33 @@ select u.*,r.* from db_user u left join db_role r on u.roleid=r.id for update;
 select u.*,r.* from db_user u, db_role r where u.roleid=r.id for update;
 
 ```
+
+### pgbench 轻量级的压力测试工具
+
+```shell
+# install pgbench
+su -
+cd src/bin/pgbench
+make all
+make install
+ln -s /usr/local/pgsql/bin/pgbench /usr/bin
+```
+
+
+
+```shell
+# 短连接
+pgbench -M exteded -n -r -f ./xxx.sql -c 16 -j 4 -C -T 30
+number of transactions actually processed: 57560
+# 长连接
+pgbench -M exteded -n -r -f ./xxx.sql -c 16 -j 4  -T 30
+number of transactions actually processed: 3759633
+# prepared
+pgbench -M prepared -n -r -f ./xxx.sql -c 16 -j 4  -T 30
+number of transactions actually processed: 3759633
+# in another terminal
+sar -w 1 100
+```
+
+
 
