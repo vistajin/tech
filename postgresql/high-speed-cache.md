@@ -297,7 +297,106 @@ refer to pgbouncer.md
 
   ##### install pgmemcache
 
+  ```shell
+  git clone https://github.com/ohmu/pgmemcache
+  cd pgmemcache
+  cp -R /opt/libmemcached-1.0.18/include/libmemcached-1.0 ./libmemcached
+  cp -R /opt/libmemcached-1.0.18/include/libmemcached-1.0 ./libmemcached-1.0
+  cp -R /opt/libmemcached-1.0.18/include/libhashkit-1.0 libhashkit-1.0
   
+  vi Makefile
+  SHLIB_LINK = -L/opt/libmemcached-1.0.18/lib -lmemcached -lsasl2
+  
+  su
+  export PATH=$PATH:/usr/local/pgsql/bin
+  make
+  
+  make install
+  /bin/mkdir -p '/usr/local/pgsql/lib'
+  /bin/mkdir -p '/usr/local/pgsql/share/extension'
+  /bin/mkdir -p '/usr/local/pgsql/share/extension'
+  /usr/bin/install -c -m 755  pgmemcache.so '/usr/local/pgsql/lib/pgmemcache.so'
+  /usr/bin/install -c -m 644 .//pgmemcache.control '/usr/local/pgsql/share/extension/'
+  /usr/bin/install -c -m 644 .//ext/pgmemcache--unpackaged--2.0.sql .//ext/pgmemcache--2.0--2.1.sql .//ext/pgmemcache--2.1--2.1.1.sql .//ext/pgmemcache--2.1.1--2.1.2.sql .//ext/pgmemcache--2.1.2--2.2.0.sql .//ext/pgmemcache--2.2.0--2.3.0.sql pgmemcache--2.3.0.sql pgmemcache.control '/usr/local/pgsql/share/extension/'
+  
+  ### check
+  ll /usr/local/pgsql/lib/pgmemcache.so 
+  -rwxr-xr-x 1 root root 39120 Mar 29 22:45 /usr/local/pgsql/lib/pgmemcache.so*
+  ```
+
+#### config
+
+edit postgresql.conf
+
+```properties
+shared_preload_libraries = 'pgmemcache' # (change requires restart)
+pgmemcache.default_servers = '127.0.0.1:11211' # multiple memcached separated bt comma ,
+pgmemcache.default_behavior = 'BINARY_PROTOCOL:1' # multiple setting separated  by comma ,
+```
+
+```shell
+# verify can access
+telnet localhost 11211
+quit
+
+# restart postgres
+pg_ctl restart -m fast
+psql
+```
+
+```sql
+CREATE EXTENSION pgmemcache;
+
+postgres=# \df 
+                                              List of functions
+ Schema |        Name         | Result data type |                 Argument data types                 | Type 
+--------+---------------------+------------------+-----------------------------------------------------+------
+ public | memcache_add        | boolean          | key text, val text                                  | func
+ public | memcache_add        | boolean          | key text, val text, expire interval                 | func
+ public | memcache_add        | boolean          | key text, val text, expire timestamp with time zone | func
+ public | memcache_append     | boolean          | key text, val text                                  | func
+ public | memcache_append     | boolean          | key text, val text, expire interval                 | func
+ public | memcache_append     | boolean          | key text, val text, expire timestamp with time zone | func
+ public | memcache_decr       | bigint           | key text                                            | func
+ public | memcache_decr       | bigint           | key text, decrement bigint                          | func
+ public | memcache_delete     | boolean          | key text                                            | func
+ public | memcache_delete     | boolean          | key text, hold interval                             | func
+ public | memcache_flush_all  | boolean          |                                                     | func
+ public | memcache_get        | text             | key bytea                                           | func
+ public | memcache_get        | text             | key text                                            | func
+ public | memcache_get_multi  | SETOF record     | keys bytea[], OUT key text, OUT value text          | func
+ public | memcache_get_multi  | SETOF record     | keys text[], OUT key text, OUT value text           | func
+ public | memcache_incr       | bigint           | key text                                            | func
+ public | memcache_incr       | bigint           | key text, increment bigint                          | func
+ public | memcache_prepend    | boolean          | key text, val text                                  | func
+ public | memcache_prepend    | boolean          | key text, val text, expire interval                 | func
+ public | memcache_prepend    | boolean          | key text, val text, expire timestamp with time zone | func
+ public | memcache_replace    | boolean          | key text, val text                                  | func
+ public | memcache_replace    | boolean          | key text, val text, expire interval                 | func
+ public | memcache_replace    | boolean          | key text, val text, expire timestamp with time zone | func
+ public | memcache_server_add | boolean          | server_hostname text                                | func
+ public | memcache_set        | boolean          | key bytea, val text                                 | func
+ public | memcache_set        | boolean          | key text, val bytea                                 | func
+ public | memcache_set        | boolean          | key text, val text                                  | func
+ public | memcache_set        | boolean          | key text, val text, expire interval                 | func
+ public | memcache_set        | boolean          | key text, val text, expire timestamp with time zone | func
+ public | memcache_stats      | text             |                                                     | func
+(30 rows)
+
+postgres=# select memcache_set('name', 'vista');
+ memcache_set 
+--------------
+ t
+(1 row)
+
+postgres=# select memcache_get('name');
+ memcache_get 
+--------------
+ vista
+(1 row)
+```
+
+
 
 
 
