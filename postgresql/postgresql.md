@@ -169,6 +169,7 @@ adduser user1
 CREATE USER user1 WITH PASSWORD 'password';
 CREATE DATABASE db1 OWNER user1;
 GRANT ALL PRIVILEGES ON DATABASE db1 to user1;
+alter user vista superuser ;
 ctrl+d
 psql -U user1 -d db1 -h 127.0.0.1 -p 5432
 -- or

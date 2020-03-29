@@ -1,48 +1,50 @@
-### pgbouncer - Lightweight connection pooler for PostgreSQL
+## pgbouncer 
 
-- install
-
-  - pgbouncer package:
-
-    https://www.pgbouncer.org/
-    or https://github.com/pgbouncer/pgbouncer
-
-  - install libevent
-
-    ```shell
-    # http://libevent.org/
-    wget https://github.com/libevent/libevent/releases/download/release-2.1.11-stable/libevent-2.1.11-stable.tar.gz
-    tar -zxvf libevent-2.1.11-stable.tar.gz
-    cd libevent-2.1.11-stable/
-    ./configure --prefix=/usr
-    make
-    sudo make install
-    echo "/usr/local/lib" >> /etc/ld.so.conf
-    # 检测安装是否成功
-    ls -al /usr/lib | grep libevent
-    ldconfig -p | grep libevent
-    ldconfig -p | grep ares # 异步DNS请求库 c-ares
-    ```
-
-  - install pgbouncer
-
-    ```shell
-    cd pgbouncer-1.12.0/
-    ./configure --prefix=/usr/local
-    make
-    su
-    make install
-    ```
-
+- Lightweight connection pooler for PostgreSQL
 - 2k memory per connection
-
 - 3 modes
 
   - session
   - transaction
   - statement
 
-- config
+### install
+
+- pgbouncer package:
+
+  https://www.pgbouncer.org/
+  or https://github.com/pgbouncer/pgbouncer
+
+#### install libevent
+
+```shell
+# http://libevent.org/
+wget https://github.com/libevent/libevent/releases/download/release-2.1.11-stable/libevent-2.1.11-stable.tar.gz
+tar -zxvf libevent-2.1.11-stable.tar.gz
+cd libevent-2.1.11-stable/
+./configure --prefix=/usr
+make
+sudo make install
+echo "/usr/local/lib" >> /etc/ld.so.conf
+# 检测安装是否成功
+ls -al /usr/lib | grep libevent
+ldconfig -p | grep libevent
+ldconfig -p | grep ares # 异步DNS请求库 c-ares
+```
+
+#### install pgbouncer
+
+```shell
+cd pgbouncer-1.12.0/
+./configure --prefix=/usr/local
+make
+su
+make install
+```
+
+### config
+
+#### config.ini
 
 ```properties
 [databases]
@@ -67,76 +69,76 @@ reserve_pool_size=5
 dns_max_ttl=15
 ```
 
-- Create user/role, grant right
+#### Create user/role, grant right
 
-  ```sql
-  -- create use with md5 password, if use unencrypted then plain password
-  create role vista login encrypted password 'vista';
-  grant all on database test to vista;
-  -- \c test vista
-  \c test postgres
-  -- get the md5 password to put into auth_file
-  select * from pg_shadow;
-  ```
+```sql
+-- create use with md5 password, if use unencrypted then plain password
+create role vista login encrypted password 'vista';
+grant all on database test to vista;
+-- \c test vista
+\c test postgres
+-- get the md5 password to put into auth_file
+select * from pg_shadow;
+```
 
-- auth_file
+#### auth_file
 
-  ```
-  "pgadmin" "pgadmin"
-  "pgmon" "pgmon"
-  "vista" "md5585642933da79dcb1b4274665862c8d3"
-  ```
+```
+"pgadmin" "pgadmin"
+"pgmon" "pgmon"
+"vista" "md5585642933da79dcb1b4274665862c8d3"
+```
 
-  ```shell
-  chmod 400 /home/postgres/pgbouncer-1.12.0/etc/users.txt
-  ```
+```shell
+chmod 400 /home/postgres/pgbouncer-1.12.0/etc/users.txt
+```
 
-  
 
-- start up pgbouncer
 
-  ```shell
-  pgbouncer -d /home/postgres/pgbouncer-1.12.0/etc/my-config.ini
-  netstat -anp | grep 6543
-  ```
+### start up pgbouncer
 
-  
+```shell
+pgbouncer -d /home/postgres/pgbouncer-1.12.0/etc/my-config.ini
+netstat -anp | grep 6543
+```
 
-- Connect to pgbouncer using pgadmin
 
-  ```shell
-  # pgbouncer is the admin database, show databases can see
-  /usr/local/pgsql/bin/psql -h 127.0.0.1 -p 6543 -U pgadmin pgbouncer
-  pgbouncer=# show help;
-  NOTICE:  Console usage
-  DETAIL:  
-  	SHOW HELP|CONFIG|DATABASES|POOLS|CLIENTS|SERVERS|USERS|VERSION
-  	SHOW FDS|SOCKETS|ACTIVE_SOCKETS|LISTS|MEM
-  	SHOW DNS_HOSTS|DNS_ZONES
-  	SHOW STATS|STATS_TOTALS|STATS_AVERAGES|TOTALS
-  	SET key = arg
-  	RELOAD
-  	PAUSE [<db>]
-  	RESUME [<db>]
-  	DISABLE <db>
-  	ENABLE <db>
-  	RECONNECT [<db>]
-  	KILL <db>
-  	SUSPEND
-  	SHUTDOWN
-  
-  SHOW
-  ```
 
-  
+### Connect
 
-- Connect to aliasdb1 db using vista
+#### Connect to pgbouncer using pgadmin
+
+```shell
+# pgbouncer is the admin database, show databases can see
+/usr/local/pgsql/bin/psql -h 127.0.0.1 -p 6543 -U pgadmin pgbouncer
+pgbouncer=# show help;
+NOTICE:  Console usage
+DETAIL:  
+	SHOW HELP|CONFIG|DATABASES|POOLS|CLIENTS|SERVERS|USERS|VERSION
+	SHOW FDS|SOCKETS|ACTIVE_SOCKETS|LISTS|MEM
+	SHOW DNS_HOSTS|DNS_ZONES
+	SHOW STATS|STATS_TOTALS|STATS_AVERAGES|TOTALS
+	SET key = arg
+	RELOAD
+	PAUSE [<db>]
+	RESUME [<db>]
+	DISABLE <db>
+	ENABLE <db>
+	RECONNECT [<db>]
+	KILL <db>
+	SUSPEND
+	SHUTDOWN
+
+SHOW
+```
+
+#### Connect to aliasdb1 db using vista
 
 ```shell
 /usr/local/pgsql/bin/psql -h 127.0.0.1 -p 6543 -U vista aliasdb1 
 ```
 
-- Connect without prompt password
+### Connect without prompt password
 
 ```shell
 cd
@@ -146,7 +148,7 @@ vi .pgpass
 chmod 400 .pgpass
 ```
 
-- Bench mark test
+### Bench mark test
 
 ```shell
 pgbench -M prepared -n -r -f ./sql/test.sql -h /home/postgres/pgbouncer-1.12.0/etc -p 6543 -U vista -c 16 -j 4 -C -T 30 aliasdb1
