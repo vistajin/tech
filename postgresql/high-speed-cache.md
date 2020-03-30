@@ -407,7 +407,7 @@ insert into memcache_test select generate_series(1, 1000000), md5(clock_timestam
 create or replace function memcache_test_upd() returns trigger as $$
 begin
     if old.pwd != new.pwd then
-        perform memcache_set('memcache_test_') || new.userid || '_pwd', new.pwd);
+        perform memcache_set('memcache_test_' || new.userid || '_pwd', new.pwd);
     end if;
     return null;
 end;
@@ -416,7 +416,7 @@ create trigger memcache_test_upd after update on memcache_test for each row exec
 
 create or replace function memcache_test_ins() returns trigger as $$
 begin
-    perform memcache_set('memcache_test_') || new.userid || '_pwd', new.pwd);
+    perform memcache_set('memcache_test_' || new.userid || '_pwd', new.pwd);
     return null;
 end;
 $$ language 'plpgsql' strict;
@@ -424,7 +424,7 @@ create trigger memcache_test_ins after insert on memcache_test for each row exec
 
 create or replace function memcache_test_del() returns trigger as $$
 begin
-    perform memcache_delete('memcache_test_') || new.userid || '_pwd');
+    perform memcache_delete('memcache_test_' || new.userid || '_pwd');
     return null;
 end;
 $$ language 'plpgsql' strict;
@@ -433,7 +433,7 @@ create trigger memcache_test_del after delete on memcache_test for each row exec
 create or replace function auth (i_userid int8, i_pwd text) returns boolean as $$
 declare
 v_input_pwd_md5 text;
-v_user_ped_md5 text;
+v_user_pwd_md5 text;
 begin
     v_input_pwd_md5 := i_pwd;
     select memcache_get('memcache_test_' || i_userid || '_pwd') into v_user_pwd_md5;
