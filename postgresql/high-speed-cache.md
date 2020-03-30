@@ -344,6 +344,8 @@ pg_ctl restart -m fast
 psql
 ```
 
+#### Test
+
 ```sql
 CREATE EXTENSION pgmemcache;
 
@@ -398,7 +400,111 @@ postgres=# select memcache_get('name');
 
 
 
+```sql
+create table memcache_test(userid int8, pwd text);
+insert into memcache_test select generate_series(1, 1000000), md5(clock_timestamp()::text);
+
+create or replace function memcache_test_upd() returns trigger as $$
+begin
+    if old.pwd != new.pwd then
+        perform memcache_set('memcache_test_') || new.userid || '_pwd', new.pwd);
+    end if;
+    return null;
+end;
+$$ language 'plpgsql' strict;
+create trigger memcache_test_upd after update on memcache_test for each row execute procedure memcache_test_upd();
+
+create or replace function memcache_test_ins() returns trigger as $$
+begin
+    perform memcache_set('memcache_test_') || new.userid || '_pwd', new.pwd);
+    return null;
+end;
+$$ language 'plpgsql' strict;
+create trigger memcache_test_ins after insert on memcache_test for each row execute procedure memcache_test_ins();
+
+create or replace function memcache_test_del() returns trigger as $$
+begin
+    perform memcache_delete('memcache_test_') || new.userid || '_pwd');
+    return null;
+end;
+$$ language 'plpgsql' strict;
+create trigger memcache_test_del after delete on memcache_test for each row execute procedure memcache_test_del();
+
+create or replace function auth (i_userid int8, i_pwd text) returns boolean as $$
+declare
+v_input_pwd_md5 text;
+v_user_ped_md5 text;
+begin
+    v_input_pwd_md5 := i_pwd;
+    select memcache_get('memcache_test_' || i_userid || '_pwd') into v_user_pwd_md5;
+    if (v_user_pwd_md5 <> '') then
+        raise notice 'hit in memcache.';
+        raise notice 'v_user_pwd_md5: %', v_user_pwd_md5;
+        raise notice 'i_pwd: %', i_pwd;
+        if (v_input_pwd_md5 = v_user_pwd_md5) then
+            return true;
+        else
+            return false;
+         end if;
+     else
+         select pwd into v_user_pwd_md5 from memcache_test where userid = i_userid;
+         if found then
+             raise notice 'hit in table.';
+             if (v_input_pwd_md5 = v_user_pwd_md5) then
+                 return true;
+             else
+                 return false;               
+             end if;
+         else
+             return false;
+        end if;
+    end if;
+exception
+when others then
+    return false;
+end;
+$$ language plpgsql strict;
+```
 
 
 
 
+
+
+
+#### summary usage after install
+
+```shell
+cd /opt/memcached-1.6.3/bin/
+./memcached -d -u postgres -m 800
+psql
+postgres=# select memcache_stats();
+      memcache_stats       
+---------------------------
+ Server: 127.0.0.1 (11211)+
+ pid: 21498               +
+ uptime: 89               +
+ time: 1585572785         +
+ version: 1.6.3           +
+ pointer_size: 64         +
+ rusage_user: 0.16274     +
+ rusage_system: 0.11624   +
+ curr_items: 1            +
+ total_items: 2           +
+ bytes: 69                +
+ curr_connections: 3      +
+ total_connections: 4     +
+ connection_structures: 4 +
+ cmd_get: 3               +
+ cmd_set: 2               +
+ get_hits: 2              +
+ get_misses: 1            +
+ evictions: 0             +
+ bytes_read: 175          +
+ bytes_written: 151       +
+ limit_maxbytes: 838860800+
+ threads: 4               +
+                          +
+ 
+(1 row)
+```
