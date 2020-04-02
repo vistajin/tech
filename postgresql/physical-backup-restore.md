@@ -159,3 +159,58 @@
       ```
 
 ### 还原
+
+- before restore, do some update to database to see if can restore to this point
+
+```sql
+create table t_restore_test (id int);
+insert into t_restore_test values(123321);
+
+checkpoint;
+select pg_switch_wal();
+```
+
+- stop postgres
+
+```shell
+pg_ctl stop -m fast
+```
+
+- delete table space folder and $PGDATA
+
+```shell
+rm -rf $PGDATA/*
+rm -rf /home/postgres/tmp/*
+```
+
+- copy backuped tar and unzip
+
+```shell
+cd $PGDATA
+cp /home/postgres/pgbak/base.tar .
+cp /home/postgres/pgbak/16461.tar /home/postgres/tmp/
+tar -xvf base.tar
+rm -rf base.tar
+cd /home/postgres/tmp/
+tar -xvf 16461.tar
+rm -rf 16461.tar 
+```
+
+- edit postgresql.conf (no more recovery.conf in v12)
+
+```properties
+# today is 20200402, i backup the db on 20200401, so i only need to copy today's WAL
+# ??? don't under stand this command, it can restore but there are some errors and didn't restore to my last check point
+# https://www.postgresql.org/docs/devel/runtime-config-wal.html#RUNTIME-CONFIG-WAL-ARCHIVE-RECOVERY
+restore_command = 'cp /home/postgres/archive/20200402/%f %p'
+```
+
+- touch recovery.signal in $PGDATA
+- start up postgres
+
+```shell
+pg_ctl start
+```
+
+
+
