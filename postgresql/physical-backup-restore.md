@@ -1,3 +1,5 @@
+![](/home/vistajin/tech/postgresql/物理还原.png)
+
 ### 物理冷备份
 
 - $PGDATA
