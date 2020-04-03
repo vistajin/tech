@@ -167,8 +167,51 @@ create role rep nosuperuser replication login connection limit 32 encrypted pass
   ```
 
 ### 还原
+#### 还原点
 
-#### 添加数据库操作
+#### recovery_target_name
+
+```sql
+postgres=# select pg_create_restore_point('20200403001');
+2020-04-03 21:43:36.090 CST [23393] LOG:  restore point "20200403001" created at 0/42000140
+2020-04-03 21:43:36.090 CST [23393] STATEMENT:  select pg_create_restore_point('20200403001');
+ pg_create_restore_point 
+-------------------------
+ 0/42000140
+(1 row)
+```
+
+
+
+#### recovery_target_time
+
+```sql
+postgres=# select now();
+              now              
+-------------------------------
+ 2020-04-03 21:46:58.635402+08
+(1 row)
+```
+
+
+
+#### recovery_target_xid
+
+```sql
+postgres=# select txid_current();
+ txid_current 
+--------------
+          518
+(1 row)
+```
+
+
+
+
+
+#### 还原步骤
+
+##### 添加数据库操作
 
 - before restore, do some update to database to see if can restore to this point
 
@@ -180,20 +223,20 @@ checkpoint;
 select pg_switch_wal();
 ```
 
-#### stop postgres
+##### stop postgres
 
 ```shell
 pg_ctl stop -m fast
 ```
 
-#### delete table space folder and $PGDATA
+##### delete table space folder and $PGDATA
 
 ```shell
 rm -rf $PGDATA/*
 rm -rf /home/postgres/tmp/*
 ```
 
-#### copy backuped tar and unzip
+##### copy backuped tar and unzip
 
 ```shell
 cd $PGDATA
@@ -206,7 +249,7 @@ tar -xvf 16461.tar
 rm -rf 16461.tar 
 ```
 
-#### edit postgresql.conf (no more recovery.conf in v12)
+##### edit postgresql.conf (no more recovery.conf in v12)
 
 ```properties
 # today is 20200403, i backup the db on 20200402, so i only need to copy today's WAL
@@ -214,15 +257,15 @@ rm -rf 16461.tar
 restore_command = 'cp /home/postgres/archive/20200403/%f %p'
 ```
 
-#### touch recovery.signal in $PGDATA
+##### touch recovery.signal in $PGDATA
 
-#### start up postgres
+##### start up postgres
 
 ```shell
 pg_ctl start
 ```
 
-#### check if the changes today also recovered
+##### check if the changes today also recovered
 
 ```sql
 postgres=# select * from t_restore_test;
