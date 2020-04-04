@@ -23,6 +23,13 @@ drop database test;
 # create db to connect to restore (there is no create database in the dump file)
 create database test;
 pg_restore -d test ./test.dump
+
+# export TOC
+# https://github.com/digoal/blog/blob/master/201204/20120412_01.md
+# ./src/bin/pg_dump/pg_backup_archiver.c
+pg_restore -f ./test.toc -F c -l ./test.dmp 
+# restore with modified TOC
+pg_restore -F c -L ./test.toc -d test -h 127.0.0.1 -U postgres
 ```
 
 
