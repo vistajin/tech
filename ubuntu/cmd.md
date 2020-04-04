@@ -20,6 +20,12 @@ sudo brctl show
 ### Common
 
 ```shell
+# vi replace string
+:%/LANGUAGE\'C'/LANGUAGE\ C/g
+
+#show folder size and sort
+du -s * | sort -nr | head
+sudo du -h . --max-depth=1 | sort -nr
 #查看软件xxx安装内容：
 dpkg -L xxx
 #查找软件库中的软件：

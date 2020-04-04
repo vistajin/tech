@@ -58,3 +58,7 @@ private LoadBalancerClient loadBalancer;
 ServiceInstance instance = loadBalancer.choose("service-id");
 ```
 
+#### feign
+
+https://cloud.spring.io/spring-cloud-openfeign
+
