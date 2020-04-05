@@ -20,6 +20,9 @@ sudo brctl show
 ### Common
 
 ```shell
+# remove leading whitespaces and get none start with # lines
+cat postgresql.conf  |  sed -e 's/^[ \t]*//'  | grep "^[^#]"
+
 # vi replace string
 :%/LANGUAGE\'C'/LANGUAGE\ C/g
 
