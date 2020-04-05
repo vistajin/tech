@@ -20,6 +20,15 @@ sudo brctl show
 ### Common
 
 ```shell
+# show disk size
+lsblk
+
+# show cpu details
+lscpu
+
+# check system defined variable
+set | less
+
 # remove leading whitespaces and get none start with # lines
 cat postgresql.conf  |  sed -e 's/^[ \t]*//'  | grep "^[^#]"
 
