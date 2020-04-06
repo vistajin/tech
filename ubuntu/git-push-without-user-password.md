@@ -1,10 +1,10 @@
 
 ~~~sh
 $ git remote -v
-origin	https://github.com/vistajin/dataflow-training.git (fetch)
-origin	https://github.com/vistajin/dataflow-training.git (push)
+origin	https://github.com/vistajin/tech.git (fetch)
+origin	https://github.com/vistajin/tech.git (push)
 
-$ git remote add origin git@github.com:vistajin/dataflow-training.git
+$ git remote add origin git@github.com:vistajin/tech.git
 
 in case: >>> fatal: 远程 origin 已经存在。run below and add again
 $ git remote rm origin
