@@ -20,6 +20,9 @@ sudo brctl show
 ### Common
 
 ```shell
+# color
+color=$[RANDOM%7+31]; echo  -e "\e[1;${color}mhello world\e[0m"
+
 # show disk size
 lsblk
 
@@ -94,9 +97,12 @@ dpkg –get-selections | grep -v deinstall > ~/somefile
 查看当前的内存使用情况：free
 动态显示进程执行情况：top
 查看当前有哪些进程：ps -A
-查看当前进程树：pstree
-中止一个进程：kill 进程号 或 killall 进程名
-强制中止一个进程：kill -9 进程号 或 killall -9 进程名
+# 查看当前进程树：
+pstree
+# 中止一个进程：
+kill 进程号 或 killall 进程名
+# 强制中止一个进程：
+kill -9 进程号 或 killall -9 进程名
 图形方式中止一个程序：xkill 出现骷髅标志的鼠标，点击需要中止的程序即可
 查看进程打开的文件：lsof -p
 显示开启文件abc.txt的进程 ：lsof abc.txt
