@@ -682,6 +682,24 @@ SELECT sum(salary) OVER w, avg(salary) OVER w
 CREATE TABLE T2 (...) INHERITS (T1);
 SELECT * FROM T1; -- This will also select T2, equals to: SELECT * FROM T1*;
 SELECT * FROM ONLY T1; -- UPDATE, DELETE also support ONLY
+-- all constraint on parent table must also in child table, child table can have more constrains like filed1 > xxx
+-- also inherits index, unique key, primary key, table space
+create table c2(like c1 including all) inherits (c1);
+alter table c2 no inherit c1;
+alter table c2 drop constraint c1_c2_check;
+-- can't inherit c1 now, need to add back the constraint to inherit again
+alter table c2 add constraint c1_c2_check (xx > 0);
+alter table c2 inherit c1;
+-- query parent table will also query child table and grandson table by default
+-- to select only current table, add only
+select * from ONLY  table_xx;
+-- insert, copy only on current table, others will also apply to child
+
+show constraint_exclusion ;
+ constraint_exclusion 
+----------------------
+ partition
+ 
 ```
 #### Function
 ```sql
