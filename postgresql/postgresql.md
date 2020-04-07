@@ -1362,6 +1362,41 @@ select u.*,r.* from db_user u, db_role r where u.roleid=r.id for update;
 
 ```
 
+- advisory lock
+
+```sql
+postgres=# \df *advisory*
+                                       List of functions
+   Schema   |               Name               | Result data type | Argument data types | Type 
+------------+----------------------------------+------------------+---------------------+------
+ pg_catalog | pg_advisory_lock                 | void             | bigint              | func
+ pg_catalog | pg_advisory_lock                 | void             | integer, integer    | func
+ pg_catalog | pg_advisory_lock_shared          | void             | bigint              | func
+ pg_catalog | pg_advisory_lock_shared          | void             | integer, integer    | func
+ pg_catalog | pg_advisory_unlock               | boolean          | bigint              | func
+ pg_catalog | pg_advisory_unlock               | boolean          | integer, integer    | func
+ pg_catalog | pg_advisory_unlock_all           | void             |                     | func
+ pg_catalog | pg_advisory_unlock_shared        | boolean          | bigint              | func
+ pg_catalog | pg_advisory_unlock_shared        | boolean          | integer, integer    | func
+ pg_catalog | pg_advisory_xact_lock            | void             | bigint              | func
+ pg_catalog | pg_advisory_xact_lock            | void             | integer, integer    | func
+ pg_catalog | pg_advisory_xact_lock_shared     | void             | bigint              | func
+ pg_catalog | pg_advisory_xact_lock_shared     | void             | integer, integer    | func
+ pg_catalog | pg_try_advisory_lock             | boolean          | bigint              | func
+ pg_catalog | pg_try_advisory_lock             | boolean          | integer, integer    | func
+ pg_catalog | pg_try_advisory_lock_shared      | boolean          | bigint              | func
+ pg_catalog | pg_try_advisory_lock_shared      | boolean          | integer, integer    | func
+ pg_catalog | pg_try_advisory_xact_lock        | boolean          | bigint              | func
+ pg_catalog | pg_try_advisory_xact_lock        | boolean          | integer, integer    | func
+ pg_catalog | pg_try_advisory_xact_lock_shared | boolean          | bigint              | func
+```
+
+- skip locked
+
+https://github.com/digoal/blog/blob/master/201610/20161018_01.md
+
+
+
 ### pgbench 轻量级的压力测试工具
 
 ```shell
