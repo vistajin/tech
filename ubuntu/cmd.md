@@ -1,4 +1,7 @@
+
+
 ### Firewall related
+
 ```sh
 sudo ufw status
 sudo ufw allow 8080
@@ -20,6 +23,9 @@ sudo brctl show
 ### Common
 
 ```shell
+# tr cut usage, sample:
+df | grep '^/dev/sd' | tr -s ' ' | cut -d ' ' -f5 | cut -d% -f1 | sort -nr | head -n1
+
 # color
 color=$[RANDOM%7+31]; echo  -e "\e[1;${color}mhello world\e[0m"
 
