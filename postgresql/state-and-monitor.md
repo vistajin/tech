@@ -36,3 +36,58 @@ track_activity_query_size = 1024       # (change requires restart) SQl语句可�
 stats_temp_directory = 'pg_stat_tmp'
 ```
 
+#### log_statement_stats
+
+```sql
+show log_statement_stats;
+set log_statement_stats=on;
+set client_min_messages = debug;
+postgres=# select * from jly;
+LOG:  QUERY STATISTICS
+DETAIL:  ! system usage stats:
+!	0.000181 s user, 0.000060 s system, 0.000240 s elapsed
+!	[0.020447 s user, 0.006815 s system total]
+!	11412 kB max resident size
+!	0/0 [4216/0] filesystem blocks in/out
+!	0/0 [15/667] page faults/reclaims, 0 [0] swaps
+!	0 [0] signals rcvd, 0/0 [0/0] messages rcvd/sent
+!	0/0 [79/1] voluntary/involuntary context switches
+```
+
+#### pg_stat_statements
+
+```sql
+create extension pg_stat_statements;
+```
+
+- postgresql.conf
+
+```properties
+shared_preload_libraries = 'pg_stat_statements'
+# add below
+pg_stat_statements.max = 1000
+pg_stat_statements.track = all
+```
+
+```sql
+\d pg_stat_statements 
+
+select pg_stat_statements_reset();
+select * from pg_stat_statements order by total_time desc limit 1 offset 0;
+-- 调用次数
+select * from pg_stat_statements order by calls desc limit 1 offset 0;
+-- 单次sql执行时间
+select * from pg_stat_statements order by total_time / calls desc limit 1 offset 0;
+-- 按shared buffer “未命中块读”倒序输出
+select * from pg_stat_statements order by shared_blks_read desc limit 1 offset 0;
+
+select row_number() over() as rn, * from (select query, ' calls: ' || calls || ' total_time_ms:' || round(total_time::numeric, 2) ||' avg_time_ms:'||round((total_time::numeric/calls),2) as stats from pg_stat_statements order by total_time desc limit 20) t;
+```
+
+#### pg_stat_bgwriter
+
+```sql
+\x
+select * from pg_stat_bgwriter;
+```
+
