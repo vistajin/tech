@@ -23,6 +23,22 @@ sudo brctl show
 ### Common
 
 ```shell
+# sort
+sort -t: -k3 -nr /etc/passwd
+df | tr -s " " % | cut -d% -f5 | sort -nr | head -n1
+
+# show current logon
+who
+
+# change password
+echo <new_password> | passwd --stdin <user> &> /dev/null
+
+# getent
+getent password vj
+
+# test pattern
+[[ $f =~ ..*\.sh ]] && echo yes || echo no
+
 # tr cut usage, sample:
 df | grep '^/dev/sd' | tr -s ' ' | cut -d ' ' -f5 | cut -d% -f1 | sort -nr | head -n1
 
@@ -139,7 +155,8 @@ ADSL手工拨号：sudo pon dsl-provider
 屏蔽IPV6 ：echo ‘blacklist ipv6′ | sudo tee /etc/modprobe.d/blacklist-ipv6
 察看当前网络连接状况以及程序 ：sudo netstat -atnp
 查看ADSL的当前流量：sudo ethstatus -i ppp0
-查看域名的注册备案情况：whois baidu.cn
+查看域名的注册备案情况：
+whois baidu.cn
 查看到某一个域名的路由情况：tracepath baidu.cn
 重新从服务器获得IP地址 ：sudo dhclient
 下载网站文档：wget -r -p -np -k http://www.xxx.com

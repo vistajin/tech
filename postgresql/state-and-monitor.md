@@ -91,3 +91,14 @@ select row_number() over() as rn, * from (select query, ' calls: ' || calls || '
 select * from pg_stat_bgwriter;
 ```
 
+
+
+### sar
+
+
+
+### Nagios
+
+https://github.com/digoal/blog/blob/d7336aeb9fc9cc82714189f16d67d22e47f9d369/201306/20130603_01.md
+
+https://github.com/digoal/blog/blob/d7336aeb9fc9cc82714189f16d67d22e47f9d369/201306/20130603_02.md
