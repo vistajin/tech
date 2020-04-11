@@ -191,6 +191,16 @@ local   all             all                                     trust
 host    all             all             127.0.0.1/32            trust
 # IPv6 local connections:
 host    all             all             ::1/128                 trust
+
+# TYPE
+# local - 本地unix socket
+# host, hostssl, hostnossl - ssl表示网络传输的数据使用加密方式传输
+
+# METHOD
+# trust - NO need password
+# reject - deny connect
+# md5 - 检验过程密码加密传输，但是其他数据是否加密传输要看配置的认证类型是否为SSL
+# password - 检验过程密码明文传输，如果认证类型为SSL，则同样会被加密
 ```
 
 ```sql
@@ -1065,6 +1075,26 @@ select * from pg_proc where proname = 'int4lt'; -- procost = 1
   ```
 
 #### pg_trgm 近似匹配
+
+
+
+#### Trigger
+
+```sql
+CREATE OR REPLACE FUNCTION abort()
+    RETURNS event_trigger
+  LANGUAGE plpgsql
+    AS $$
+BEGIN
+    if current_user = 'postgres' then
+        RAISE EXCEPTION 'event: %, command: %', tg_event, tg_tag;
+    end if;
+END;
+$$;
+
+create event trigger a on ddl_command_start when TAG IN ('CREATE TABLE', 'DROP TABLE') execute procdeure abort();
+select * from pg_event_trigger;
+```
 
 
 

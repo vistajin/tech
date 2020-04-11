@@ -102,3 +102,36 @@ select * from pg_stat_bgwriter;
 https://github.com/digoal/blog/blob/d7336aeb9fc9cc82714189f16d67d22e47f9d369/201306/20130603_01.md
 
 https://github.com/digoal/blog/blob/d7336aeb9fc9cc82714189f16d67d22e47f9d369/201306/20130603_02.md
+
+
+
+#### log_statement
+
+```sql
+alter role vista set log_statement = 'all';
+```
+
+#### hstore
+
+```sql
+create extension hstore;
+create table test (id int primary key, info text, crt_time timestamp(0));
+
+create table table_change_rec (
+    id serial8 primary key,
+    relid oid,
+    table_schema text,
+    table_name text,
+    when_tg text,
+    level text,
+    op text,
+    old_rec hstore,
+    new_rec hstore,
+    crt_time timestamp without time zone default now(),
+    username text,
+    client_addr inet,
+    client_port int
+);
+-- 23:40 TODO
+```
+
