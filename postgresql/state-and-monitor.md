@@ -132,6 +132,45 @@ create table table_change_rec (
     client_addr inet,
     client_port int
 );
--- 23:40 TODO
+
+
+CREATE OR REPLACE FUNCTION dml_trace()  
+RETURNS trigger  
+LANGUAGE plpgsql  
+AS $BODY$  
+DECLARE  
+v_new_rec hstore;  
+v_old_rec hstore;  
+v_username text := session_user;  
+v_client_addr inet := inet_client_addr();  
+v_client_port int := inet_client_port();  
+BEGIN  
+case TG_OP  
+when 'DELETE' then   
+  v_old_rec := hstore(OLD.*);  
+  insert into table_change_rec (relid, table_schema, table_name, when_tg, level, op, old_rec, username, client_addr, client_port)  
+    values (tg_relid, tg_table_schema, tg_table_name, tg_when, tg_level, tg_op, v_old_rec, v_username, v_client_addr, v_client_port);  
+when 'INSERT' then   
+  v_new_rec := hstore(NEW.*);  
+  insert into table_change_rec (relid, table_schema, table_name, when_tg, level, op, new_rec, username, client_addr, client_port)  
+    values (tg_relid, tg_table_schema, tg_table_name, tg_when, tg_level, tg_op, v_new_rec, v_username, v_client_addr, v_client_port);  
+when 'UPDATE' then   
+  v_old_rec := hstore(OLD.*);  
+  v_new_rec := hstore(NEW.*);  
+  insert into table_change_rec (relid, table_schema, table_name, when_tg, level, op, old_rec, new_rec, username, client_addr, client_port)  
+    values (tg_relid, tg_table_schema, tg_table_name, tg_when, tg_level, tg_op, v_old_rec, v_new_rec, v_username, v_client_addr, v_client_port);  
+else  
+  return null;  
+end case;  
+  RETURN null;  
+END;  
+$BODY$ strict;
+
+create trigger tg after delete or insert or update on test for each row execute procedure dml_trace();
+
+-- some inset/update/delete here, then
+select * from table_change_rec;
+select id, (each(old_rec)).* from table_change_rec;
+select id, (each(new_rec)).* from table_change_rec;
 ```
 

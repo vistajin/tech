@@ -1096,6 +1096,24 @@ create event trigger a on ddl_command_start when TAG IN ('CREATE TABLE', 'DROP T
 select * from pg_event_trigger;
 ```
 
+#### 视图攻击
+
+```sql
+-- https://github.com/digoal/blog/blob/d7336aeb9fc9cc82714189f16d67d22e47f9d369/201307/20130710_01.md
+create or replace function attack(int,int,text,int,text,text,text) returns boolean as $$  
+declare  
+begin  
+  raise notice '%,%,%,%,%,%,%', $1,$2,$3,$4,$5,$6,$7;  
+  return true;  
+end;
+$$ language plpgsql cost 0.00000000000000000000001;  
+
+select * from view where attack(xxx,xxx,xxx);
+
+--  to avoid attack
+create view xxx with(security_barrier) as select * from x where xx=xx;  
+```
+
 
 
 ### 数据库管理
