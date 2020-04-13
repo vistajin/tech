@@ -64,6 +64,8 @@ source code: src/backend/postmaster
   ---------------------------------------------
    pg_tblspc/16957/PG_12_201909212/16384/16958
   (1 row)
+  
+  alter table xxx set tablespace xxx;
   ```
 
   <$PGDATA>/pg_tblspc/<tablespace_oid>/<PG_Version>/<db_oid>/<filenode_oid>
@@ -1114,6 +1116,14 @@ select * from view where attack(xxx,xxx,xxx);
 create view xxx with(security_barrier) as select * from x where xx=xx;  
 ```
 
+#### Patch
+
+https://commitfest.postgresql.org/
+
+##### pg_test_fsync
+
+Test which method to write WAL log faster.
+
 
 
 ### 数据库管理
@@ -1255,7 +1265,37 @@ https://www.postgresql.org/docs/12/different-replication-solutions.html
 
 3. 连续归档和时间点恢复（PITR）
 
-#### high availability
+#### 高可用 high availability - HA
+
+##### 共享存储
+
+- 共享数据文件$PGDATA，表空间
+- 同一时间只能有一个主机启动数据库
+- 浮动IP跟随启动数据库的主机
+- 通过检测心跳判断异常，force掉老的活动主机，在候选主机上启动数据库
+- 弊端：受限于存储的可用性
+
+##### 块设备复制 DRBD
+
+##### 数据流复制 + 心跳 + 自动切换
+
+- 利用数据库流复制建立HA，为了防止脑分裂，需要仲裁和FENCH设备 （即IPMI管理的设备）
+- 某些不写WAL（如UNLOGGEDTABLE，HASH index）的数据切换后数据将丢失
+- 奇数个节点，当过半节点认为主节点不健康时重新仲裁，选出新的主节点
+- 心跳+切换流程：
+  - 判断主库是否健康，不健康则退出
+  - 判断本机是否为standby角色，不是standby角色则退出
+  - 连接到主库执行一次更新，5秒后到本地standby节点检查这次更新是否已经生效，用于判断standby是否正常，不正常则退出
+  - 循环
+  - 执行心跳检测函数
+    - （更新检测时间点，检查各个表空间读写是否正常）
+    - 心跳检测函数超时或者异常则判断仲裁节点是否正常，仲裁节点不正常则跳出循环
+    - 仲裁节点正常的情况写从仲裁节点连到主库执行心跳函数，正常则跳出循环
+    - 如果返回结果也不正常的话，判断standby延迟是否在允许范围内
+    - 开始计数
+    - 计数超过10则发生切换（fench主库，激活备库，切换VIP）
+
+##### patroni
 
 - patroni: 一个模板, 通过python来构建一个高可用的postgresql的解决方案, 使用的数据同步方式是postgresql的流复制方式
 

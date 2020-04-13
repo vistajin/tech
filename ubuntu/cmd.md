@@ -23,6 +23,12 @@ sudo brctl show
 ### Common
 
 ```shell
+# unzip multiple files
+unzip a.zip && unzip b.zip && unzip c.zip
+unzip a.zip; unzip b.zip ;unzip c.zip 
+find . -name '*.zip' -exec unzip {} \;
+ls *.zip | xargs -n1 unzip -o -P infected
+
 # sort
 sort -t: -k3 -nr /etc/passwd
 df | tr -s " " % | cut -d% -f5 | sort -nr | head -n1
@@ -110,27 +116,30 @@ dpkg –get-selections | grep -v deinstall > ~/somefile
 硬盘检查(请不要检查已经挂载的分区，否则容易损坏数据)：sudo fsck /dev/sda1
 分区挂载：sudo mount -t 文件系统类型 (-o nls=utf8 或 -o iocharset=utf8) 设备路经 访问路经
 分区卸载：sudo umount 目录名或设备名
-查看IDE硬盘信息：sudo hdparm -i /dev/hda
-查看STAT硬盘信息 ：sudo hdparm -I /dev/sda 或 sudo blktool /dev/sda id
-查看硬盘剩馀空间：df
-查看目录占用空间：du -hs 目录名
+# 查看IDE硬盘信息：
+sudo hdparm -i /dev/hda
+# 查看STAT硬盘信息 ：
+sudo hdparm -I /dev/sda 或 sudo blktool /dev/sda id
 优盘没法卸载：sync;fuser -km /media/usbdisk
-查看硬盘当前读写情况：sudo iostat -x 2
-查看当前的内存使用情况：free
-动态显示进程执行情况：top
-查看当前有哪些进程：ps -A
+#查看硬盘当前读写情况：
+sudo iostat -x 2
 # 查看当前进程树：
 pstree
-# 中止一个进程：
-kill 进程号 或 killall 进程名
 # 强制中止一个进程：
-kill -9 进程号 或 killall -9 进程名
-图形方式中止一个程序：xkill 出现骷髅标志的鼠标，点击需要中止的程序即可
-查看进程打开的文件：lsof -p
-显示开启文件abc.txt的进程 ：lsof abc.txt
-显示22端口现在运行什么程序 ：lsof -i :22
-显示nsd进程现在打开的文件 ：lsof -c nsd
-在后台运行程序，退出登录后，并不结束程序 ：nohup 程序 &
+kill -9 进程号
+killall -9 进程名
+# 图形方式中止一个程序：
+xkill 出现骷髅标志的鼠标，点击需要中止的程序即可
+#查看进程打开的文件：
+lsof -p
+# 显示开启文件abc.txt的进程 ：
+lsof abc.txt
+# 显示22端口现在运行什么程序 ：
+lsof -i :22
+# 显示nsd进程现在打开的文件 ：
+lsof -c nsd
+# 在后台运行程序，退出登录后，并不结束程序 ：
+nohup 程序 &
 详细显示程序的运行信息 ：strace -f -F -o outfile
 增加系统最大打开文件个数：ulimit -n 4096 或 echo 4096 > /proc/sys/fs/file-max
 配置 ADSL ：sudo pppoeconf
@@ -192,11 +201,7 @@ PDF 文件乱码 ：sudo apt-get install xpdf-chinese-simplified xpdf-chinese-tr
 显示包含字符串的文件名：grep -l -r 字符串 路径
 显示不包含字符串的文件名：grep -L -r 字符串 路径
 快速查找某个文件：find 目录 -name 文件名
-创建两个空文件：touch file1 file2
-递归式创建一些嵌套目录：mkdir –p /tmp/xxs/dsd/efd
 递归式删除嵌套目录：rm –fr /tmp/xxs
-回当前用户的宿主目录：cd ~
-查看当前所在目录的绝对路经：pwd
 列出当前目录下的所有文件：ls -a
 移动路径下的文件并改名：mv 路径/文件 /新路径/新文件名
 复制文件或者目录：cp -av 原文件或原目录 新文件或新目录
