@@ -174,3 +174,13 @@ select id, (each(old_rec)).* from table_change_rec;
 select id, (each(new_rec)).* from table_change_rec;
 ```
 
+### pg_statsinfo
+
+
+
+### SQL IO Trace
+
+- use pg_config command to show config
+- CONFIGURE  = '--enable-dtrace' '--enable-debug'
+
+- DTrace: https://www.postgresql.org/docs/12/dynamic-trace.html

@@ -122,6 +122,8 @@ source code: src/backend/postmaster
   sudo apt-get install libreadline6 libreadline6-dev
   sudo apt-get install zlib1g-dev
   
+  # refer to http://postgres.cn/docs/11/install-procedure.html for more available configuration items
+  # CONFIGURE can be shown bu pg_config command
   ./configure
   make
   su
@@ -137,11 +139,11 @@ source code: src/backend/postmaster
   ln -s /usr/local/pgsql/bin/psql /usr/bin/
   vi ~/.bashrc
   export PGDATA=/usr/local/pgsql/data
-  source .bashrc
+source .bashrc
   # check port
 netstat -anp | grep postgres
   ```
-
+  
   
   
 - 下载deb安装
