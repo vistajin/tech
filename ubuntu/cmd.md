@@ -23,6 +23,16 @@ sudo brctl show
 ### Common
 
 ```shell
+# like windows taks manager
+pidstat
+# per 3s refresh for pid 31643
+# r mem, u cpu, d disk, same as sar
+pidstat -r -p 31643 3
+
+
+# 2: run per 2s, run 5 times
+sar -r 2 5
+
 # unzip multiple files
 unzip a.zip && unzip b.zip && unzip c.zip
 unzip a.zip; unzip b.zip ;unzip c.zip 
@@ -273,7 +283,8 @@ vim 如何显示行号：:set number
 回收站在哪里：~/.local/share/Trash/
 默认打开方式的配置文件在哪里：~/.local/share/applications/mimeapps.list
 如何查看HTTP头：w3m -dump_head http://www.xxx.com
-连续监视内存使用情况：watch -d free
+# 连续监视内存使用情况：
+watch -d free
 如何切换到root帐号：sudo -Hs
 只读挂载ntfs分区：sudo mount -t ntfs -o nls=utf8,umask=0 /dev/sdb1 /mnt/c
 可写挂载ntfs分区：sudo mount -t ntfs-3g -o locale=zh_CN.utf8,umask=0 /dev/sdb1 /mnt/c
@@ -298,7 +309,8 @@ ape转换为 mp3：sudo apt-get install flac shntool lame;shntool split -t“%n.
 如何安装杀毒软件：sudo apt-get install clamav;clamscan -r ~/
 查看网络连接状态：netstat -n | awk ‘/^tcp/ {++S[$NF]} END {for(a in S) print a, S[a]}’
 统计程序的内存耗用：ps -eo fname,rss|awk ‘{arr[$1]+=$2} END {for (i in arr) {print i,arr[i]}}’|sort -k2 -nr
-显示当前内存大小：free -m |grep “Mem” | awk ‘{print $2}’
+# 显示当前内存大小：
+free -m |grep “Mem” | awk ‘{print $2}’
 按内存从大到小排列进程：ps -eo “%C : %p : %z : %a”|sort -k5 -nr
 按cpu利用率从大到小排列进程：ps -eo “%C : %p : %z : %a”|sort -nr
 统计当前目录下所有jpg文件的尺寸：find . -name *.jpg -exec wc -c {} \;|awk ‘{print $1}’|awk ‘{a+=$1}END{print a}’
