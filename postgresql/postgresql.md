@@ -315,7 +315,17 @@ pg_ctl restart -m fast
 #### load data from file: 
 
 ```sql
-COPY table_name FROM '/path/to/some/file.txt'
+-- server side
+COPY table_name FROM '/path/to/some/file.txt';
+copy tbl to '....';
+copy (SQL) to '.....';
+-- client side
+COPY tbl FROM stdin;
+copy (sql) to stdout;
+copy tbl to stdout;
+psql (\copy to | from ); -- copy protocol
+
+-- pg_bulkload extension
 ```
 
 #### create/drop db
@@ -352,6 +362,7 @@ CREATE TABLE test1 (
     b text COLLATE "es_ES",
 );
 -- COLLATE 类似语言编码，不同COLLATE排序不同。数据库，索引等都可指定COLLATE
+select * from tbl1 order by relname::text collate "C";
 
 ALTER TABLE some_table OWNER TO <some_one>;
 ```
@@ -1125,6 +1136,38 @@ https://commitfest.postgresql.org/
 ##### pg_test_fsync
 
 Test which method to write WAL log faster.
+
+#### keywords
+
+```sql
+select * from pg_get_keywords();
+```
+
+#### select into
+
+```sql
+select * into table new_tbl from pg_class;
+create table new_table as select * from another_table;
+```
+
+#### update / delete
+
+```sql
+-- partially update
+update tbl set field = val where ctid = any(
+    select ctid from tbl where <some_condition_here> limit 10 for update 
+);
+delete from tbl where ctid = any(
+    select ctid from tbl where <some_condition_here> limit 10 for update 
+);
+
+-- bulk update
+update tbl_1 set relname = tmp = rel from (values (1, 'test1'), (2, 'test2')) tmp (id, rel) where tmp.id = tbl_1.id;
+update t set info = t1.info, crt_time = t1.crt_time from t1, t2 where t.id = t1.id and t1.id = t2.id;
+
+delete from t1 using t2 where t1.id = t2.id;
+delete from t1 using (values (1), (2)) tmp (rel) where tmp.rel = t1.reltype;
+```
 
 
 
