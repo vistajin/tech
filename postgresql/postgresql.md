@@ -832,6 +832,7 @@ insert into a6 values(1, ' 001');
 insert into a6 values(1, '002');
 insert into a6 values(2, '003');
 insert into a6 values(2, '004');
+-- 只选取多个相同值的任意一个
 select distinct on (id) id, name from a6;
 id | name
 ---+--------
@@ -974,7 +975,14 @@ CREATE INDEX name ON table USING HASH (column);
 - GIN
 - BRIN
 
+```sql
+select * from pg_operator where oid in (select amopopr from pg_amop where amopsortfamily <> 0);
+```
+
+
+
 #### 表达式索引
+
 ```sql
 CREATE INDEX test1_lower_col1_idx ON test1 (lower(col1));
 CREATE INDEX people_names ON people ((first_name || ' ' || last_name));
