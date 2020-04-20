@@ -807,7 +807,27 @@ on t1.xx = t2.xx -- two xx column
 using(xx)        -- one xx column,  equals to NATURAL JOIN
 ```
 
+- join filter
+
+  外连接的时候条件不影响左表，仅影响右表。但内连接会影响
+
+  ```sql
+  -- 即使tbl13.info <> 'no' 也可以返回
+  select * from tb13 left join tb14 on tb13.id=tb14.id and tb13.info='no';
+  ```
+
+#### any / some / all
+
+```sql
+select * from tbl where fld = 1 or fld = 2 or fld = 3;
+-- better change to 
+select * from tbl where fld = any (array[1,2,3]);
+```
+
+
+
 #### GROUPING SETS,CUBE, ROLLUP
+
 ```sql
 SELECT brand, size, sum(sales) FROM items_sold GROUP BY GROUPING SETS ((brand), (size), ());
 -- 计算和值for不同的brand,size组合，（）表示所有值都可以，即计算总数
@@ -1175,6 +1195,11 @@ update t set info = t1.info, crt_time = t1.crt_time from t1, t2 where t.id = t1.
 
 delete from t1 using t2 where t1.id = t2.id;
 delete from t1 using (values (1), (2)) tmp (rel) where tmp.rel = t1.reltype;
+
+
+-- insert / upate
+insert into tbl values(1, 'test', new()) on conflict(id) do update set info = excluded.info, crt_time = excluded.crt_time;
+insert into tbl values(1, 'test', new()) on conflict(id) do nothing;
 ```
 
 
