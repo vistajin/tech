@@ -337,6 +337,8 @@ CREATE DATABASE dbname OWNER rolename; -- createdb -O rolename dbname
 CREATE DATABASE dbname TEMPLATE template0; -- createdb -T template0 dbname
 -- 模板数据库
 select * from pg_database where datistemplate is true;
+--创建数据库时指定编码，如果要转换，需要新建，数据导出导入
+create database db1 with template template0 encoding 'UTF8' lc_collate 'C' lc_ctype 'en_US.UTF8';
 ```
 
 
@@ -653,6 +655,14 @@ INSERT 0 1
 mydb=# insert into test values (1, '[2020-03-01 15:00+08:00, 2020-03-01 16:00:+08:00)');
 ERROR:  conflicting key value violates exclusion constraint "test_user_id_startend_excl"
 DETAIL:  Key (user_id, startend)=(1, ["2020-03-01 07:00:00+00","2020-03-01 08:00:00+00")) conflicts with existing key (user_id, startend)=(1, ["2020-03-01 06:30:00+00","2020-03-01 07:30:00+00")).
+                                                                                                                                               
+create table t_meeting (
+    roomid int, -- meeting room id
+    who int, -- who book it
+    ts tsrange, -- time range
+    desc text, --- meeting agenda/description
+    exclude using gist(roomid with = , ts with &&) -- 排他约束，同一个会议室，不允许有时间范围交叉的记录
+); 
 ```
 
 #### Change column type
@@ -999,7 +1009,8 @@ CREATE INDEX name ON table USING HASH (column);
 select * from pg_operator where oid in (select amopopr from pg_amop where amopsortfamily <> 0);
 ```
 
-
+- bloom
+- rum
 
 #### 表达式索引
 
@@ -1200,6 +1211,55 @@ delete from t1 using (values (1), (2)) tmp (rel) where tmp.rel = t1.reltype;
 -- insert / upate
 insert into tbl values(1, 'test', new()) on conflict(id) do update set info = excluded.info, crt_time = excluded.crt_time;
 insert into tbl values(1, 'test', new()) on conflict(id) do nothing;
+```
+
+#### Cursor 游标
+
+```sql
+-- need long connection, has a snapshot of the db/table
+-- fast for navigate between page
+begin;
+declare cur1 cursor for select * from tbl;
+fetch 5 from cur1;
+close cur1;
+```
+
+#### sequence
+
+```sql
+create sequence seq1 cache 10;
+select * from pg_sequence_parameters('seq1'::regclass);
+create table t_seq1 (id int);
+alter table t_seq1 alter id set default nextval('seq1'::regclass);
+\d+ t_seq1
+```
+
+#### alter column type
+
+```sql
+alter table t add column c1 int8 default 10;
+-- change type from int to text
+alter table t alter column c1 type text using c1::text ;
+```
+
+#### DDL 事务
+
+```sql
+begin;
+insert into t1 values(1);
+alter table t1 rename to t2;
+create table t1 (id int);
+end;
+```
+
+#### some expression
+
+```sql
+case when then ... else ... end
+coalesce(v1, v2, ....) -- return first not null value
+nullif(v1, v2) -- v1 = v2 return null, else return v1
+greatest(v1, v2,....)
+least(v1, v2, ...)
 ```
 
 
