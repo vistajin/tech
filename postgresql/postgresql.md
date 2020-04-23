@@ -521,6 +521,8 @@ select E'abc\\';
 select cast('1 hour' as interval);
 select '1 hour'::interval;
 select interval '1 hour';
+
+select pg_typeof(f1) from tbl;
 ```
 
 #### 隐藏字段
@@ -940,6 +942,18 @@ SELECT * FROM foo, LATERAL (SELECT * FROM bar WHERE bar.id = foo.bar_id) ss;
 - UUID
 - XML
 - JSON,JSONB
+
+```sql
+-- jsonb to table record
+select * from jsonb_populate_record(null::t, jsonb '{"id": 1, "info": "abc", "crt_time": "2020-04-23"}');
+-- jsonb arrays to table records
+select * from jsonb_populate_recordset(null::t, jsonb '[{"id": 1, "info": "abc", "crt_time": "2020-04-23"}, {"id": 2, "info": "xyz", "crt_time": "2020-04-24"}]');
+-- insert into t using jsonb arrays
+insert into t select * from jsonb_populate_recordset(null::t, jsonb '[{"id": 1, "info": "abc", "crt_time": "2020-04-23"}, {"id": 2, "info": "xyz", "crt_time": "2020-04-24"}]');
+```
+
+
+
 - ARRAY
 - Combination -- CREATE TYPE xxx AS
 - range：int4range,int8range,numrange,tsrange,tstzrange,daterange
@@ -1153,6 +1167,8 @@ select * from pg_event_trigger;
 #### 视图攻击
 
 ```sql
+-- 函数成本 pg_proc.procost
+select proname, procost from pg_proc where proname = 'attack';
 -- https://github.com/digoal/blog/blob/d7336aeb9fc9cc82714189f16d67d22e47f9d369/201307/20130710_01.md
 create or replace function attack(int,int,text,int,text,text,text) returns boolean as $$  
 declare  
@@ -1166,6 +1182,7 @@ select * from view where attack(xxx,xxx,xxx);
 
 --  to avoid attack
 create view xxx with(security_barrier) as select * from x where xx=xx;  
+-- or add LEAKPROOF when create function, which means only supper can call this function 
 ```
 
 #### Patch
