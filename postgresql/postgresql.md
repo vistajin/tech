@@ -961,6 +961,28 @@ insert into t select * from jsonb_populate_recordset(null::t, jsonb '[{"id": 1, 
 - OID: WITH OIDS, default_with_oids
 - pg_lsn: 日志序列号
 - 伪类型: any, anyelement, anyenum, anyrange,cstring, ....
+- ltree
+
+```sql
+create extension ltree;
+test=# select ltree 'a.b.c.e' @> 'a.b';
+ f
+test=# select ltree 'a.b.c' <@ 'a.b';
+ t
+ create table t_ltree (department ltree);
+ insert into t_ltree values('com.hsbc.gltc'),('com.hsbc');
+ select * from t_ltree;
+ select * from t_ltree where department @> 'com.hsbc.htc';
+```
+
+- hstore
+
+```sql
+--- store KV
+
+```
+
+
 
 #### 特殊运算符
 
