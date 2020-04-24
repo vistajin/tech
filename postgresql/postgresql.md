@@ -978,7 +978,85 @@ test=# select ltree 'a.b.c' <@ 'a.b';
 - hstore
 
 ```sql
+-- show hstore type
+\dT hstore
 --- store KV
+create table t_hstore(abbr hstore);
+insert into t_hstore values ('HK=>HongKong'::hstore);
+insert into t_hstore values ('HK=>HongKong'::hstore);
+select * from t_hstore where abbr->'HK' = 'HongKong';
+```
+
+- cube
+
+```sql
+\dT cube
+                                             List of data types
+ Schema | Name |                                         Description            
+--------+------+---------------------------------------------------------------------------------------------
+ public | cube | multi-dimensional cube '(FLOAT-1, FLOAT-2, ..., FLOAT-N), (FLOAT-1, FLOAT-2, ..., FLOAT-N)'
+(1 row)
+
+-- https://www.postgresql.org/docs/9.5/cube.html
+-- http://www.postgres.cn/docs/11/cube.html
+
+select cube(1) = '(1)';
+select cube(1,2) = '(1),(2)';
+select cube(ARRAY[1,2]) = '(1,2)';
+select cube(ARRAY[1,2], ARRAY[3,4]) = '(1,2),(3,4)';
+select cube('(1,2),(3,4)'::cube, 5) = '(1,2,5),(3,4,5)';
+select cube('(1,2),(3,4)'::cube, 5, 6) = '(1,2,5),(3,4,6)';
+select cube_dim('(1,2,3),(3,4,5)') = '3';
+select cube_ll_coord('(100,2),(3,4)', 1); -- 3
+select cube_ur_coord('(1,2),(3,4)', 2); -- 4
+select cube_is_point('(1,2,3)'); -- true
+select cube_is_point('(1,2,3),(2,2,2)'); -- false
+select cube_distance('(0,0)', '(1,1)'); --- 1.142...
+select cube_distance('(0,0,0)', '(1,1,1)');  --- 1.732
+
+
+
+create table t_sales (brand text, segment text, quantity int) primary key (brand, segment);
+insert into t_sales values('abc','premium',100),('abc','basic',200),('xyz','premium',100),('xyz','basic',300);
+select * from t_sales;
+ brand | segment | quantity 
+-------+---------+----------
+ abc   | premium |      100
+ abc   | basic   |      200
+ xyz   | premium |      100
+ xyz   | basic   |      300
+(4 rows)
+
+SELECT    brand, segment, SUM (quantity)
+FROM t_sales
+GROUP BY CUBE (brand, segment)
+ORDER BY brand, segment;
+brand | segment | sum 
+-------+---------+-----
+ abc   | basic   | 200
+ abc   | premium | 100
+ abc   |         | 300
+ xyz   | basic   | 300
+ xyz   | premium | 100
+ xyz   |         | 400
+       | basic   | 500
+       | premium | 200
+       |         | 700
+(9 rows)
+
+SELECT brand,segment,SUM (quantity)
+FROM t_sales
+GROUP BY  brand, CUBE (segment)
+ORDER BY  brand,segment;
+ brand | segment | sum 
+-------+---------+-----
+ abc   | basic   | 200
+ abc   | premium | 100
+ abc   |         | 300
+ xyz   | basic   | 300
+ xyz   | premium | 100
+ xyz   |         | 400
+(6 rows)
 
 ```
 
