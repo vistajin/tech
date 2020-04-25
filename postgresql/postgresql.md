@@ -1060,6 +1060,10 @@ ORDER BY  brand,segment;
 
 ```
 
+#### imgsmlr - similar images search
+
+https://github.com/postgrespro/imgsmlr
+
 
 
 #### 特殊运算符
