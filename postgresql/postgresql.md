@@ -759,7 +759,64 @@ SELECT concat_lower_or_upper(a => 'Hello', uppercase => true, b => 'World');
 SELECT concat_lower_or_upper('Hello', 'World', uppercase => true);
 ```
 
+
+
+#### Debug funtion / Usage of perform
+
+```sql
+create or replace function ff(int) returns void as $$
+declare
+begin
+    -- must use perform if not select into a variable or no return for the query
+    perform oid from pg_class where relpages = $1 limit 1;
+    -- check if there is any record
+    if not found then
+        RAISE EXCEPTION 'not found ';
+    end if;
+end;
+$$ language plpgsql strict;
+
+-- need to install auto_explain first
+load 'auto_explain';
+set auto_explain.log_nested_statements = on;
+set client_min_messages = 'log';
+set auto_explain.log_min_duration = 0;
+
+select ff(11);
+LOG:  duration: 0.204 ms  plan:
+Query Text: SELECT oid from pg_class where relpages = $1
+Seq Scan on pg_class  (cost=0.00..17.94 rows=1 width=4)
+  Filter: (relpages = 11)
+LOG:  duration: 3.582 ms  plan:
+Query Text: select ff(11);
+Result  (cost=0.00..0.26 rows=1 width=4)
+ ff 
+----
+ 
+(1 row)
+
+```
+
+
+
+#### EXECUTE - quote_ident
+
+```sql
+create or replace function analyze_table(tbl_name text) returns void as $$
+begin
+    EXECUTE 'ANALYZE ' || quote_ident(tbl_name);
+    EXECUTE 'select id from ' || quote_ident(tbl_name);
+end;
+$$ language plpgsql strict;
+
+```
+
+
+
+
+
 #### Schema
+
 ```sql
 CREATE SCHEMA myschema;
 DROP SCHEMA myschema CASCADE; -- all objects like tables, views will be dropped too
