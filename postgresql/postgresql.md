@@ -805,6 +805,7 @@ Result  (cost=0.00..0.26 rows=1 width=4)
 create or replace function analyze_table(tbl_name text) returns void as $$
 begin
     EXECUTE 'ANALYZE ' || quote_ident(tbl_name);
+    -- https://www.postgresql.org/docs/11/functions-string.html
     EXECUTE 'select id from ' || quote_ident(tbl_name);
 end;
 $$ language plpgsql strict;
