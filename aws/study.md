@@ -121,7 +121,9 @@ https://docs.amazonaws.cn/index.html
 
   AWS CodeDeploy 是一种**部署服务**，让开发人员能够实现将应用程序部署到实例的自动化，并根据需要**更新应用程序**。
 
-
+- Cognito
+  https://docs.amazonaws.cn/cognito/?id=docs_gateway
+  Amazon Cognito 为您的 Web 和移动应用程序提供身份验证、授权和用户管理。您的用户可使用用户名和密码直接登录，也可以通过第三方（例如 Facebook、Amazon、Google 或 Apple）登录。
 
 
 
