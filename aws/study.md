@@ -79,6 +79,12 @@ https://docs.amazonaws.cn/index.html
 
   Amazon Relational Database Service (Amazon RDS) 是一种 Web 服务，可让用户更轻松地在云中设置、操作和扩展关系数据库。它可以经济有效的为用户提供一个容量可调的行业标准的关系数据库，并承担常见的数据库管理任务。
 
+  - MariaDB
+  - MS SQL server
+  - MySQL
+  - Postgres
+  - Oracle
+
 - CloudWatch
 
   https://docs.amazonaws.cn/cloudwatch/?id=docs_gateway
