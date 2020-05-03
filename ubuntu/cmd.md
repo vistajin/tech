@@ -23,6 +23,12 @@ sudo brctl show
 ### Common
 
 ```shell
+# vi replace sample
+:%s/Answer: [A-Q]*/Answer: X/g
+
+# don't show error info
+find / -name 'pycharm' &> /dev/null
+
 # like windows taks manager
 pidstat
 # per 3s refresh for pid 31643
