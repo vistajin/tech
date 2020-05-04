@@ -12,13 +12,15 @@ https://docs.amazonaws.cn/index.html
 
   https://docs.amazonaws.cn/s3/?id=docs_gateway
 
-  Amazon Simple Storage Service (Amazon S3) 是一种面向 **Internet** 的存储服务。您可以通过 Amazon S3 随时在 Web 上的任何位置存储和检索的任意大小的数据。您可以使用 AWS 管理控制台简单而直观的 web 界面来完成这些任务
+  Amazon Simple Storage Service (Amazon S3) 是一种面向 **Internet** 的存储服务。您可以通过 Amazon S3 随时在 Web 上的任何位置存储和检索的**任意大小**的数据。您可以使用 AWS 管理控制台简单而直观的 web 界面来完成这些任务
 
 - S3 Glacier
 
   https://docs.amazonaws.cn/glacier/?id=docs_gateway
 
   Amazon Glacier 是一种针对不常用的数据（“**冷数据**”）而经过了优化的存储服务。 这项服务为数据存档和备份提供了**持久且成本极低**的存储解决方案及安全功能。使用 Amazon Glacier，您可以将数据经济高效地存储数月、数年，甚至数十年。Amazon Glacier 可让您将存储扩展到 AWS 并卸下操作以及管理负担，这样，您就不必担心容量规划、硬件配置、数据复制、硬件故障检测和恢复，或者耗时的硬件迁移等问题。
+
+  - long period, retain long audit log
 
 - ELB - Elastic Load Balancing
 
@@ -27,6 +29,9 @@ https://docs.amazonaws.cn/index.html
   Elastic Load Balancing 自动分配间应用程序的传入流量在多个目标， 如Amazon EC2 实例。它监控健康目标上的已注册目标和流量路的健康状况。Elastic Load Balancing 支持三种负载均衡器：
 
   - 应用程序负载均衡器
+    - WebSockets
+    - Steaming
+    - Real-time
   - 网络负载均衡器
   - Classic 负载均衡器。
 
@@ -58,6 +63,9 @@ https://docs.amazonaws.cn/index.html
   https://docs.amazonaws.cn/sqs/?id=docs_gateway
 
   Amazon Simple Queue Service (Amazon SQS) 是一种完全托管的消息队列服务，可轻松分离和扩展微服务、分布式系统及无服务器应用程序。Amazon SQS 用于在分布式应用程序组件之间传送数据，可帮助您**分离**这些组件。
+
+  - Separate
+  - large request in queue
 
 - VPC - Virtual Private Cloud
 
@@ -103,6 +111,8 @@ https://docs.amazonaws.cn/index.html
 
   Amazon ElastiCache 可让用户在 AWS 云中轻松设置、管理和扩展分布式内存中的缓存环境。它可以提供高性能、可调整大小且符合成本效益的内存缓存，同时消除部署和管理分布式缓存环境产生的相关复杂性。ElastiCache 与 Redis 和 Memcached 引擎一起工作；要查看哪个最适合您，请参见任一用户指南中的“比较 Memcached 和 Redis”主题。
 
+  - store session
+
 - CloudFront
 
   https://docs.amazonaws.cn/cloudfront/?id=docs_gateway
@@ -131,104 +141,47 @@ https://docs.amazonaws.cn/index.html
   https://docs.amazonaws.cn/cognito/?id=docs_gateway
   Amazon Cognito 为您的 Web 和移动应用程序提供身份验证、授权和用户管理。您的用户可使用用户名和密码直接登录，也可以通过第三方（例如 Facebook、Amazon、Google 或 Apple）登录。
 
+- EFS - Elastic File System
 
+  https://aws.amazon.com/cn/efs/
 
+  Amazon Elastic File System (Amazon EFS) 可提供简单、可扩展、完全托管的弹性 NFS 文件系统，以与 AWS 云服务和本地资源配合使用。它可在不中断应用程序的情况下按需扩展到 PB 级，随着添加或删除文件自动扩展或缩减，无需预置和管理容量，可自适应增长。
 
+  - Similar size folder
 
+- Lambda
 
+  https://docs.amazonaws.cn/lambda/?id=docs_gateway
 
+  利用 AWS Lambda，您无需预置或管理服务器即可运行代码。您只需为使用的计算时间付费，在代码未运行期间不产生任何费用。您可以为几乎任何类型的应用程序或后端服务运行代码，而无需任何管理。只需上传您的代码，Lambda 会处理运行和扩展高可用性代码所需的一切工作。您可以将您的代码设置为自动从其他 AWS 服务触发，或者直接从任何 Web 或移动应用程序调用。
 
+  - Node.js
+  - Python
+  - Ruby
+  - Java
+  - Go
+  - C#
+  - Powershell
 
+- Amazon Athena
 
+  https://aws.amazon.com/athena/
 
+  Amazon Athena is an interactive **query service** that makes it easy to analyze data in Amazon S3 using standard SQL. Athena is serverless, so there is **no infrastructure** to manage, and you pay only for the queries that you run.
 
+  Athena -> S3
 
+- Amazon Kinesis
 
+  https://docs.amazonaws.cn/kinesis/?id=docs_gateway
 
+  Amazon Kinesis 可以轻松地实时收集、处理和分析视频和数据流。
 
+- AWS STS - Security Token Service
 
+  https://docs.aws.amazon.com/zh_cn/IAM/latest/UserGuide/id_credentials_temp.html
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  可以使用 AWS Security Token Service (AWS STS) 创建可控制对您的 AWS 资源的访问的临时安全凭证，并将这些凭证提供给受信任用户。临时安全凭证的工作方式与您的 IAM 用户可使用的长期访问密钥凭证的工作方式几乎相同
 
 
 
