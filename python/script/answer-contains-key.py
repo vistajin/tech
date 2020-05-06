@@ -1,5 +1,7 @@
 # ~~~~parameters~~~~~
-# Update the key to the one you want to search
+# the src file with answer
+src = '/home/vistajin/Desktop/test-aws-saa-with-answer.txt'
+# the key to the one you want to search
 key = 'DynamoDB'
 
 
@@ -7,7 +9,7 @@ def remove_blank_line(s):
     return "".join([s for s in s.splitlines(True) if s.strip()]).strip()
 
 
-with open('/home/vistajin/Desktop/test-aws-saa-with-answer.txt', 'r', encoding='UTF-8') as f:
+with open(src, 'r', encoding='UTF-8') as f:
     all_content = f.read()
     questions = str(all_content).split("Question ")
     del(questions[0])

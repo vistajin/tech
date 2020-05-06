@@ -103,7 +103,9 @@ https://docs.amazonaws.cn/index.html
 
   https://docs.amazonaws.cn/cloudtrail/?id=docs_gateway
 
-  利用 AWS CloudTrail，可获取您账户的 **API 调用**历史记录，包括通过 AWS 管理控制台、AWS 软件开发工具包、命令行工具、较高级 AWS 服务进行的 API 调用，进而监控您在云上的 AWS 部署。您还可以确定哪些用户和账户为支持 CloudTrail 的服务调用了 AWS API、发出调用的源 IP 地址以及调用发生的时间。您可将 CloudTrail 集成到使用 API 的应用程序、为您的组织自动创建跟踪、检查跟踪的状态和控制管理员启用和关闭 CloudTrail 日志记录的方式。
+  利用 AWS CloudTrail，可获取您账户的 **API 调用**历史记录，包括通过 AWS 管理控制台、AWS 软件开发工具包、命令行工具、较高级 AWS 服务进行的 API 调用，进而监控您在云上的 AWS 部署。您还可以**确定哪些用户和账户**为支持 CloudTrail 的服务调用了 AWS API、发出调用的源 IP 地址以及调用发生的时间。您可将 CloudTrail 集成到使用 API 的应用程序、为您的组织自动创建跟踪、检查跟踪的状态和控制管理员启用和关闭 CloudTrail 日志记录的方式。
+
+  - identify account owner
 
 - ElastiCache
 
@@ -175,7 +177,9 @@ https://docs.amazonaws.cn/index.html
 
   https://docs.amazonaws.cn/kinesis/?id=docs_gateway
 
-  Amazon Kinesis 可以轻松地实时收集、处理和分析视频和数据流。
+  Amazon Kinesis 可以轻松地实时**收集**、处理和分析视频和数据流。
+
+  - collect page click for website
 
 - AWS STS - Security Token Service
 
@@ -183,7 +187,7 @@ https://docs.amazonaws.cn/index.html
 
   可以使用 AWS Security Token Service (AWS STS) 创建可控制对您的 AWS 资源的访问的临时安全凭证，并将这些凭证提供给受信任用户。临时安全凭证的工作方式与您的 IAM 用户可使用的长期访问密钥凭证的工作方式几乎相同
 
-
+- SES - Simple Email Service
 
 
 
