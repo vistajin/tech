@@ -14,6 +14,8 @@ https://docs.amazonaws.cn/index.html
 
   Amazon Simple Storage Service (Amazon S3) 是一种面向 **Internet** 的存储服务。您可以通过 Amazon S3 随时在 Web 上的任何位置存储和检索的**任意大小**的数据。您可以使用 AWS 管理控制台简单而直观的 web 界面来完成这些任务
 
+  - multiple copies
+
 - S3 Glacier
 
   https://docs.amazonaws.cn/glacier/?id=docs_gateway
@@ -106,6 +108,7 @@ https://docs.amazonaws.cn/index.html
   利用 AWS CloudTrail，可获取您账户的 **API 调用**历史记录，包括通过 AWS 管理控制台、AWS 软件开发工具包、命令行工具、较高级 AWS 服务进行的 API 调用，进而监控您在云上的 AWS 部署。您还可以**确定哪些用户和账户**为支持 CloudTrail 的服务调用了 AWS API、发出调用的源 IP 地址以及调用发生的时间。您可将 CloudTrail 集成到使用 API 的应用程序、为您的组织自动创建跟踪、检查跟踪的状态和控制管理员启用和关闭 CloudTrail 日志记录的方式。
 
   - identify account owner
+  - log AWS KMS
 
 - ElastiCache
 
@@ -147,9 +150,12 @@ https://docs.amazonaws.cn/index.html
 
   https://aws.amazon.com/cn/efs/
 
-  Amazon Elastic File System (Amazon EFS) 可提供简单、可扩展、完全托管的弹性 NFS 文件系统，以与 AWS 云服务和本地资源配合使用。它可在不中断应用程序的情况下按需扩展到 PB 级，随着添加或删除文件自动扩展或缩减，无需预置和管理容量，可自适应增长。
+  Amazon Elastic File System (Amazon EFS) 可提供简单、可扩展、完全托管的弹性 **NFS** 文件系统，以与 AWS 云服务和本地资源配合使用。它可在不中断应用程序的情况下按需扩展到 PB 级，随着添加或删除文件自动扩展或缩减，无需预置和管理容量，可自适应增长。
 
   - Similar size folder
+  - Network File System
+  - Critical and access frequently
+  -  maximize availability and durability
 
 - Lambda
 
