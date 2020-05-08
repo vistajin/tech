@@ -109,6 +109,7 @@ https://docs.amazonaws.cn/index.html
 
   - identify account owner
   - log AWS KMS
+  - audit log of accounts
 
 - ElastiCache
 
@@ -196,5 +197,13 @@ https://docs.amazonaws.cn/index.html
 - SES - Simple Email Service
 
 
+
+- Amazon Aurora
+
+  Transactional Database
+
+  Exponential grow
+
+  TB level
 
 
