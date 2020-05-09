@@ -5,7 +5,7 @@ import random
 # the src file with answer
 src = '/home/vistajin/Desktop/test-aws-saa-with-answer.txt'
 # Update the question_num as the no. of questions you want to gen
-question_num = 60
+question_num = 65
 
 
 def remove_blank_line(s):

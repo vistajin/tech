@@ -6,7 +6,7 @@ import random
 answer_file = '/home/vistajin/Desktop/test-aws-saa-with-answer.txt'
 # the file you test
 # test_file = '/home/vistajin/Desktop/wrong-answered-001.txt'
-test_file = '/home/vistajin/Desktop/test-002.txt'
+test_file = '/home/vistajin/Desktop/test-004.txt'
 # test_file = '/home/vistajin/Desktop/test-001.txt'
 
 
@@ -48,4 +48,6 @@ with open(test_file, 'r', encoding='UTF-8') as f:
             # print(str(total) + ". Wrong for: " + str(question_key))
 
     print("=========================================")
+    print("Wrong: %d" % (total - correct))
+    print("Right: %d " % correct)
     print("Your score: %.2f " % (correct / total * 100))

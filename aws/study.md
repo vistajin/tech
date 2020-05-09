@@ -41,7 +41,7 @@ https://docs.amazonaws.cn/index.html
 
   https://docs.amazonaws.cn/ebs/?id=docs_gateway
 
-  Amazon Elastic Block Store (Amazon EBS) 是一种 Web 服务，可提供数据块级存储卷以用于 EC2 实例。EBS 卷是高度可用的可靠存储卷，可以挂载到任何正在运行的实例，并可像硬盘驱动器一样使用。
+  Amazon Elastic Block Store (Amazon EBS) 是一种 Web 服务，可提供数据块级存储卷以用于 EC2 实例。EBS 卷是高度可用的**可靠**存储卷，可以挂载到任何正在运行的实例，并可像硬盘驱动器一样使用。
 
 - IAM - Identity and Access Management
 
@@ -68,6 +68,7 @@ https://docs.amazonaws.cn/index.html
 
   - Separate
   - large request in queue
+  - RESTful call
 
 - VPC - Virtual Private Cloud
 
@@ -124,6 +125,8 @@ https://docs.amazonaws.cn/index.html
   https://docs.amazonaws.cn/cloudfront/?id=docs_gateway
 
   Amazon CloudFront 可加快**分发**静态和动态 Web 内容（例如，.html、.css、.php、图像和媒体文件）的过程。当用户请求内容时，CloudFront 通过可提供低延迟和高性能的全球边缘站点网络交付相应内容。
+
+  - Use Edge (data center)
 
 - Elastic Beanstalk
 
@@ -193,6 +196,9 @@ https://docs.amazonaws.cn/index.html
   https://docs.aws.amazon.com/zh_cn/IAM/latest/UserGuide/id_credentials_temp.html
 
   可以使用 AWS Security Token Service (AWS STS) 创建可控制对您的 AWS 资源的访问的临时安全凭证，并将这些凭证提供给受信任用户。临时安全凭证的工作方式与您的 IAM 用户可使用的长期访问密钥凭证的工作方式几乎相同
+
+  - IAM roles with amazon ECS instances
+  - Web federated identity
 
 - SES - Simple Email Service
 
