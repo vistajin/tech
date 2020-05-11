@@ -31,7 +31,7 @@ https://docs.amazonaws.cn/index.html
   Elastic Load Balancing 自动分配间应用程序的传入流量在多个目标， 如Amazon EC2 实例。它监控健康目标上的已注册目标和流量路的健康状况。Elastic Load Balancing 支持三种负载均衡器：
 
   - 应用程序负载均衡器
-    - WebSockets
+    - **WebSockets**
     - Steaming
     - Real-time
   - 网络负载均衡器
@@ -42,6 +42,9 @@ https://docs.amazonaws.cn/index.html
   https://docs.amazonaws.cn/ebs/?id=docs_gateway
 
   Amazon Elastic Block Store (Amazon EBS) 是一种 Web 服务，可提供数据块级存储卷以用于 EC2 实例。EBS 卷是高度可用的**可靠**存储卷，可以挂载到任何正在运行的实例，并可像硬盘驱动器一样使用。
+
+  -  Throughput Optimized HDD: support 500M/S, data stream sequential
+  - Provisioned IOPS volume: random i/o, long term-persistence, consistent performance, no downtime
 
 - IAM - Identity and Access Management
 
@@ -134,6 +137,8 @@ https://docs.amazonaws.cn/index.html
 
   AWS Elastic Beanstalk 可让您迅速地在 AWS 云中**部署和管理应用程序**，而无需为运行这些应用程序的基础设施操心。AWS Elastic Beanstalk 可降低管理的复杂性，但不会影响选择或控制。您只需上传应用程序，AWS Elastic Beanstalk 将自动处理有关容量预配置、负载均衡、扩展和应用程序运行状况监控的部署细节。
 
+  - nginx
+
 - CloudFormation
 
   https://docs.amazonaws.cn/cloudformation/?id=docs_gateway
@@ -156,10 +161,12 @@ https://docs.amazonaws.cn/index.html
 
   Amazon Elastic File System (Amazon EFS) 可提供简单、可扩展、完全托管的弹性 **NFS** 文件系统，以与 AWS 云服务和本地资源配合使用。它可在不中断应用程序的情况下按需扩展到 PB 级，随着添加或删除文件自动扩展或缩减，无需预置和管理容量，可自适应增长。
 
+  - POSIX
   - Similar size folder
   - Network File System
   - Critical and access frequently
   -  maximize availability and durability
+  -  proprietary
 
 - Lambda
 
@@ -174,6 +181,9 @@ https://docs.amazonaws.cn/index.html
   - Go
   - C#
   - Powershell
+  - services that can invoke AWS Lambda :
+    - SNS
+    - ELB
 
 - Amazon Athena
 
@@ -187,7 +197,7 @@ https://docs.amazonaws.cn/index.html
 
   https://docs.amazonaws.cn/kinesis/?id=docs_gateway
 
-  Amazon Kinesis 可以轻松地实时**收集**、处理和分析视频和数据流。
+  Amazon Kinesis 可以轻松地实时**收集**、处理和**分析**视频和**数据流**。
 
   - collect page click for website
 
