@@ -34,6 +34,7 @@ https://docs.amazonaws.cn/index.html
     - **WebSockets**
     - Steaming
     - Real-time
+    - list port
   - 网络负载均衡器
   - Classic 负载均衡器。
 
@@ -59,9 +60,11 @@ https://docs.amazonaws.cn/index.html
   Amazon DynamoDB 是一种完全托管的 **NoSQL** 数据库服务，提供快速而可预测的性能，能够实现**无缝扩展**。您可以使用 Amazon DynamoDB 创建一个数据库表来存储和检索任何大小的数据，并处理任何级别的请求流量。Amazon DynamoDB 可自动将表的数据和流量分布到足够多的服务器中，以处理客户指定的请求容量和数据存储量，同时保持**一致**的性能和**高效**的访问。
 
   - User session
+  - index-data
   - key-value
   - structured
   - low latency
+  - weather changes
 
 - SQS - Simple Queue Service
 
@@ -85,7 +88,10 @@ https://docs.amazonaws.cn/index.html
 
   https://docs.amazonaws.cn/redshift/?id=docs_gateway
 
-  Amazon Redshift 是一种快速、完全托管的 PB 级数据仓库服务，它使得用现有商业智能工具对您的所有数据进行高效分析变得简单而实惠。它为从几百 GB 到 1PB 或更大的数据集而优化，且每年每 TB 花费不到 1 000 USD，为最传统数据仓库存储解决方案成本的十分之一。
+  Amazon Redshift 是一种快速、完全托管的 PB 级**数据仓库**服务，它使得用现有商业智能工具对您的所有数据进行高效**分析**变得简单而实惠。它为从几百 GB 到 1PB 或更大的数据集而优化，且每年每 TB 花费不到 1 000 USD，为最传统数据仓库存储解决方案成本的十分之一。
+
+  - analyze aggregated info
+  - weather devices
 
 - RDS - Rational Database Service
 
@@ -159,8 +165,10 @@ https://docs.amazonaws.cn/index.html
 
   https://aws.amazon.com/cn/efs/
 
-  Amazon Elastic File System (Amazon EFS) 可提供简单、可扩展、完全托管的弹性 **NFS** 文件系统，以与 AWS 云服务和本地资源配合使用。它可在不中断应用程序的情况下按需扩展到 PB 级，随着添加或删除文件自动扩展或缩减，无需预置和管理容量，可自适应增长。
+  Amazon Elastic File System (Amazon EFS) 可提供简单、可扩展、完全托管的弹性 **NFS** 文件系统，以与 AWS 云服务和本地资源配合使用。它可在**不中断应用程序**的情况下按需扩展到 PB 级，随着添加或删除文件**自动扩展**或缩减，无需预置和管理容量，可**自适应**增长。
 
+  - **file-level** locking
+  - scale auto
   - POSIX
   - Similar size folder
   - Network File System
@@ -200,6 +208,7 @@ https://docs.amazonaws.cn/index.html
   Amazon Kinesis 可以轻松地实时**收集**、处理和**分析**视频和**数据流**。
 
   - collect page click for website
+  - custom sql query
 
 - AWS STS - Security Token Service
 
