@@ -1,4 +1,4 @@
-### Terms
+### cloudwTerms
 
 https://docs.amazonaws.cn/index.html
 
@@ -15,6 +15,7 @@ https://docs.amazonaws.cn/index.html
   Amazon Simple Storage Service (Amazon S3) 是一种面向 **Internet** 的存储服务。您可以通过 Amazon S3 随时在 Web 上的任何位置存储和检索的**任意大小**的数据。您可以使用 AWS 管理控制台简单而直观的 web 界面来完成这些任务
 
   - multiple copies
+  - object-base, share between EC2
 
 - S3 Glacier
 
@@ -110,6 +111,8 @@ https://docs.amazonaws.cn/index.html
   https://docs.amazonaws.cn/cloudwatch/?id=docs_gateway
 
   Amazon CloudWatch 提供可靠、可调整且灵活的监测解决方案，让您可在短短几分钟内开始使用。您不再需要设置、管理和扩展**监控系统和基础设施**了。
+
+  - config log agent in EC2 to centralize log
 
 - CloudTrail
 
