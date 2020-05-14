@@ -36,6 +36,7 @@ https://docs.amazonaws.cn/index.html
     - Steaming
     - Real-time
     - list port
+    - Path pattern
   - 网络负载均衡器
   - Classic 负载均衡器。
 
@@ -45,8 +46,8 @@ https://docs.amazonaws.cn/index.html
 
   Amazon Elastic Block Store (Amazon EBS) 是一种 Web 服务，可提供数据块级存储卷以用于 EC2 实例。EBS 卷是高度可用的**可靠**存储卷，可以挂载到任何正在运行的实例，并可像硬盘驱动器一样使用。
 
-  -  Throughput Optimized HDD: support 500M/S, data stream sequential
-  - Provisioned IOPS volume: random i/o, long term-persistence, consistent performance, no downtime
+  -  Throughput Optimized HDD: support 500M/S, data stream sequential, full table scan
+  - Provisioned IOPS volume: random i/o, long term-persistence, consistent performance, no downtime, write more than read
 
 - IAM - Identity and Access Management
 
