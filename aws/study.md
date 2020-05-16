@@ -67,6 +67,7 @@ https://docs.amazonaws.cn/index.html
   - structured
   - low latency
   - weather changes
+  - DynamoDB Accelerator (DAX)
 
 - SQS - Simple Queue Service
 
@@ -241,4 +242,4 @@ https://docs.amazonaws.cn/index.html
 
   TB level
 
-
+- OAI - Origin Access Identity
