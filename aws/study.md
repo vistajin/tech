@@ -16,6 +16,8 @@ https://docs.amazonaws.cn/index.html
 
   - multiple copies
   - object-base, share between EC2
+  - VPC endpoint for S3: https://aws.amazon.com/blogs/aws/new-vpc-endpoint-for-amazon-s3/
+  - Auto Scaling supports both EC2 classic and EC2-VPC
 
 - S3 Glacier
 
@@ -39,6 +41,7 @@ https://docs.amazonaws.cn/index.html
     - Path pattern
   - 网络负载均衡器
   - Classic 负载均衡器。
+  - ELB + Aurora, **Can NOT** ELB + MySQL
 
 - EBS - Elastic Block Store
 
@@ -203,6 +206,7 @@ https://docs.amazonaws.cn/index.html
   - services that can invoke AWS Lambda :
     - SNS
     - ELB
+  - Lambda + API gateway: low memory, scale base on demand, cost-effective
 
 - Amazon Athena
 
@@ -243,3 +247,7 @@ https://docs.amazonaws.cn/index.html
   TB level
 
 - OAI - Origin Access Identity
+
+- CloudHub - low-cost hub-and-spoke model
+
+  https://docs.aws.amazon.com/whitepapers/latest/aws-vpc-connectivity-options/aws-vpn-cloudhub-network-to-amazon.html
