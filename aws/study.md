@@ -95,9 +95,8 @@ https://docs.amazonaws.cn/index.html
   https://docs.amazonaws.cn/vpc/?id=docs_gateway
 
   Amazon Virtual Private Cloud (Amazon VPC) 允许您在已经定义的虚拟网络内启动 Amazon Web Services (AWS) 资源。这个虚拟网络与您在数据中心中运行的传统网络极其相似，并会为您提供使用 AWS 的可扩展基础设施的优势。
-  - NAT - Network Address Translation
   - Need public IP address inside a subnet in order to access Internet Gateway
-
+  
 - Redshift
 
   https://docs.amazonaws.cn/redshift/?id=docs_gateway
@@ -290,3 +289,16 @@ https://docs.amazonaws.cn/index.html
     - S3
     - DynamoDB
   - interface endpoint
+
+- NAT - Network Address Translation
+
+  https://docs.aws.amazon.com/vpc/latest/userguide/vpc-nat-gateway.html
+
+  You can use a network address translation (NAT) gateway to enable instances in a private subnet to connect to the internet or other AWS services, but prevent the internet from initiating a connection with those instances.
+
+- AWS Route 53
+
+  https://aws.amazon.com/route53/
+
+  - Can route to outside of AWS
+  - health check route
