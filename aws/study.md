@@ -21,8 +21,10 @@ https://docs.amazonaws.cn/index.html
   - Encryption (at rest): https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingEncryption.html
     - Server-Side Encryption with customer provided keys (SSE-C)
     - Client-Side Encryption
-
   - Encryption (in-transit): SSL (Secure Sockets Layer)
+  - SSE-S3: server side encrypt with amazon manage key
+  - SSE-KMS: server side encrypt with AWS manage key
+  - SSE-C: service side encrypt with client provided key
 
 - S3 Glacier
 
@@ -279,3 +281,12 @@ https://docs.amazonaws.cn/index.html
   - Low latency, high throughput, 10Gb network
   - can't merge placement group
   - can't move existing instances into it
+
+- VPC endpoint
+
+  https://docs.aws.amazon.com/vpc/latest/userguide/vpc-endpoints.html
+
+  - gateway endpoint
+    - S3
+    - DynamoDB
+  - interface endpoint
