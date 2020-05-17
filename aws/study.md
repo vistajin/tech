@@ -18,6 +18,11 @@ https://docs.amazonaws.cn/index.html
   - object-base, share between EC2
   - VPC endpoint for S3: https://aws.amazon.com/blogs/aws/new-vpc-endpoint-for-amazon-s3/
   - Auto Scaling supports both EC2 classic and EC2-VPC
+  - Encryption (at rest): https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingEncryption.html
+    - Server-Side Encryption with customer provided keys (SSE-C)
+    - Client-Side Encryption
+
+  - Encryption (in-transit): SSL (Secure Sockets Layer)
 
 - S3 Glacier
 
@@ -51,6 +56,7 @@ https://docs.amazonaws.cn/index.html
 
   -  Throughput Optimized HDD: support 500M/S, data stream sequential, full table scan
   - Provisioned IOPS volume: random i/o, long term-persistence, consistent performance, no downtime, write more than read
+  - Max snapshot 1TB
 
 - IAM - Identity and Access Management
 
@@ -98,6 +104,9 @@ https://docs.amazonaws.cn/index.html
 
   - analyze aggregated info
   - weather devices
+  - columnar
+  - parallel query across multiple nodes
+  - Postgresql JDBC + ODBC
 
 - RDS - Rational Database Service
 
@@ -236,8 +245,6 @@ https://docs.amazonaws.cn/index.html
 
 - SES - Simple Email Service
 
-
-
 - Amazon Aurora
 
   Transactional Database
@@ -251,3 +258,24 @@ https://docs.amazonaws.cn/index.html
 - CloudHub - low-cost hub-and-spoke model
 
   https://docs.aws.amazon.com/whitepapers/latest/aws-vpc-connectivity-options/aws-vpn-cloudhub-network-to-amazon.html
+
+- AWS Storage Gateway
+
+  https://aws.amazon.com/storagegateway/?whats-new-cards.sort-by=item.additionalFields.postDateTime&whats-new-cards.sort-order=desc
+
+  - Tape Gateway
+  - File Gateway
+  - Volume Gateway: https://aws.amazon.com/storagegateway/volume/
+    - Cached -> S3
+    - Stored  -> locally in gateway
+
+- Placement Group
+
+  https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/placement-groups.html
+
+  - Logical group of instances
+  - Single Availability Zone
+  - Span peer VPC
+  - Low latency, high throughput, 10Gb network
+  - can't merge placement group
+  - can't move existing instances into it
