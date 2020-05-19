@@ -23,6 +23,9 @@ sudo brctl show
 ### Common
 
 ```shell
+# list the startup times of all apps and units running when boot
+systemd-analyze blame
+
 # vi replace sample
 :%s/Answer: [A-Q]*/Answer: X/g
 

@@ -95,6 +95,7 @@ https://docs.amazonaws.cn/index.html
   https://docs.amazonaws.cn/vpc/?id=docs_gateway
 
   Amazon Virtual Private Cloud (Amazon VPC) 允许您在已经定义的虚拟网络内启动 Amazon Web Services (AWS) 资源。这个虚拟网络与您在数据中心中运行的传统网络极其相似，并会为您提供使用 AWS 的可扩展基础设施的优势。
+  
   - Need public IP address inside a subnet in order to access Internet Gateway
   
 - Redshift
