@@ -6,6 +6,8 @@
 
 - X.509- is a **standard** defining the format of [public key certificates](https://en.wikipedia.org/wiki/Public_key_certificate)., use RSA key
 
+- CA - Certificate Authority （受到广泛信任的机构）
+
 - PEM - Privacy Enhanced Mail, BASE64
 
   TO view PEM:
@@ -27,5 +29,12 @@
 - PFX / P12 - processor of PKCS#12, for windows, contains CRT + Private Key with password to extract it
 - PCKS - Public Key Cryptography **Standards**, RSA  (p1, p8, p12)
 
+- EV SSL - Extended V
 
 
+
+
+
+### SSL Handshake
+
+<img src="/home/vistajin/tech/java/ssl-handshake.png" style="zoom:80%;" />
