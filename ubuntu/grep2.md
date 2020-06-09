@@ -18,7 +18,7 @@ grep -m1 pattern file
 # show line number
 grep -n pattern file
 
-curl -s https://testerhome.com/ | grep href | grep -o 'http[^\"]*'
+curl -s https://testerhome.com/ | grep href | grep -o 'http[^\"]*' | while read line; do curl -s -I $line | grep "200 OK" && echo $line || echo ERR $line; done
 ```
 
 
