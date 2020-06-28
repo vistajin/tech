@@ -11,7 +11,7 @@ C. Ask each member of the team to generate a new SSH key pair and to add the pub
 Grant the "compute.osAdminLogin" role to the Google group corresponding to this team.
 D. Generate a new SSH key pair. Give the private key to each member of your team. Configure the public key as a 
 project-wide public SSH key in your Cloud Platform project and allpw project-wide public SSH keys on each instance. 
-Answer: ??
+Answer: D
 
 Question 2
 You need to create a custom VPC with a single subnet. The subnet's range must be as large as possible. Which range should you use?
