@@ -19,8 +19,6 @@ awk 'NR==2'
 awk 'NR>1'
 
 
-
-
 ll | awk '{print $9}'
 
 echo "1-2-3-4" | awk -F- '{print $3}'
