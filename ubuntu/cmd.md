@@ -26,9 +26,6 @@ sudo brctl show
 # list the startup times of all apps and units running when boot
 systemd-analyze blame
 
-# vi replace sample
-:%s/Answer: [A-Q]*/Answer: X/g
-
 # don't show error info
 find / -name 'pycharm' &> /dev/null
 
