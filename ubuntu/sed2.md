@@ -81,6 +81,9 @@ sed -n 'p;n' test.txt
 # show number of lines
 sed -n '$=' test.txt
 
+# show line number
+sed -n '=;p' 
+
 ```
 
 

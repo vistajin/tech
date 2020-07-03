@@ -26,6 +26,8 @@ xdd - 删除光标开始的x行
 
 yy + p - yy复制当前行，p粘贴复制到的行
 
+
+
 # vi replace sample
 :%s/Answer: [A-Q]*/Answer: X/g
 ```
