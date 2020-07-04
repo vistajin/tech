@@ -1,7 +1,38 @@
+### Stream EDitor
+
 ```sh
+############### display ###############
+# 输出第4～7行
+sed -n '4,7p' a.txt
+
+# 输出第4行及其后的10行内容，共11行
+sed -n '4,+10p' a.txt
+
+# 输出第2,5,7行
+sed -n '2p;5p;7p' a.txt
+
+# show line start with This
+sed -n '/^This/p' test.txt
+
+# show line contains num
+sed -n '/num/p' test.txt
+
+# show line ends with "2."
+sed -n '/2.$/p' test.txt
+
+# show odd rows
+sed -n 'n;p' test.txt
+
+# show even rows
+sed -n 'p;n' test.txt
+
+# show number of lines
+sed -n '$=' test.txt
+
+# show line number
+sed -n "=;p" vi.md | sed 'N;s/\n/,/'
 
 ############ replace ####################
-
 # replace line with row in all lines
 sed 's/line/row/g' test.txt
 
@@ -20,6 +51,12 @@ sed 's/\/bin\/sh/\/src\/newpath/g' test.txt
 # suround word with []
 echo 'this is a test line' | sed 's/\w\+/[&]/g'
 [this] [is] [a] [test] [line]
+
+# 将第4～7行注释掉（行首加#号）
+sed '4,7s/^/#/' a.txt
+
+# 删除所有的“xml”、所有的“XML”、所有的字母e，"或"用 \| 来表示
+sed 's/xml\|XML\|e//g' a.txt
 
 ############### Delete ###################
 
@@ -59,30 +96,6 @@ insert 2nd line' test.txt
 # append after 5st line
 sed '5a\
 This is an inserted line.' test.txt
-
-
-############### display ###############
-
-# show line start with This
-sed -n '/^This/p' test.txt
-
-# show line contains num
-sed -n '/num/p' test.txt
-
-# show line ends with "2."
-sed -n '/2.$/p' test.txt
-
-# show odd rows
-sed -n 'n;p' test.txt
-
-# show even rows
-sed -n 'p;n' test.txt
-
-# show number of lines
-sed -n '$=' test.txt
-
-# show line number
-sed -n '=;p' 
 
 ```
 
