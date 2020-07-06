@@ -10,3 +10,23 @@ sudo systemctl stop jenkins.service
 sudo systemctl start jenkins.service
 sudo systemctl enable jenkins.service
 cat /var/lib/jenkins/secrets/initialAdminPassword
+
+
+
+
+
+### uninstall
+
+```
+//服务
+sudo apt-get remove jenkins
+
+//安装包，注意这里如果不是ubuntu那就yum
+sudo apt-get remove --auto-remove jenkins
+
+//配置和数据
+sudo apt-get purge jenkins
+
+sudo apt-get purge --auto-remove jenkins
+```
+
