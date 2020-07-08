@@ -10,7 +10,7 @@ management tool to deploy those keys on each instance.
 C. Ask each member of the team to generate a new SSH key pair and to add the public key to their Gaggle account. 
 Grant the "compute.osAdminLogin" role to the Google group corresponding to this team.
 D. Generate a new SSH key pair. Give the private key to each member of your team. Configure the public key as a 
-project-wide public SSH key in your Cloud Platform project and allpw project-wide public SSH keys on each instance. 
+project-wide public SSH key in your Cloud Platform project and allow project-wide public SSH keys on each instance. 
 Answer: D
 
 Question 2
@@ -19,7 +19,7 @@ A. 0.0.0.0/0
 B. 10.0.0.0/8 
 C. 172.16.0.0/12
 D. 192.168.0.0/16 
-inswer: B
+answer: B
 
 Question 3
 You want to select and configure a cost-effective solution for relational data on Google Cloud Platform. You are working with a small set of operational
@@ -35,7 +35,52 @@ K You want to configure autohealing for network load balancing for a group of Co
 You need to configure re-creation of VMs if they are unresponsive after 3 attempts of 10 seconds each. What should you do?
 A. Create an HTTP load balancer with a backend configuration that references an existing instance group. Set the health check to healthy (HTTP)
 B. Create an HTTP load balancer with a backend configuration that references an existing instance group. Define a balancing mode and set the maximum RPS to 20.
-C. Create a managed instance group. Set the AutsbealiJig health check to healthy (HTTP)
-D. Create a managed instance group. Verify that the autpspaling setting is on. 
+C. Create a managed instance group. Set the autohealing health check to healthy (HTTP)
+D. Create a managed instance group. Verify that the autoscaling setting is on. 
 Answer: C
 
+Question 5
+
+You are using multiple configurations for gcloud. You want to review the configured Kubernets Engine cluster of an inactive configuration using the fewest possible steps. What should you do?
+
+A. Use gcloud config configurations describe to review the ouput.
+
+B. use gcloud config configurations activate and gcloud config list to review the ouput.
+
+C. Use kubectl config get-contexts to review the output.
+
+D. Use kubectl config use-context and kubectl config view to review the output
+
+Answer: 
+
+
+
+Question 6
+
+YOur comany uses Cloud Storage to store application backup files for disaster recovery purposes. You want to follow Google's recommended practices. Which storage option should you use?
+
+A. Multi-Regional Storage
+
+B. Regional Storage
+
+C. Nearline Storeage
+
+D. Coldline Storage
+
+Answer: D
+
+
+
+Question 7
+
+Several employees at your company have been creating projects with Cloud Platform and paying for it with their personal credit cards, which the company reimburses. The company wants to centralize all these projects under a single, new billing account. What should you do?
+
+A. Contact cloud-bill@google.com with your bank account details and request a corporate billing account for your company.
+
+B. Create a ticket with Google Support and wait for their call to share your credit card details over the phone.
+
+C. In the google Platform Console, go to the Resource Manage and move all projects to the root Organization
+
+D. In the Google Cloud Platform Console, create a new billing account and set up a payment method.
+
+Answer: D
