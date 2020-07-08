@@ -43,9 +43,9 @@ Question 5
 
 You are using multiple configurations for gcloud. You want to review the configured Kubernets Engine cluster of an inactive configuration using the fewest possible steps. What should you do?
 
-A. Use gcloud config configurations describe to review the ouput.
+A. Use gcloud config configurations describe to review the output.
 
-B. use gcloud config configurations activate and gcloud config list to review the ouput.
+B. use gcloud config configurations activate and gcloud config list to review the output.
 
 C. Use kubectl config get-contexts to review the output.
 
@@ -84,3 +84,51 @@ C. In the google Platform Console, go to the Resource Manage and move all projec
 D. In the Google Cloud Platform Console, create a new billing account and set up a payment method.
 
 Answer: D
+
+
+
+Question 8
+
+You have an application that looks for its licensing server on the IP 10.0.3.21. You need to deploy the licensing server on Compute Engine. You do not want to change the configuration of the application and want the application to be able to search the licensing server. What should you do?
+
+A. Reserve the IP 10.0.3.21 as a static internal IP address using the gcloud and assign it to the licensing server.
+
+B. Reserve the IP 10.0.3.21 as a static public IP address using gcloud and assign it to the licensing server.
+
+C. Use the IP 10.0.3.21 as a custom ephemeral IP address and assign it to the licensing server.
+
+D. Start the licensing server with and automatic ephemeral IP address, and then promote it to a static internal IP address.
+
+Answer: A
+
+
+
+Question 9
+
+You are deploying an application to App Engine. You want the number of instances to scale based on request rate. You need at least 3 unoccupied instances at all times. Which scaling type should you use?
+
+A. Manual Scaling with 3 instances
+
+B. Basic Scaling with min_instances set to 3
+
+C. Basic Scaling with max_instances set to 3
+
+D. Automatic Scaling with min_idle_instances set to 3
+
+Answer: D
+
+
+
+Question 10
+
+You have a development project with appropriate IAM roles defined. You are creating a production project and want to have the same IAM roles on the new project, using the fewest possible steps. What should you do?
+
+A. Use gcloud IAM roles copy and specify the production project as the destination project
+
+B. Use gcloud IAM roles copy and specify you organization as the destination organization
+
+C. In the Google Cloud Platform Console, use the "Create role from role" functionality
+
+D. In the Google Cloud Platform Console, use the "create role" functionality and select all applicable permissions.
+
+Answer: 
