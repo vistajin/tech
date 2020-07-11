@@ -215,7 +215,64 @@ Answer: B
 
 
 
+Question 16
+
+You have a single binary application that you want to run on Google Cloud Platform. You decided to automatically scale the application based on underlying infrastructure CPU usage. Your organizational policies require you to use virtual machines directly. You need to ensure that the application scaling is operationally efficient and completed as quickly as possible. What should you do?
+
+A. Create a Google Kubernetes Engine cluster, and use horizontal pod autoscaling to scale the application.
+
+B. Create an instance template, and use the template in a managed instance group with autoscaling configured.
+
+C. Create an instance template, and use the template in a managed instance group that scales up and down based on the time of day
+
+D. use a set of third-party tools to build automation around scaling the application up and down, based on Stackdriver CPU usage monitoring.
+
+Answer: B
 
 
 
+Question 17
 
+You are analyzing Google Gloud Platform service costs from three separate projects. You want to use this information to create service cost estimates by service type, daily and monthly, for the next six months using standard query syntax. What should you do?
+
+A. Export your bill to a Cloud Storage bucket, and then import into Cloud Bigtable for analysis
+
+B. Export your bill to a Cloud Storage bucket, and then import into Google Sheets for analysis
+
+C. Export your transactions to a local file, and perform analysis with a desktop tool.
+
+D. Export your bill to a BigQuery dataset, and then write time window-based SQL queries for analysis.
+
+Answer: D
+
+
+
+Question 18
+
+You need to set up a policy so that videos stored in a specific Cloud Storage Regional bucket are moved to Coldline after 90 days, and then deleted after one year from their creation. How should you setup the policy?
+
+A. Use Cloud Storage Object Lifecycle Management using Age conditions with SetStorageClass and Delete actions. Set the SetStorageClass action to 90 days and the Delete action to 275 days (365-90) 
+
+B. Use Cloud Storage Object Lifecycle Management using Age conditions with SetStorageClass and Delete actions. Set the SetStorageClass action to 90 days and the Delete action to 365 days
+
+C. Use gsutil rewrite and set the Delete action to 275 days (365-90)
+
+D. Use gsutil rewrite and set the Delete action to 365 days
+
+Answer: B
+
+
+
+Question 19
+
+You have a Linux VM that must connect to Cloud SQL. You created a service account with the appropriate access rights. You want to make sure that the VM uses this service account instead of the default Compute Engine service account. What should you do?
+
+A. When creating the VM via the web console, specify the service account under the "Identity and API Access" section
+
+B. Download a JSON Private Key for the service account. On the Project Metadata, add that JSON as the value for the key compute-engine-service-account.
+
+C. Download a JSON Private Key for the service account. On the Custom Metadata of the VM, add that JSON as the value for the key compute-engine-service-account.
+
+D. Download a JSON Private Key for the service account. After creating the VM, ssh into the VM and save the JSON under ~/.gcloud/compute-engine-service-account.json
+
+Answer: A
