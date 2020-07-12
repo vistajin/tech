@@ -1,20 +1,17 @@
 Question 1
-Every employee of your company has a Google account. Your operational team needs to manage a large number of 
-instances on Compute Engine. Each member of this team needs only administrative access to the servers. Your security 
-team wants to ensure that the deployment of credentials is operationally efficient and must be able to determine who 
-accessed a given instance. What should you do?
-A. Generate a new SSH key pair. Give the private key to each member of your team. Configure the public key in the 
-metadata of each instance.
-B. Ask each member of the team to generate a new SSH key pair and to send you their public key. Use a configuration 
-management tool to deploy those keys on each instance.
-C. Ask each member of the team to generate a new SSH key pair and to add the public key to their Gaggle account. 
-Grant the "compute.osAdminLogin" role to the Google group corresponding to this team.
-D. Generate a new SSH key pair. Give the private key to each member of your team. Configure the public key as a 
-project-wide public SSH key in your Cloud Platform project and allow project-wide public SSH keys on each instance. 
+
+Every employee of your company has a Google account. Your operational team needs to manage a large number of instances on Compute Engine. Each member of this team needs only administrative access to the servers. Your security team wants to ensure that the deployment of credentials is operationally efficient and must be able to determine who accessed a given instance. What should you do?
+
+A. Generate a new SSH key pair. Give the private key to each member of your team. Configure the public key in the metadata of each instance.
+B. Ask each member of the team to generate a new SSH key pair and to send you their public key. Use a configuration management tool to deploy those keys on each instance.
+C. Ask each member of the team to generate a new SSH key pair and to add the public key to their Gaggle account. Grant the "compute.osAdminLogin" role to the Google group corresponding to this team.
+D. Generate a new SSH key pair. Give the private key to each member of your team. Configure the public key as a project-wide public SSH key in your Cloud Platform project and allow project-wide public SSH keys on each instance. 
 Answer: D
 
 Question 2
+
 You need to create a custom VPC with a single subnet. The subnet's range must be as large as possible. Which range should you use?
+
 A. 0.0.0.0/0
 B. 10.0.0.0/8 
 C. 172.16.0.0/12
@@ -22,8 +19,9 @@ D. 192.168.0.0/16
 answer: B
 
 Question 3
-You want to select and configure a cost-effective solution for relational data on Google Cloud Platform. You are working with a small set of operational
-data in one geographic location. You need to support point-in-time recovery. What should you do?
+
+You want to select and configure a cost-effective solution for relational data on Google Cloud Platform. You are working with a small set of operational data in one geographic location. You need to support point-in-time recovery. What should you do?
+
 A. Select Cloud SQL (MySQL). Verify that the enable binary logging option is selected.
 B. Select Cloud SQL (MySQL). Select the create failover replicas option.
 C. Select Cloud Spanner. Set up your instance with 2 nodes.
@@ -31,8 +29,10 @@ D. Select Cloud Spanner. Set up your instance as multi-regional.
 Answer: A
 
 Question 4
-K You want to configure autohealing for network load balancing for a group of Compute Engine instances that run in multiple zones, using the fewest possible steps.
+
+You want to configure autohealing for network load balancing for a group of Compute Engine instances that run in multiple zones, using the fewest possible steps.
 You need to configure re-creation of VMs if they are unresponsive after 3 attempts of 10 seconds each. What should you do?
+
 A. Create an HTTP load balancer with a backend configuration that references an existing instance group. Set the health check to healthy (HTTP)
 B. Create an HTTP load balancer with a backend configuration that references an existing instance group. Define a balancing mode and set the maximum RPS to 20.
 C. Create a managed instance group. Set the autohealing health check to healthy (HTTP)
@@ -337,7 +337,7 @@ You are guilding a pipeline to process time-series data. Which Google Cloud Plat
 
 ​              4(analytics)
 
-A. Cloud Pul/Sub, Cloud Dataflow, Cloud Datastore, BigQuery
+A. Cloud Pub/Sub, Cloud Dataflow, Cloud Datastore, BigQuery
 
 B. Firebase Messages, Cloud Pub/Sub, Cloud Spanner, BigQuery
 
@@ -386,4 +386,212 @@ Question 26
 You need to set up permissions for a set of Compute Engine instances to enable them to write data into a particular Cloud Storage bucket. You want to follow Google recommended practices. What should you do?
 
 A. Create a service account with an access scope. Use the access scope "https://www.googleapis.com/auth/devstoreage.write_only"
+
+B. Create a service account with an access scope. Use the  access scope "https://www.googleapis.com/auth/cloud-platform"
+
+C. Create a service account and add it to the IAM role "storage.objectCreator" for that bucket
+
+D. Create a service account and add it to the IAM role "storage.objectAdmin" for that bucket
+
+Answer: C
+
+
+
+Question 27
+
+You have sensitive data stored in three Cloud Storage buckets and have enabled data access logging. You want to verify activities for a particular user for these buckets, using the fewest possible steps. You need to verify the addition of metadata labels and which files have been viewed from those buckets. What should you do?
+
+A. Using the GCP Console, filter the Activity log to view the information.
+
+B. Using the GCP Console, filter the Stackdriver log to view the information
+
+C. View the bucket in the Storage section of the GCP Console
+
+D. Create a trace in Stackdriver to view the information
+
+Answer: B
+
+
+
+Question 28
+
+You are the project owner of a GCP project and want to delegate control to colleagues to manage buckets and files in Cloud Storage. You want to follow Google recommended practices. Which IAM roles should you grant your colleagues?
+
+A. Project Editor
+
+B. Storage Admin
+
+C. Storage Object Admin
+
+D. Storage Object Creator
+
+Answer: B
+
+
+
+Question 29
+
+You have an Object in a cloud Storage bucket that you want to share with an external company. The object contains sensitive data. You want access to the content to be removed after four hours. The external company does not have a Google account to which you can grant specific user-based access privileges. You want to use the most secure method that requires the fewest steps. What should you do?
+
+A. Create a singled URL with a four-hour expiration and share the URL with the company
+
+B. Set object access to "public" and use object lifecycle management to remove the object after four hours
+
+C. Configure the storage bucket as a static website and furnish the object's URL to the compan. Delete the object from the storage bucket after four hours.
+
+D. Create a new Cloud Storage bucket specifically for the external company to access. Copy the object to that bucket. Delete the bucket after four hours have passed.
+
+Answer: A
+
+
+
+Question 30
+
+You are creating a Google Kubernets Engine (GKE) cluster with a cluster auto scaler feature enabled. You need to make sure that each node of the cluster will run a monitoring pod that send container metrics to a third-party monitoring solution. What should you do?
+
+A. Deploy the monitoring pod in a StatefulSet object
+
+B. Deploy the monitoring pod in a DaemonSet object
+
+C. Reference the monitoring pod in a Deployment object
+
+D. Reference the monitoring pod in a cluster initializer at the GKE cluster creation time
+
+Answer: B
+
+
+
+Question 31
+
+You want to send and consume Cloud Pub/Sub messages from your App Engine application. The cloud Pub/Sub API is currently disabled. You will use a service account to authenticate your application to the API. You want to make sure you application can use Cloud Pub/Sub. What should you do?
+
+A. Enable the Cloud Pub/Sub API in the API Library on the GCP Console
+
+B. Rely on the automatic enablement of the Cloud Pub/Sub API when the Service Account access it
+
+C. Use Deployment Manager to deploy your application. Rely the automatic enablement of all APIs used by the application being deployed
+
+D. Grant the App Engine Default service account the role of Cloud Pub/Sub Admin. Have your application enable the API on the first connection to Cloud Pub/Sub
+
+Answer: A
+
+
+
+Question 32
+
+You need to monitor resources that are distributed over different projects in Google Cloud Platform. You want to consolidate reporting under the same Stackdriver Monitoring Dashboard. What should you do?
+
+A. Use Shared VPC to connect all projects, and link Stackdriver to one of the projects
+
+B. For each project, create a Stackdriver account. In each project, create a service account for that project and grant it the role of Stackdriver Account Editor in all other projects.
+
+C. Configure a single Stackdriver account, and link all projects to the same account
+
+D. Configure a single Stackdriver account for one of the projects. In Stackdriver, create a Group and add the other project names as criteria for that Group
+
+Answer: C
+
+
+
+Question 33
+
+You are deploying an application to Compute Engine VM in a managed instance group. The application mus be running at all times, but only a single instance of the VM should run per GCP project. How should you configure the instance group?
+
+A. Set autoscaling to On, set the minimum number of instances to 1, and then set the maximum number of instances to 1
+
+B. Set autoscaling to Off, set the minimum number of instances to 1, and then set the maximum number of instances to 1
+
+C. Set autoscaling to On, set the minimum number of instances to 1, and then set the maximum number of instances to 2
+
+D. Set autoscaling to Off, set the minimum number of instances to 1, and then set the maximum number of instances to 2
+
+Answer: A
+
+
+
+Question 34
+
+You want to verify the IAM users and roles assigned within a GCP project named my-project. What should you do?
+
+A. Run gcloud iam roles list. Review the output section.
+
+B. Run gcloud iam service-accounts list. Review the output section
+
+C. Navigate to the project and then to the IAM section in the GCP Console. Review the members and roles
+
+D. Navigate to the project and then to the Roles section in the GCP Console. Review the roles and status
+
+Answer: C
+
+
+
+Question 35
+
+You need to create a new billing account and then link it with an existing Google Cloud Platform project. What should you do?
+
+A. Verify that you are Project Billing Manager for the GCP project. Update the existing project to link it to the existing billing account
+
+B. Verify that you are Project Billing Manger for the GCP project. Create a new billing account and link the new billing account to the existing project
+
+C. Verify that you are the billing Administrator for the billing account. Create a new project and link the new project to the existing billing account
+
+D. Verify that you are the billing administrator for the billing account. Update the existing project to link it to the existing billing account
+
+Answer: B
+
+
+
+Question 36
+
+You have one project called proj-sa where you manage all your service accounts. You want to be able to use a service account from this project to take snapshots of VMs running in another project called proj-vm. What should you do?
+
+A. Download the private key from the service account, and add it to each VMs custom metadata.
+
+B. Download the private key from the service account, and add the private key to each VM's SSH key
+
+C. Grant the service account the IAM Role of Compute Storage Admin in the project called proj-vm
+
+D. When creating the VMs, set the service account's API scope for Compute Engine to read/write
+
+Answer: C
+
+
+
+Question 37
+
+You created a Google Cloud Platform project with and App Engine application inside the project. You initially configured the application to be served from the us central region. Now you want the application to be served from the asia-northeast1 region. What should you do?
+
+A. Change the default region property setting in the existing GCP project to asia-northeast1
+
+B. Change the region property setting in the existing App Engine application from us-central to asia-northeast1
+
+C. Create a second App Engine application in the existing GCP project and specify asia-northeast1 as the region to serve your application
+
+D. Create a new GCP project and create an App Engine application inside this new project. Specify asia-northeast1 as the region to service your application
+
+Answer: D
+
+
+
+Question 38
+
+You need to grant access three users so that they can view and edit table data on a Cloud Spanner instance. What should you do?
+
+A. Run gcloud iam roles describe roles/spanner.databaseUser. Add the users to the role
+
+B. Rune gcloud iam roles describe roles/spanner.databaseUser. Add the users to a new group. Add the group to the role.
+
+C. Run gcloud iam roles describe roles/spanner.viewer --project my-project. Add the users to the role
+
+D. Run gcloud iam roles describe roles/spanner.viewer ---project my-project. Add the users to a new group. Add the group to the role
+
+Answer: B?
+
+
+
+
+
+
+
+
 
