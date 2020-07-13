@@ -625,7 +625,19 @@ Question 41
 
 You have 32 GB of data in a single file that you need to upload to a Nearline Storage bucket. The WAN connection you are using is rated at 1 Gbps, and you are the only one on the connection. You want to use as much of the rated 1 Gbps as possible to transfer the file rapidly. How should you upload the file?
 
-A. 
+A. Use the GCP Console to transfer the file instead of gsutil
+
+B. Enable parallel composite uploads using gsutil on the file transfer
+
+C. Decrease the TCP window size on the machine initiating the transfer
+
+D. Change the storage class of the bucket from Nearline to Multi-Regional
+
+Answer: B
+
+
+
+Question 42
 
 
 
