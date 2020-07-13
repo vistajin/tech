@@ -589,6 +589,46 @@ Answer: B?
 
 
 
+Question 39
+
+You create a new Google Kubernetes Engine (GKE) cluster and want to make sure that it always runs a supported and stable version of Kubernetes. What should you do?
+
+A. Enable the Node Auto-Repair feature for your GKE cluster
+
+B. Enable the Node Auto-Upgrades feature for your GKE cluster
+
+C. Select the latest available cluster version for your GKE cluster
+
+D. Select "Container=Optimized OS (cos)" as a node image for your GKE cluster
+
+Answer: B
+
+
+
+Question 40
+
+You have an instance group that you want to load balance. You want the load balancer to terminate the client SSL session. The instance group is used to serve a public web application over HTTPS. You want to follow Google recommended practices. What should you do?
+
+A. Configure an HTTP(S) load balancer
+
+B. Configure an internal TCP load balancer
+
+C. Configure and external SSL proxy load balancer
+
+D. Configure an external TCP proxy load balancer
+
+Answer: A
+
+
+
+Question 41
+
+You have 32 GB of data in a single file that you need to upload to a Nearline Storage bucket. The WAN connection you are using is rated at 1 Gbps, and you are the only one on the connection. You want to use as much of the rated 1 Gbps as possible to transfer the file rapidly. How should you upload the file?
+
+A. 
+
+
+
 
 
 
