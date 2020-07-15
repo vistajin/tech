@@ -639,11 +639,135 @@ Answer: B
 
 Question 42
 
+You've deployed a microservie called myapp1 to a Google Kubernetes Engine cluster using the YAML file specified below:
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+​    name: myapp1-deployment
+spec:
+​    selector:
+​        matchLabels:
+​            app: myapp1
+​    replicas: 2
+​    template:
+​        metadata:
+​            labels:
+​                app: myapp1
+​        spec: 
+​              containers:
+​              - name: main-containers
+​                 image: gcr.io/my-company-repo/myapp1:1.4
+​                 env:
+​                 - name: DB_PASSWORD
+​                    value: "t0ough2guess!"
+​                  ports:
+​                  - containerPort: 8080
+
+You need to refactor this configuration so that the database password is not stored in plain text. You want to follow Google recommended practices. What should you do?
+
+A. Store the database password inside the Docker image of the container. not in the YAML file.
+
+B. Store the database password inside a Secret object. Modify the YAML file to populate the DB_PASSWORD environment variable from the Secret.
+
+C. Store the database password inside a ConfigMap object. Modify the YAML file to populate the DB_PASSWORD environment variable from the ConfigMap
+
+D. Store the database password in a file inside a Kubernetes persistent volume, and use the persistent volume claim to mount the volume to the container
+
+Answer: B
 
 
 
+Question 43
+
+You are running an application on multiple virtual machines within a managed instance group and have autoscaling enabled. The autoscaling policy is configured so that additional instances are added to the group if the CPU utilization of instances goes above 80%. VMs are added until the instance group reaches its maximum limit of five VMs or until CPU utilization of instances lowers to 80%. The initial delay for HTTP health checks against the instances is set to 30 seconds.
+
+A. Set the maximum number of instances to 1
+
+B. Decrease the maximum number of instances to 3.
+
+C. Use a TCP health check instead of an HTTP health check
+
+D. Increase the initial delay of the HTTP health check to 200 seconds
+
+Answer: D
 
 
 
+Question 44
+
+You need to select and configure compute resources for a set of batch processing jobs. These jobs take around 2 hours to complete and are run nightly. You want to minimize service costs. What should you do?
+
+A. Select Google Kubernetes Engine. Use a single-node cluster with a small instance type
+
+B. Select Google Kubernetes Engine. Use a three-node cluster with micro instance types
+
+C. Select Compute Engine. Use preemtible VM instances of the appropriate standard machine type
+
+D. Select Compute Engine. Use VM instance types that support micro bursting
+
+Answer: C
 
 
+
+Question 45
+
+You recently deployed a new version of an application to App Engine and then discovered a bug in the release. You need to immediately revert to the prior version of the application. What should you do?
+
+A. Run gcloud app restore
+
+B. On the App Engine page of the GCP Console, select the application that needs to be reverted and click Revert.
+
+C. On the App Engine Versions page of the GCP Console, rout 100% of the traffic to the previous version.
+
+D. Deploy the original version as a separate application. Then go to App Engine settings and split traffic between applications so that the original version serves 100% of the requests.
+
+Answer: C
+
+
+
+Question 46
+
+You deployed an App Engine application using gcloud app deploy. but it did not deploy to the intended project. You want to find out why this happened and where the application deployed. What should you do?
+
+A. Check the app.yaml file for your application and check project settings.
+
+B. Check the web-application.xml file for your application and check project setting
+
+C. Go the Deployment Manger and review settings for deployment of applications
+
+D. Go to Cloud Shell and run gcloud config list to review the Google Cloud configuration used for deployment
+
+Answer: D
+
+
+
+Question 47
+
+You want to configure 10 Compute Engine instances for availability when maintenance occurs. Your requirements stat that these instances should attempt to automatically restart if they crash. Also, the instances should be highly available including during system maintenance. What should you do?
+
+A. Create an instance template for the instances. Set the "Automatic Restart" to ON, set "On-host maintenance" to Migrate VM instance. Add the instance template to and instance group.
+
+B. Create an instance template for the instances. Set "Automatic Restart" to OFF. Set "On-host maintenance" to Terminate VM instances. Add the instance template to and instance group.
+
+C. Create an instance group for the instances. Set the "Autohealing" health check to healthy (HTTP)
+
+D. Create an instance group for the instance. Verify that the "Advanced creation options" setting for "do not retry machine creation" is set to OFF.
+
+Answer: A
+
+
+
+Question 48
+
+You host a static website on cloud Storage. Recently, you began to include links to PDF files on this site. Currently, when users click on the links to these PDF files, their browsers prompt them to save the file onto their local system. Instead, you want the clicked PDF files to be displayed within the browser window directly, without prompting the user to save the file locally. What should you do?
+
+A. Enable Cloud CDN on the website frontend
+
+B. Enable "Share publicly" on the PDF file objects.
+
+C. Set Content-Type metadata to application/pdf on the PDF file objects.
+
+D. Add a label to the storage bucket with a key of Content-Type and value of application/pdf 
+
+Answer: C
