@@ -1028,7 +1028,51 @@ Answer: D
 
 
 
+Question 64
 
+You want to deploy an application on Cloud Run that processes messages from a Cloud Pub/Sub topic. You want to follow Google-recommended practices. What should you do?
+
+A. 1. Create a Cloud Function that uses a Cloud Pub/Sub trigger on t hat topic. 2. Call your application on Cloud Run from the Cloud Function for every message
+
+B. 1. Grant the Pub/Sub Subscriber role to the service account used by Cloud Run. 2. Create a Cloud Pub/Sub subscription for that topic. 3. Make your application pull messages from that application.
+
+C. 1. Create a service account. 2. Give the Cloud Run Invoker role to that service account for your Cloud Run application. 3.  Create a Pub/Sub subscription that uses that service account and uses your Cloud Run application as the push endpoint.
+
+D. 1. Deploy your application on Cloud Run on GKE with the connectivity set to Internal. 2. Create a Cloud Pub/Sub subscription for that topic. 3. In the same Google Kubernets Engine cluster as your application, deploy a container that takes the messages and sends them to your application.
+
+Answer: CCCCCCCC?
+
+
+
+Question 65
+
+You need to deploy an application, which is packaged in a container image, in a new project. The application exposes an HTTP endpoint and receives very few requests per day. You want to minimize costs. What should you do?
+
+A. Deploy the container on Cloud Run
+
+B. Deploy the container on Cloud Run on GKE
+
+C. Deploy the container on App Engine Flexible
+
+D. Deploy the container on Google Kubernetes Engine, with cluster autoscaling and horizontal pod autoscaling enabled
+
+Answer: AAAAAAAAAAAAA?
+
+
+
+Question 66
+
+Your company has an existing GCP organization with hundreds of projects and a billing account. Your company recently acquired another company that also has hundreds of projects and its own billing account. You would like to consolidate all GCP costs of both GCP organizations onto a single invoice. You would like to consolidate all costs as of tomorrow. What should you do?
+
+A. Link the acquired company's projects to your company's billing account
+
+B. Configure the acquired company's billing account and your company's billing account to export the billing data into the same BigQuery dataset
+
+C. Migrate the acquired company's projects into your company's GCP organization. Link the migrated projects to your company's billing account
+
+D. Create a new GCP organization and a new billing account. Migrate the acquired company's projects and your company's projects into the new GCP organization and link the projects to the new billing account.
+
+Answer: DDDDDDDDDDDDDDDD?
 
 
 
