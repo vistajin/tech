@@ -976,13 +976,55 @@ C. 1. In GKE, create a Service of type LoadBalancer that uses the application's 
 
 D. 1. In GKE, create a Service of type LoadBalancer that uses the application's Pods as backend 2. add a Cloud Armor Security Policy to the load balance that whitelists the internal IPs of the MIG's instances 3. Configure the compute Engine instance to use the address of the load balancer that has been created
 
-Answer: C?
+Answer: C?+
 
 
 
+Question 61
+
+Your organization is a financial company that needs to store audit log files for 3 years. You organization has hundreds of Google Cloud Project. You need to implement a cost-effective approach for log file retention. What should you do?
+
+A. Create an export to the sink that saves logs from Cloud Audit to BigQuery
+
+B. Create an export to the sink that saves logs from Cloud Audit to a Coldline Storage bucket
+
+C. Write a custom script that uses logging API to copy the logs from Stackdriver logs to BigQuery
+
+D. Export these logs to Cloud Pub/Sub and write a Cloud Dataflow pipeline to store logs to Cloud SQL
+
+Answer: B
 
 
 
+Question 62
+
+You want to run a single caching HTTP reverse proxy on GCP for a latency-sensitive website. This specific reverse proxy consumes almost no CPU. You want to have a 30-GB in-memory cache, and need an additional 2 GB of memory for the rest of the processes. You want to minimize cost. How should you run this reverse proxy?
+
+A. Create a Cloud Memorystore for Redis instance with 32-GB capacity
+
+B. Run it on Compute Engine, and choose a custom instance type with 6 vCPUs and 32 GB memory
+
+C. Package it in a container image. and run it on Kubernets Engine, using n1-standard-32 instances as nodes
+
+D. Run it on Compute Engine, choose the instance type n1-standard-1, and add an SSD persistent disk of 32 GB
+
+Answer: A
+
+
+
+Question 63
+
+You are hosting an application on bare-metal servers in your own data center. The application needs access to Cloud Storage. However, security policies prevent the servers hosting the application from having public IP addresses or access to the internet. You want to follow Google=recommended practices provide the application with access to Cloud Storage. What should you do?
+
+A. 1. Use nslookup to get IP address for storage.googleapis.com 2. Negotiate with the security team to be able to give a public IP address to the servers.  3. Only allow egress traffic from those servers to the IP addresses for storage.googleapis.com
+
+B. 1. Using Cloud VPN, create a VPN tunnel to a Virtual Private Cloud (VPC) in Google Cloud Platform (GCP) 2. In this VPC, create a Compute Engine instance and install the Squid proxy server on this instance 3. Configure your servers to use that instance as a proxy to access Cloud Storage
+
+C. 1. Use Migrate for Compute Engine (formerly know as Velostrata) to migrate those servers to Compute Engine 2. Create an internal load balancer (ILB) that uses storage.googleapis.com as backend 3. Configure your new instances to use this ILB as proxy.
+
+D. 1. Using Cloud VPN or Interconnect, Create a tunnel to a VPC in GCP 2.  Use Cloud Router to create a custom route advertisement for 199.36.153.4/30. Announce that network to your on-premises network through the VPN tunnel 3. In your on-premises network, configure your DNS server to resolve *.googleapi.com as  a CNAME to restricted.googleapis.com
+
+Answer: D 
 
 
 
