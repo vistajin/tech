@@ -1193,4 +1193,46 @@ D. View logs of the container in myapp-deployment-58ddbbb995-lp86m pod and check
 Answer: C?
 
 
+Question 73
 
+You are setting up a Windows VM on Compute Engine and want to make sure you can log in to the VM via RDP. What should you do?
+
+A. After the VM has been created, use your Google Account credentials to log in into the VM
+
+B. After the VM has been created, use gcloud compute reset-windowms=password to retrieve the login credentials for the VM
+
+C. When creating the VM, add metadata to the instance using "window-password" as the key and a password as the value
+
+D. After the VM has been created, download the JSON private key for the default Compute Engine service account. Use the credentials in the JSON file to log on to the VM
+
+Answer: B??
+
+
+Question 74
+
+You want to configure an SSH connection to a single Compute Engine instance for users in the dev1 group. This instance is the only resource in this particular Coogle Cloud Platform project that the dev1 users should be able to connect to. What should you do?
+
+A. Set metadata to enable-oslogin=true for the instance. Grant the dev1 group the compute.osLogin role. Direct them to use the Cloud Shell to ssh to that instance
+
+B. Set metadata to enable-oslogin=true for the instance. Set the service account to no service account for that instance. Direct them to use the CLoud Shell to ssh to that instance
+
+C. Enable block project wide keys for the instance. Generate an SSH key for each user in the dev1 group. Distribute the keys to dev1 users and direct them to use their third=party tools to connect
+
+D. Enable block project wide keys for the instance. Generate an SSH key and associate the key with that instance. Distribute the keys to dev1 users and direct them to use their third-party tools to connect
+
+Answer: D??
+
+
+Question 75
+
+You need to produce a list of the enabled Google Cloud Platform APIs for a GCP project using the gcloud command line in the Cloud shell. The project name is my-project. What should you do?
+
+A. Run gcloud projects list to get the project ID, and then run gcloud services list-project <project ID>
+
+B. Run gcloud init to set the current project to my-project, then then run gcloud services list --available
+
+C. Run gcloud info to view the account value, and then run gcloud services list --account <Account>
+
+D. Run gloud projects describe <project ID> to verify the project value, and then run gcloud services list --available
+
+Answer: A?
