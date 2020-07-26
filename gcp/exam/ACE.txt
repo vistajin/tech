@@ -1311,3 +1311,46 @@ D. Select the build-in IAM service Viewer role. Add the user's account to this r
 
 Answer: B?
 
+
+Question 81
+
+You are operating a Google Kubernetes Engine (GKE) cluster for your company where different teams can run non-production workloads. Your Machine Learning (ML) team needs to access to Nvidia Tesla P100 GPUs to train their models. You want to minimize effort and cost. What should you do?
+
+A. Ask your ML team to add the "Accelerator: gpu" annotation to their pod specification.
+
+B. Recreate all the nodes of the GKE cluster to enable GPUs on all of them
+
+C. Create your own Kubernetes cluster on top of Compute Engine with nodes that have GPUs. Dedicate this cluster to your ML team.
+
+D. Add n new, GPU-enabled, node pool to the GKE cluster, Ask your ML team to add the cloud.google.com/gke-accelerator: nvidia-tesla-p100 nodeSelector to their pod specification.
+
+Answer: D?
+
+Question 82
+
+Your VMs are running in a  subnet that has a subnet mask of 255.255.255.240. The current subnet has no more free IP addresses and you require an additional 10 IP addresses for new VMs. The existing and new VMs should all be able to reach each other without additional routes. What should you do?
+
+A. Use gcloud to expand the IP range of the current subnet
+
+B. Delete the subnet, and recreate it using a wider range of IP addresses
+
+C. Create a new project. Use Shared VPC to share the current network with the new project
+
+D. Create a new subnet with the same starting IP but a wider range to overrite the current subnet
+
+Answer: D?
+
+
+Question 83
+
+Your organization uses G Suite for communication and collaboration. All users in your organization have 1 G Suite account. You want to grant some G Suite users access to your Cloud Platform project. What should you do?
+
+A. Enable Cloud Identity in the GCP Console for your domain
+
+B. Grant them the required IAM roles using their G Suite email address
+
+C. Create a CSV sheet with all users' email addresses. Use the gcloud command line tool to convert them into Google Cloud Platform accounts
+
+D. In the G Suite console, add the users to a special group called cloud-console-user@yourdoman.com. Rely on the default behavior of the Cloud Platform to grant users access if they are members of this group.
+
+Answer: B?
