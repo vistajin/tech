@@ -1354,3 +1354,54 @@ C. Create a CSV sheet with all users' email addresses. Use the gcloud command li
 D. In the G Suite console, add the users to a special group called cloud-console-user@yourdoman.com. Rely on the default behavior of the Cloud Platform to grant users access if they are members of this group.
 
 Answer: B?
+
+
+Question 84
+
+You have a Google Cloud Platform account with access to both production and development projects. You need to create an automated process to list all compute instances in development and production projects on a daily basis. What should you do?
+
+A. Create two configurations using gcloud config. Write a script that sets configurations as active, individually. For each configuration, use gcloud compute instances list to get a list of compute resources
+
+B. Create two configurations using gsutil config. Write a script that sets configurations as active, individually. For each configuration, use gsutil compute instances list to get a list of compute resources
+
+C. Go to Cloud Shell and export this information to Cloud Storage on a daily basis
+
+D. Go to GCP Console and export this information to Cloud SQL on a daily basis
+
+Answer: B?
+
+
+Question 85
+
+You have a large 5-TB AVRO file stored in a Cloud Storage bucket. Your analysts are proficient only in SQL and need access to the data stored in this file. You want to find a cost-effective way to complete their request as soon as possible. What should you do?
+
+A. Load data in Cloud Datastore and run a SQL query against it.
+
+B. Create a BigQuery table and load data in BigQuery. Run a SQL query on this table and drop this table after you complete your request
+
+C. Create external tables in BigQuery that point to Cloud Storage buckets and run a SQL query on these external tables to complete your request
+
+D. Create a Hadoop cluster and copy the AVRO file to NDFS by compressing it. Load the file in a hive table and provide access to your analysts so that they can run SQL queries
+
+Answer: B
+
+
+Question 86
+
+You need to verify that a Google Cloud Platform service account was created at a particular time. What should you do?
+
+A. Filter the Activity log to view the Configuration category. Filter the Resource type to Service Account.
+
+B. Filter the Activity log to view the Configuration category. Filter the Resource type to Google Project.
+
+C. Filter the Activity log to view the Data Access category. Filter the Resource type to Service Account.
+
+D. Filter the Activity log to view the Data Access category. Filter the Resource type to Google Project.
+
+Answer: C?
+
+Question 
+
+
+
+
