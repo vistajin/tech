@@ -1199,7 +1199,7 @@ You are setting up a Windows VM on Compute Engine and want to make sure you can 
 
 A. After the VM has been created, use your Google Account credentials to log in into the VM
 
-B. After the VM has been created, use gcloud compute reset-windowms=password to retrieve the login credentials for the VM
+B. After the VM has been created, use gcloud compute reset-windows-password to retrieve the login credentials for the VM
 
 C. When creating the VM, add metadata to the instance using "window-password" as the key and a password as the value
 
@@ -1235,7 +1235,7 @@ C. Run gcloud info to view the account value, and then run gcloud services list 
 
 D. Run gloud projects describe <project ID> to verify the project value, and then run gcloud services list --available
 
-Answer: A?
+Answer: A
 
 
 Question 76
@@ -1265,7 +1265,7 @@ C. Select Add GPUs. Fill in persistent disk storage and snapshot storage
 
 D. Select Add GPUs. Add estimated cost for cluster management
 
-Answer: C?
+Answer: A
 
 Question 78
 
@@ -1279,7 +1279,7 @@ C. Create a Kubernetes Service of type NodePort to expose the application on por
 
 D. Create a HAProxy pod in the cluster to load-balance the traffic to all the pods of the application. Forward the public traffic to HAProxy with an iptable rule. Configure the DNS name of your application using the public IP of the node HAProxy is running on
 
-Answer: A?
+Answer: A
 
 
 Question 79
@@ -1294,7 +1294,7 @@ C. Verify that you are the Project Administrator of both projects. Create two ne
 
 D. Verify that you are the Project Administrator of both projects. Create a new VPC and add all instances
 
-Answer: B?
+Answer: B
 
 
 Question 80
@@ -1322,9 +1322,9 @@ B. Recreate all the nodes of the GKE cluster to enable GPUs on all of them
 
 C. Create your own Kubernetes cluster on top of Compute Engine with nodes that have GPUs. Dedicate this cluster to your ML team.
 
-D. Add n new, GPU-enabled, node pool to the GKE cluster, Ask your ML team to add the cloud.google.com/gke-accelerator: nvidia-tesla-p100 nodeSelector to their pod specification.
+D. Add a new, GPU-enabled, node pool to the GKE cluster, Ask your ML team to add the cloud.google.com/gke-accelerator: nvidia-tesla-p100 nodeSelector to their pod specification.
 
-Answer: D?
+Answer: D
 
 Question 82
 
@@ -1338,7 +1338,7 @@ C. Create a new project. Use Shared VPC to share the current network with the ne
 
 D. Create a new subnet with the same starting IP but a wider range to overrite the current subnet
 
-Answer: D?
+Answer: A
 
 
 Question 83
@@ -1353,7 +1353,7 @@ C. Create a CSV sheet with all users' email addresses. Use the gcloud command li
 
 D. In the G Suite console, add the users to a special group called cloud-console-user@yourdoman.com. Rely on the default behavior of the Cloud Platform to grant users access if they are members of this group.
 
-Answer: B?
+Answer: B
 
 
 Question 84
@@ -1368,7 +1368,7 @@ C. Go to Cloud Shell and export this information to Cloud Storage on a daily bas
 
 D. Go to GCP Console and export this information to Cloud SQL on a daily basis
 
-Answer: B?
+Answer: A
 
 
 Question 85
@@ -1398,10 +1398,79 @@ C. Filter the Activity log to view the Data Access category. Filter the Resource
 
 D. Filter the Activity log to view the Data Access category. Filter the Resource type to Google Project.
 
+Answer: A
+
+Question 87
+
+You deployed an LDAP server on Compute Engine that is reachable via TLS through port 636 using UDP. You want to make sure it is reachable by clients over that port. What should you do?
+
+A. Add the network tag allow-udp-636 to the VM instance runnin the LDAP server
+
+B. Create a route called allow-udp-636 and set the next hop to be the VM instance running the LDAP server
+
+C. Add a network tag of your choice to the instance. Create a firewall rule to allow ingress on UDP port 636 for that network tag
+
+D. Add a network tag of your choice to the instance running the LDAP server. Create a firewall rule to allow egress on UDP port 636 for that network tag
+
+Answer: C
+
+
+Question 88
+
+You need to set a budget alert for use of Compute Engineer services on one of the three Google Cloud Platform projects that you manage. All three projects are linked to a single billing account. What should you do?
+
+A. Verify that you are the project billing administrator. Select the associated billing account and create a budget and alert for the appropriate project
+
+B. Verify that you are the project billing administrator. Select the associated billing account and create a budget and a custom alert
+
+C. Verify that you are the project administrator. Select the associated billing account and create a budget for the appropriate project
+
+D. Verify that you are project administrator. Select the associated billing account and create a budget and a custom alert
+
+Answer: B
+
+
+Question 89
+
+You are migrating a production-critical on-premises application that requires 96 vCPUs to perform its task. You want to make sure the application runs in a similar environment on GCP. What should you do?
+
+A. When creating the VM, use machine type n1-standard-96
+
+B. When creating the VM. use Intel Skylate as the CPU platform
+
+C. Create the VM using Compute Engine default settings. Use gcloud to modify the running instance to have 96 vCPUs
+
+D. Start the VM using Compute Engine default settings, and adjust as you go based on Rightsizeing Recommendations.
+
+Answer: A?
+
+Question 90
+
+You wnat to configure a solution for archiving data in a Cloud Storage bucket. The solution must be cost-effective. Data with multiple versions should be archived after 30 days. Previous versions are accessed once a month for reporting. This archive data is also occasionally updated at month-end. What should you do?
+
+A. Add a bucket lifecycle rule that archives data with newer versions after 30 days to Coldline Storage
+
+B. Add a bucket lifecycle rule that archives data with newer versions after 30 days to Nearline Storage
+
+C. Add a bucket lifecycle rule that archives data from regional storage after 30 days to Coldline Storage
+
+D. Add a bucket lifecycle rule that archives data from regional storage after 30 days to Nearline Storage
+
+Answer: A
+
+
+Question 91
+
+Your company's infrastructure is on-premises, but all machines are running at maximum capacity. Your want to burst to Google Cloud. The workloads on Google Cloud must be able to directly communicate to the workloads on-premises using a private IP range. What should you do?
+
+A. In Google Cloud, configure the VPC as a host for Shared VPCs
+
+B. In Google Cloud, configure the VPC for VPC Network Peering
+
+C. Create bastion hosts both in your on-premises environment and on Google Cloud. COnfigure both as proxy servers using their public IP addresses
+
+D. Set up Cloud VPN between the infrastructure on-premises and Google CLoud
+
 Answer: C?
-
-Question 
-
-
 
 
