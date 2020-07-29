@@ -1471,6 +1471,30 @@ C. Create bastion hosts both in your on-premises environment and on Google Cloud
 
 D. Set up Cloud VPN between the infrastructure on-premises and Google CLoud
 
-Answer: C?
+Answer: D
+
+
+Question 92
+
+You want to select and configure a solution for storing and archiving data on Google Cloud Platform. You need to support compliance objectives for data from one geographic location. This data is archived after 30 days and needs to be accessed annually. What should you do?
+
+A. Select Multi-Regional Storage. Add a bucket lifecycle rule that archives data after 30 days to Coldline Storage.
+B. Select Multi-Regional Storage. Add a bucket lifecycle rule that archives data after 30 days to Nearline Storage.
+C. Select Regional Storage. Add a bucket lifecycle rule that archives data after 30 days to Nearline Storage.
+D. Select Regional Storage. Add a bucket lifecycle rule that archives data after 30 days to Coldline Storage.
+
+Answer: D
+
+Question 93
+
+Your company uses BigQuery for data warehousing. Over time, many different business units in your company have created 1000+ datasets across hundreds of projects. You CIO wants you to examine all datasets to find tables that contain an employee_ssn column. You want to minimize effort in performing this task.
+
+A. Go to Data Catalog and search for employee_ssn in the search boxes
+B. Write a shell script that uses the bq command line tool to loop through all the projects in your organization
+C. Write a script that loops through all the projects in your organization and runs a query on INFORMATION_SCHEMA.COLUMNS view to find the employee_ssn column
+D. Write a Cloud Dataflow job that loops through all the projects in your organization and runs a query on INFORMATION_SCHEMA.COLUMNS view to find employee_ssn column
+
+Answer: A
+
 
 
