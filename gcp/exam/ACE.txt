@@ -1550,7 +1550,7 @@ Answer: C
 
 Question 98
 
-Your customer has implemented a solution that uses Cloud Spanner and notices some read latency-related performance issues on one talbe. This table is accessed oly by their users using a primary key. The table schema is shown below.
+Your customer has implemented a solution that uses Cloud Spanner and notices some read latency-related performance issues on one table. This table is accessed only by their users using a primary key. The table schema is shown below.
 
 CREATE TABLE Persions (
     person_id INT64 NOT NULL, // sequential number based on number of registration
@@ -1582,5 +1582,50 @@ Question 99
 
 Your finance team wants to view the billing report for your projects. You want to make sure that the finance team does not get additional permissions to the project. What should you do?
 
-A. 
+A. Add the group for the finance team to roles/billing user role
+B. Add the group for the finance team to roles/billing admin role
+C. Add the group for the finance team to roles/billing viewer role
+D. Add the group for the finance team to roles/billing project/Manager role
+
+Answer: C
+
+Question 100
+
+Your organization has strict requirements to control access to Google Cloud projects. You need to enable your Site Reliability Engineers (SREs) to approve requests from the Google Cloud support team when an SRE opens a support case. You want to follow Google-recommanded practices. What should you do?
+
+A. Add your SREs to role/iam.roleAdmin role.
+B. Add your SREs to role/accessapproval approver role.
+C. Add your SREs to a group and then add this group to roles/iam roleAdmin role
+D. Add your SREs to a group and then add this group to roles/accessapproval approver role
+
+Answer: C
+
+Question 101
+
+You need to host an application on a Compute Engine instance in a project shared with other teams. You want to prevent the other teams from accidentally causing downtime on that application. Which feature should you use?
+
+A. Use a Shielded VM
+B. Use a Preemptible VM
+C. Use a sole-tenant node
+D. Enable deletion protection on the instance
+
+Answer: D
+
+Question 102
+
+You organization needs to grant users access to query dtasets in BigQuery but prevent them from accidentally deleting the datasets. You wnat a solution that follows Google-recommanded practices. What should you do?
+
+A. Add users to roles/bigquery user role only, instead of roles/bigquery dataOwner
+B. Add users to roles/bigquery dataEditor role only, instead of roles/bigquery dataOwner
+C. Create a custom role by removing detete permissions, and add users to that role only
+D. Create a custom role by removing delete permissions. Add users to the group, and then add the group to the custom role.
+
+Answer: A?
+
+
+
+
+
+
+
  
