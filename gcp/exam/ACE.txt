@@ -1699,3 +1699,140 @@ D. Ask each employeed to create a Google account using self signup. Require that
 
 Answer: A?
  
+ Question 110
+ 
+ You have successfully created a development environment in a project for an application. This application uses Compute Engine and Cloud SQL. Now, You need to create a production environment for this application. The security team has forbidden the existence of network routes between these 2 environment, and asks you to follow Google-recommended practices. What should you do?
+ 
+ A. Create a new project, enable the Compute Engine and Cloud SQL APIs in that project, and replicate the setup you have created in the development environment.
+ B. Create a new production subnet in the existing VPC and a new production Cloud SQL instance in your existing project, and deploy your application using those resources
+ C. Create a new project, modiry your existing VPC to be a Shared VPC, share that VPC with your vew project, and replicate the setup you have in the development environment in that new project, in the Shared VPCs
+ D. Ask the security team to grant you the Project Editor role in an existing production project used by another division of your company. Once they grant you that role, replicate the setup you have in the development environment in that project
+ 
+ Answer: C?
+ 
+ Question 111
+ 
+ Your management has asked an external auditor to review all the resources in a specific project. The security team has enabled the Organization Policy called Domain Restricted Sharing on the organization node by specifying only your Cloud Identity domain. You want the auditor to only be able to view, but not modify, the resources in that project. What should you do?
+ 
+ A. Ask the auditor for their Google account, and give them the Viewer role on the project
+ B. Ask the auditor for their Google account, and give them the Security Reviewer role on hte project
+ C. Create a temporary account for the auditor in Cloud Identity, and five that account the Viewer role on the project
+ D. Create a temporary account for the auditor in Cloud Identity, and give that account the Security Reviewer role on the project
+ 
+ Answer: A?
+ 
+ Question 112
+ 
+ You have a workload running on Compute Engine that is critical to your business. You want to ensure that the data on the boot disk of this workload is backed up regularly. You need to be able to restore a backup as quickly as possible in case of disaster. You also want older backups to be cleaned automatically to save on cost. You want to follow Google-recommended practices. What should you do?
+ 
+ A. Create a Cloud Function to create an instance template
+ B. Create a snapshot schedule for the disk using the desired interval
+ C. Create a cron job to create a new disk from the disk using gcloud
+ D. Create a Cloud Task to create an image and export it to Cloud Storage
+ 
+ Answer: B?
+ 
+ Question 113
+ 
+ You need to assign a Cloud Identity and Access Management (Cloud IAM) role to an external auditor. The auditor needs to have permissions to review your Google Cloud Platform (GCP) Audit Logs and also to review your Data Access logs. What should you do?
+ 
+ A. Assign the auditor the IAM role roles/logging.privateLogViewer. Perform the export of logs to Cloud Storage
+ B. Assign the auditor the IAM role roles/logging.privateLogViewer. Direct the auditor to also review the logs for changes to Cloud IAM policy
+ C. Assign the auditor's IAM user to a custom role that has logging.privateLogEntries.list permission. Perfrom the export of logs to Cloud Storage
+ D. Assign the auditor's IAM user to a custom role that has logging.privateLogEntries.list permission. Direct the auditor to also review the logs for changes to Cloud IAM policy
+ 
+ Answer: A?
+ 
+ Question 114
+ 
+ You are managing several Google Cloud Platform (GCP) projects and need access to all logs for the past 60 days. You want to be able to explore and quickly analyze the log contents. You want to follow Google-recommended practices to obtain the combined logs for all projects. What should you do?
+ 
+ A. Navigate to Stackdriver Logging and select resource.labels.project_id="*"
+ B. Create a Stackdriver Logging Export with a Sink destination to BigQuery dataset. Configure the table expiration to 60 days
+ C. Create a Stackdriver Logging Export with a Sink destination to Cloud Storage. Create a lifecycle rule to delete objects after 60 days
+ D. Configure a Cloud Scheduler job to read from Stackdriver and store the logs in BigQuery. Configure the table expiration to 60 days
+ 
+ Answer: B?
+
+Question 115
+
+ You need to reduce GCP service costs for a drvision of your company using the fewest possible step. You need to turn off all configured services in an existing GCP project. What should you do?
+ 
+ A. 1. Verify that you are assigned the Project Owners IAM role for this project. 2. Locate the project in the GCP console, click Shut down and then enter the project ID.
+ B. 1. Verify that you are assigned the Project Owners IAM role for this project. 2. Switch to the project in the GCP console, locate the resources and delete them
+ C. 1. Verify that you are assigned the Organizational Administrator IAM role for this project. 2. Locate the prject in the GCP console, enter the project ID and then click Shut down
+ D. 1. Verify that you are assigned the Organizational Administrators AIM role for this project. 2. Switch to the project in the GCP console, locate the resources and delte them.
+ 
+ Answer: B?
+
+Question 116
+
+ You are configuring service accounts for an application that spans multiple projects. Virtual machines (VMs) running in the web-applications project need access to BigQuery datasets in crm-databases-proj. You want to follow Google-recommended practices to give access to the service account in the web-applications project. What should you do?
+ 
+A. Give "project owner" for web-applications appropriate roles to crm-databases-proj
+B. Give "project owner" role to crm-databases-proj and the web-applications project
+C. Give "project owner" role to crm-databases-proj and bigquery.dataViewer role to web-applications
+D. Give bigquery.dataViewer role to crm-databases-proj and appropriate roles to web-apDplications
+
+Answer: D?
+
+Question 117
+
+An employee was terminated, but their access to Google Cloud Platform ( GCP) was not removed untile 2 weeks later. You need to find out this employee accessed any sensitive customer information after their termination. What should you do?
+
+A. View System Event Logs in Stackdriver. Search for the user's email as the principal
+B. View System Event Logs in Stackdriver. Search for the service account associated with the user
+C. View Data Access audit logs in Stackdriver. Search for the user's email as the principal
+D. View the Admin Activity log in Stackdriver. Search for the service account associated with the user
+
+Answer: B?
+
+Question 118
+
+You need to create a custom IAM role for use with a GCP service. All permissions in the role must be suitable for production use. You also want to clearly share with your organization the status of the custoem role. This will be the first version of the custom role. What should you do?
+
+A. Use permissions in your role that use the "supported" support level for role permissions. Set the fole stage to ALPHA while the role permissions
+B. Use permissions in your role that use the "supported" support level for role permissions. Set the role stage to BETA while testing the role permissions
+C. Use permissions in you role that use the "testing" support level for role permissions. Set the role stage to ALPHA while testing the role permissions
+D. Use permission in your role that use the "testing" support level for role permissions. Set the role stage to BETA while testing the role permissions
+
+Answer: ?
+
+Question 119
+
+Your company has a large quantity of unstructured data in different file formats. You want to perform ETL transformations on the data. You need to make the data accessible on Google Cloud so it can be processed by a Dataflow job. What should you do?
+
+A. Upload the data to BigQuery using the bq command line tool
+B. Upload the data to Cloud Storage using the gsutil command line tool
+C. Upload the data into Cloud SQL using the import function in the console
+D. Upload the data into Cloud Spanner using the import function in the console
+
+Answer: B
+
+Question 120
+
+You need to manage multiple Google Cloud Platform (GCP) projects in the fewest steps possible. You want to configure the Google Cloud SDK command line interface (CLI) so that you can easily manage multiple GCP projects. What should you do?
+
+A. 1. Create a configuration for each project you need to manage. 2. Activate the appropriate configuration when you work with each of your assigned GCP projects
+B. 1. Create a configuration for each project you need to manage. 2. Use gcloud init to update the configuration values when you need to work with a non-default project
+C. 1. Use the default configuration for one project you need to mange. 2. Activate the appropriate configuration when you work with each of your assigned GCP projects
+D. 1. Use the default configuration for one project you need to manage. 2. Use gcloud init to update the configuration values when you need to work with a non-default prject
+
+Answer: D?
+
+Question 121
+
+Your managed instance group raised an alert stating that new instance creation has failed to create  new instances. You need to maintain the number of running instances specified by the template to be able to process expected application traffic. What should you do?
+
+A. Create an instance template that contains valid syntax which will be used by the instance group. Delete any persistent disks with the same name as instace names.
+B. Create an instance template that contains valid syntax that will be used by the instance group. Verify that the instance name and persistent disk name values are not the same i nthe template
+C. Verify that the instance template being used by the instace group contains valid syntax. Delte any persistent disks with the same name as isntance names. Set the disks.autoDelete property to true in the instance tempalte
+D. Delete the current instance template and replace it with a new instance template. Verify taht the instance name and persistent disk name values are not the same in the tempalte. Set the disks.autoDelete property to true in the instace template
+
+Answer: 
+
+
+
+
+ 
+ 
