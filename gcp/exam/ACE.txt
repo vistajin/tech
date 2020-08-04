@@ -1882,11 +1882,31 @@ You have designed a solution on Google Cloud Platform (GCP) that uses multiple G
 A. For each GCP product in the solution, review the pricing details on the products pricing page. Use the pricing calculator to total the monthly costs fro each GCP product
 B. For each GCP product in the solution, review the pricing details on the products pricing page. Create a Google Sheet that summarizes the expected monthly costs for each product.
 C. Provision the solution on GCP. Leave the solution provisioned for 1 week. Navigate to the Billing Report page in the Google Cloud Plateform Console. Multiply the 1 week cost to  determine the monthly costs
-D. Privision the solution on GCP. Leave the solution provisioned for 1 week. Use Stackdriver to determin the provisioned and used resouce amounts. Multiply the 1 week cost to tetermine the monthly costs.
+D. Provision the solution on GCP. Leave the solution provisioned for 1 week. Use Stackdriver to determin the provisioned and used resouce amounts. Multiply the 1 week cost to tetermine the monthly costs.
 
 Answer: 
 
+Question 127
 
+You have an application that receives SSL-encrypted TCP traffic on port 443. Clients for this application are located all over the world. You want to minimize latency for the clients. Which load balancing option should you use?
+
+A. HTTPS Load Balancer
+B. Network Load Balancer
+C. SSL Proxy Load Balancer
+D. Internal TCP/UDP Load Balancer. Add a firewall rule allowing ingress traffic from 0.0.0.0/0 on the target instances
+
+Answer: A
+
+Question 128
+
+You have an application on a general-purpose Compute Engine instance that is experiencing excessive disk read throttling on its Zonal SSD Persistent Disk. The application primarily reads large files from disk. The disk size is currently 350 GB. You want to provide the maximum amount of throughput while minimizing costs. What should you do?
+
+A. Increase the size of the disk to 1 TB
+B. Increase the allocated CPU to the instance
+C. Migrate to use a Local SSD on the instance
+D. Migrate to use a Regional SSD on the instance
+
+Answer: C?
 
 
 
