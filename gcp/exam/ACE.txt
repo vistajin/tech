@@ -4,9 +4,10 @@ Every employee of your company has a Google account. Your operational team needs
 
 A. Generate a new SSH key pair. Give the private key to each member of your team. Configure the public key in the metadata of each instance.
 B. Ask each member of the team to generate a new SSH key pair and to send you their public key. Use a configuration management tool to deploy those keys on each instance.
-C. Ask each member of the team to generate a new SSH key pair and to add the public key to their Gaggle account. Grant the "compute.osAdminLogin" role to the Google group corresponding to this team.
+C. Ask each member of the team to generate a new SSH key pair and to add the public key to their Googgle account. Grant the "compute.osAdminLogin" role to the Google group corresponding to this team.
 D. Generate a new SSH key pair. Give the private key to each member of your team. Configure the public key as a project-wide public SSH key in your Cloud Platform project and allow project-wide public SSH keys on each instance. 
-Answer: D
+
+Answer: D  shold be B? need to determine who accessed a given instance, so each member should have his/her own private key
 
 Question 2
 
@@ -16,7 +17,8 @@ A. 0.0.0.0/0
 B. 10.0.0.0/8 
 C. 172.16.0.0/12
 D. 192.168.0.0/16 
-answer: B
+
+Answer: B
 
 Question 3
 
@@ -26,6 +28,7 @@ A. Select Cloud SQL (MySQL). Verify that the enable binary logging option is sel
 B. Select Cloud SQL (MySQL). Select the create failover replicas option.
 C. Select Cloud Spanner. Set up your instance with 2 nodes.
 D. Select Cloud Spanner. Set up your instance as multi-regional.
+
 Answer: A
 
 Question 4
@@ -37,247 +40,173 @@ A. Create an HTTP load balancer with a backend configuration that references an 
 B. Create an HTTP load balancer with a backend configuration that references an existing instance group. Define a balancing mode and set the maximum RPS to 20.
 C. Create a managed instance group. Set the autohealing health check to healthy (HTTP)
 D. Create a managed instance group. Verify that the autoscaling setting is on. 
+
 Answer: C
 
-Question 5
+*Question 5
 
 You are using multiple configurations for gcloud. You want to review the configured Kubernets Engine cluster of an inactive configuration using the fewest possible steps. What should you do?
 
 A. Use gcloud config configurations describe to review the output.
-
 B. use gcloud config configurations activate and gcloud config list to review the output.
-
 C. Use kubectl config get-contexts to review the output.
-
 D. Use kubectl config use-context and kubectl config view to review the output
 
 Answer: 
-
-
 
 Question 6
 
 YOur comany uses Cloud Storage to store application backup files for disaster recovery purposes. You want to follow Google's recommended practices. Which storage option should you use?
 
 A. Multi-Regional Storage
-
 B. Regional Storage
-
 C. Nearline Storeage
-
 D. Coldline Storage
 
 Answer: D
-
-
 
 Question 7
 
 Several employees at your company have been creating projects with Cloud Platform and paying for it with their personal credit cards, which the company reimburses. The company wants to centralize all these projects under a single, new billing account. What should you do?
 
 A. Contact cloud-bill@google.com with your bank account details and request a corporate billing account for your company.
-
 B. Create a ticket with Google Support and wait for their call to share your credit card details over the phone.
-
 C. In the google Platform Console, go to the Resource Manage and move all projects to the root Organization
-
 D. In the Google Cloud Platform Console, create a new billing account and set up a payment method.
 
 Answer: D
-
-
 
 Question 8
 
 You have an application that looks for its licensing server on the IP 10.0.3.21. You need to deploy the licensing server on Compute Engine. You do not want to change the configuration of the application and want the application to be able to search the licensing server. What should you do?
 
 A. Reserve the IP 10.0.3.21 as a static internal IP address using the gcloud and assign it to the licensing server.
-
 B. Reserve the IP 10.0.3.21 as a static public IP address using gcloud and assign it to the licensing server.
-
 C. Use the IP 10.0.3.21 as a custom ephemeral IP address and assign it to the licensing server.
-
 D. Start the licensing server with and automatic ephemeral IP address, and then promote it to a static internal IP address.
 
 Answer: A
-
-
 
 Question 9
 
 You are deploying an application to App Engine. You want the number of instances to scale based on request rate. You need at least 3 unoccupied instances at all times. Which scaling type should you use?
 
 A. Manual Scaling with 3 instances
-
 B. Basic Scaling with min_instances set to 3
-
 C. Basic Scaling with max_instances set to 3
-
 D. Automatic Scaling with min_idle_instances set to 3
 
 Answer: D
 
-
-
-Question 10
+*Question 10
 
 You have a development project with appropriate IAM roles defined. You are creating a production project and want to have the same IAM roles on the new project, using the fewest possible steps. What should you do?
 
 A. Use gcloud IAM roles copy and specify the production project as the destination project
-
 B. Use gcloud IAM roles copy and specify you organization as the destination organization
-
 C. In the Google Cloud Platform Console, use the "Create role from role" functionality
-
 D. In the Google Cloud Platform Console, use the "create role" functionality and select all applicable permissions.
 
 Answer: D
 
-
-
-Question 11
+*Question 11
 
 You need a dynamic way of provisioning VMs on Compute Engine. The exact specifications will be in a dedicated configuration file. You want to follow Google's recommended practices. Which method should you use?
 
 A. Deployment Manager
-
 B. Cloud Composer
-
 C. Managed Instance Group
-
 D. Unmanaged Instance Group
 
 Answer: A?
-
-
 
 Question 12
 
 You have a Dockerfile that you need to deploy on Kubernetes Engine. What should you do?
 
 A. Use kubectl app deploy <dockerfilename>
-
 B. Use gcloud app deploy <dockerfilename>
-
 C. Create a docker image from the Dockerfile and upload it to Container Registry. Create a Deployment YAML file to point to that image. Use kubectl to create the deployment with that file
-
-D. Create a docker image from  the Dockerfile and upload it to Cloud Storage. Create a Deployment YAML file to point to that image. Use kubectl to create the deployment with that file
+D. Create a docker image from the Dockerfile and upload it to Cloud Storage. Create a Deployment YAML file to point to that image. Use kubectl to create the deployment with that file
 
 Answer: C
-
-
 
 Question 13
 
 Your development team needs a new Jenkins server for their project. You need to deploy the server using the fewest steps possible. What should you do?
 
 A. Download and deploy the Jenkins Java WAR to App Engine Standard
-
 B. Create a new Compute Engine instance and install Jenkins through the command line interface
-
 C. Create a Kubernetes cluster on Compute Engine and create a development with the Jenkins Docker image
-
 D. Use GCP Marketplace to launch the Jenkins solution.
 
 Answer: D
-
-
 
 Question 14
 
 You need to update a deployment in Deployment Manager without any resource downtime in the deployment. Which command should you use?
 
 A. gcloud deployment-manager deployments create --config <deployment-config-path>
-
 B. gcloud deployment-manager deployments update --config <deployment-config-path>
-
 C. gcloud deployment-manager resource create --config <deployment-config-path>
-
 D. gcloud deployment-manager resource update --config <deployment-config-path>
 
 Answer: B
-
-
 
 Question 15
 
 You need to run an important query in BigQuery but expect it to return a lot of records. You want to find out how much it will cost to run the query. You are using on-demand pricing. What should you do?
 
 A. Arrange to switch to Flat-Rate pricing for this query, then move back to on=demand.
-
 B. Use the command line to run a dry run query to estimate the number of bytes read. Then convert that bytes estimate to dollars using the Pricing Calculator.
-
 C. Use the command line to run a dry run query to estimate the number of bytes returned. Then convert that bytes estimate to dollars using the Pricing Calculator.
-
 D. Run a select count (*) to get an idea of how many records your query will look through. Then convert that number of rows to dollars using the Pricing Calculator.
 
 Answer: B
-
-
 
 Question 16
 
 You have a single binary application that you want to run on Google Cloud Platform. You decided to automatically scale the application based on underlying infrastructure CPU usage. Your organizational policies require you to use virtual machines directly. You need to ensure that the application scaling is operationally efficient and completed as quickly as possible. What should you do?
 
 A. Create a Google Kubernetes Engine cluster, and use horizontal pod autoscaling to scale the application.
-
 B. Create an instance template, and use the template in a managed instance group with autoscaling configured.
-
 C. Create an instance template, and use the template in a managed instance group that scales up and down based on the time of day
-
 D. use a set of third-party tools to build automation around scaling the application up and down, based on Stackdriver CPU usage monitoring.
 
 Answer: B
-
-
 
 Question 17
 
 You are analyzing Google Gloud Platform service costs from three separate projects. You want to use this information to create service cost estimates by service type, daily and monthly, for the next six months using standard query syntax. What should you do?
 
 A. Export your bill to a Cloud Storage bucket, and then import into Cloud Bigtable for analysis
-
 B. Export your bill to a Cloud Storage bucket, and then import into Google Sheets for analysis
-
 C. Export your transactions to a local file, and perform analysis with a desktop tool.
-
 D. Export your bill to a BigQuery dataset, and then write time window-based SQL queries for analysis.
 
 Answer: D
-
-
 
 Question 18
 
 You need to set up a policy so that videos stored in a specific Cloud Storage Regional bucket are moved to Coldline after 90 days, and then deleted after one year from their creation. How should you setup the policy?
 
 A. Use Cloud Storage Object Lifecycle Management using Age conditions with SetStorageClass and Delete actions. Set the SetStorageClass action to 90 days and the Delete action to 275 days (365-90) 
-
 B. Use Cloud Storage Object Lifecycle Management using Age conditions with SetStorageClass and Delete actions. Set the SetStorageClass action to 90 days and the Delete action to 365 days
-
 C. Use gsutil rewrite and set the Delete action to 275 days (365-90)
-
 D. Use gsutil rewrite and set the Delete action to 365 days
 
 Answer: B
-
-
 
 Question 19
 
 You have a Linux VM that must connect to Cloud SQL. You created a service account with the appropriate access rights. You want to make sure that the VM uses this service account instead of the default Compute Engine service account. What should you do?
 
 A. When creating the VM via the web console, specify the service account under the "Identity and API Access" section
-
 B. Download a JSON Private Key for the service account. On the Project Metadata, add that JSON as the value for the key compute-engine-service-account.
-
 C. Download a JSON Private Key for the service account. On the Custom Metadata of the VM, add that JSON as the value for the key compute-engine-service-account.
-
 D. Download a JSON Private Key for the service account. After creating the VM, ssh into the VM and save the JSON under ~/.gcloud/compute-engine-service-account.json
 
 Answer: A
-
-
 
 Question 20
 
@@ -1864,7 +1793,7 @@ D. Create a Stackdriver alerting policy to send an alert to wrbhook when Cloud S
 
 Answer: C?
 
-Quesiont 125
+Question 125
 
 Your company publishes large files on an Apache web server that runs on a Compute Engine instance. The Apache web server is not the only application running in the project. You want to receive an email when the egress network costs for the server exceed 100 dollars for the current month as measureed by Google Cloud Plateform (GCP). What should you do?
 
