@@ -52,7 +52,7 @@ B. use gcloud config configurations activate and gcloud config list to review th
 C. Use kubectl config get-contexts to review the output.
 D. Use kubectl config use-context and kubectl config view to review the output
 
-Answer: 
+Answer: D
 
 Question 6
 
@@ -107,7 +107,7 @@ B. Use gcloud IAM roles copy and specify you organization as the destination org
 C. In the Google Cloud Platform Console, use the "Create role from role" functionality
 D. In the Google Cloud Platform Console, use the "create role" functionality and select all applicable permissions.
 
-Answer: D
+Answer: A
 
 *Question 11
 
@@ -118,7 +118,7 @@ B. Cloud Composer
 C. Managed Instance Group
 D. Unmanaged Instance Group
 
-Answer: A?
+Answer: A
 
 Question 12
 
@@ -213,16 +213,11 @@ Question 20
 You created an instance of SQL server 2017 on Compute Engine to test features in the new version. You want to connect to this instance using the fewest number of steps. What should you do?
 
 A. Install a RDP client on your desktop. Verify that a firewall rule for port 3389 exists.
-
 B. install a RDP client in your desktop. Set a Windows username and password in the GCP console. Use the credentials to log in to the instance
-
 C.Set a Windows password in the GCP Console. Verify that a firewall rule for port 22 exists. Click the RDP button in the GCP Console and supply the credentials to log in.
-
 D. Set a Windows username and password in the GCP console. Verify that a firewall rule for port 3389 exists. Click the RDP button in the GCP Console, and supply the credentials to log in.
 
-Answer: ?
-
-
+Answer: 
 
 Question 21
 
