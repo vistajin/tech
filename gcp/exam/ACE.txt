@@ -208,52 +208,42 @@ D. Download a JSON Private Key for the service account. After creating the VM, s
 
 Answer: A
 
-Question 20
+*Question 20
 
 You created an instance of SQL server 2017 on Compute Engine to test features in the new version. You want to connect to this instance using the fewest number of steps. What should you do?
 
 A. Install a RDP client on your desktop. Verify that a firewall rule for port 3389 exists.
-B. install a RDP client in your desktop. Set a Windows username and password in the GCP console. Use the credentials to log in to the instance
-C.Set a Windows password in the GCP Console. Verify that a firewall rule for port 22 exists. Click the RDP button in the GCP Console and supply the credentials to log in.
+B. install a RDP client on your desktop. Set a Windows username and password in the GCP console. Use the credentials to log in to the instance
+C. Set a Windows password in the GCP Console. Verify that a firewall rule for port 22 exists. Click the RDP button in the GCP Console and supply the credentials to log in.
 D. Set a Windows username and password in the GCP console. Verify that a firewall rule for port 3389 exists. Click the RDP button in the GCP Console, and supply the credentials to log in.
 
-Answer: 
+Answer: B?
 
-Question 21
+*Question 21
 
-You ahve one GCP account running in you default region and zon and another account running in a non-default region and zone. You want to start a new Compute Engine instance in these two Google Cloud Platform accounts using the command line interface. What should you do?
+You have one GCP account running in you default region and zone and another account running in a non-default region and zone. You want to start a new Compute Engine instance in these two Google Cloud Platform accounts using the command line interface. What should you do?
 
 A. Create two configurations using gcloud config configurations create [NAME]. Run gcloud config configurations active [NAME] to switch between accounts when running the commands to start the Compute Engine instances
-
 B. Create two configurations using gcloud config configurations create [NAME]. Run gcloud configurations list to start the Compute Engine instances.
-
 C. Active two configurations using gcloud configurations activate [NAME]. Run cloud config list to start the Compute Engine instances
-
 D. Active two configurations using gcloud configurations activate [NAME]. Run gcloud configurations list to start the Compute Engine instances.
 
 Answer: A
-
-
 
 Question 22
 
 You significantly changed a complex Deployment Manager template and want to confirm that the dependencies of all defined resources are properly met before committing it to the project. You want the most rapid feedback on your changes. What should you do?
 
 A. Use granular logging statements within a Deployment Manager template authored in Python.
-
 B. Monitor activity of the Deployment Manager execution on the Stackdriver Logging page of the GCP Console
-
 C. Execute the Deployment Manager template against a separate project with the same configuration, and monitor for failures
-
 D. Execute the Deployment Manager template using the "-preview" option in the same project, and observe the state of interdependent resources.
 
 Answer: D
 
-
-
 Question 23
 
-You are guilding a pipeline to process time-series data. Which Google Cloud Plateform services should you put in boxes 1,2,3 and 4?
+You are building a pipeline to process time-series data. Which Google Cloud Plateform services should you put in boxes 1,2,3 and 4?
 
 ​              3(storage)
 
@@ -262,139 +252,96 @@ You are guilding a pipeline to process time-series data. Which Google Cloud Plat
 ​              4(analytics)
 
 A. Cloud Pub/Sub, Cloud Dataflow, Cloud Datastore, BigQuery
-
 B. Firebase Messages, Cloud Pub/Sub, Cloud Spanner, BigQuery
-
 C. Cloud Pub/Sub, Cloud Storage, BigQuery, Cloud Bigtable
-
 D. Cloud Pub/Sub, Cloud Dataflow, Cloud Bigtable, BigQuery
 
 Answer: D
 
-
-
-Question 24
+*Question 24
 
 You have a project for your App Engine application that serves a development environment. The required testing has succeeded and you want to create a new project to serve as your production environment. What should you do?
 
 A. Use gcloud to create the new project, and then deploy your application to the new project
-
 B. Use gcloud to create the new project and to copy the deployed application to the new project
-
 C. Create a Deployment Manager configuration file that copies the current App Engine deployment into a new project
-
 D. Deploy your application again using gcloud and specify the project parameter with the new project name to create the new project
 
 Answer: A
 
-
-
-Question 25
+*Question 25
 
 You need to configure IAM access audit logging in BigQuery for external auditors. You want to follow Google-recommended practices. What should you do?
 
 A. Add the auditors group to the "logging.viewer" and "bigQuery.dataViewer" predefined IAM roles
-
 B. Add the auditors group to two new custom IAM roles
-
 C. Add the auditor user accounts to the "logging.viewer" and "bigQuery.dataViewer" predefined IAM roles
-
 D. Add the auditor user accounts to two new custom IAM roles.
 
 Answer: A
-
-
 
 Question 26
 
 You need to set up permissions for a set of Compute Engine instances to enable them to write data into a particular Cloud Storage bucket. You want to follow Google recommended practices. What should you do?
 
 A. Create a service account with an access scope. Use the access scope "https://www.googleapis.com/auth/devstoreage.write_only"
-
 B. Create a service account with an access scope. Use the  access scope "https://www.googleapis.com/auth/cloud-platform"
-
 C. Create a service account and add it to the IAM role "storage.objectCreator" for that bucket
-
 D. Create a service account and add it to the IAM role "storage.objectAdmin" for that bucket
 
 Answer: C
-
-
 
 Question 27
 
 You have sensitive data stored in three Cloud Storage buckets and have enabled data access logging. You want to verify activities for a particular user for these buckets, using the fewest possible steps. You need to verify the addition of metadata labels and which files have been viewed from those buckets. What should you do?
 
 A. Using the GCP Console, filter the Activity log to view the information.
-
 B. Using the GCP Console, filter the Stackdriver log to view the information
-
 C. View the bucket in the Storage section of the GCP Console
-
 D. Create a trace in Stackdriver to view the information
 
 Answer: B
-
-
 
 Question 28
 
 You are the project owner of a GCP project and want to delegate control to colleagues to manage buckets and files in Cloud Storage. You want to follow Google recommended practices. Which IAM roles should you grant your colleagues?
 
 A. Project Editor
-
 B. Storage Admin
-
 C. Storage Object Admin
-
 D. Storage Object Creator
 
 Answer: B
-
-
 
 Question 29
 
 You have an Object in a cloud Storage bucket that you want to share with an external company. The object contains sensitive data. You want access to the content to be removed after four hours. The external company does not have a Google account to which you can grant specific user-based access privileges. You want to use the most secure method that requires the fewest steps. What should you do?
 
 A. Create a singled URL with a four-hour expiration and share the URL with the company
-
 B. Set object access to "public" and use object lifecycle management to remove the object after four hours
-
 C. Configure the storage bucket as a static website and furnish the object's URL to the compan. Delete the object from the storage bucket after four hours.
-
 D. Create a new Cloud Storage bucket specifically for the external company to access. Copy the object to that bucket. Delete the bucket after four hours have passed.
 
 Answer: A
-
-
 
 Question 30
 
 You are creating a Google Kubernets Engine (GKE) cluster with a cluster auto scaler feature enabled. You need to make sure that each node of the cluster will run a monitoring pod that send container metrics to a third-party monitoring solution. What should you do?
 
 A. Deploy the monitoring pod in a StatefulSet object
-
 B. Deploy the monitoring pod in a DaemonSet object
-
 C. Reference the monitoring pod in a Deployment object
-
 D. Reference the monitoring pod in a cluster initializer at the GKE cluster creation time
 
 Answer: B
-
-
 
 Question 31
 
 You want to send and consume Cloud Pub/Sub messages from your App Engine application. The cloud Pub/Sub API is currently disabled. You will use a service account to authenticate your application to the API. You want to make sure you application can use Cloud Pub/Sub. What should you do?
 
 A. Enable the Cloud Pub/Sub API in the API Library on the GCP Console
-
 B. Rely on the automatic enablement of the Cloud Pub/Sub API when the Service Account access it
-
 C. Use Deployment Manager to deploy your application. Rely the automatic enablement of all APIs used by the application being deployed
-
 D. Grant the App Engine Default service account the role of Cloud Pub/Sub Admin. Have your application enable the API on the first connection to Cloud Pub/Sub
 
 Answer: A
