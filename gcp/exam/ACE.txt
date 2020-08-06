@@ -195,7 +195,7 @@ B. Use Cloud Storage Object Lifecycle Management using Age conditions with SetSt
 C. Use gsutil rewrite and set the Delete action to 275 days (365-90)
 D. Use gsutil rewrite and set the Delete action to 365 days
 
-Answer: B
+Answer: A
 
 Question 19
 
@@ -217,7 +217,7 @@ B. install a RDP client on your desktop. Set a Windows username and password in 
 C. Set a Windows password in the GCP Console. Verify that a firewall rule for port 22 exists. Click the RDP button in the GCP Console and supply the credentials to log in.
 D. Set a Windows username and password in the GCP console. Verify that a firewall rule for port 3389 exists. Click the RDP button in the GCP Console, and supply the credentials to log in.
 
-Answer: B?
+Answer: B
 
 *Question 21
 
@@ -289,7 +289,7 @@ B. Create a service account with an access scope. Use the  access scope "https:/
 C. Create a service account and add it to the IAM role "storage.objectCreator" for that bucket
 D. Create a service account and add it to the IAM role "storage.objectAdmin" for that bucket
 
-Answer: C
+Answer: B
 
 Question 27
 
@@ -346,39 +346,27 @@ D. Grant the App Engine Default service account the role of Cloud Pub/Sub Admin.
 
 Answer: A
 
-
-
-Question 32
+*Question 32
 
 You need to monitor resources that are distributed over different projects in Google Cloud Platform. You want to consolidate reporting under the same Stackdriver Monitoring Dashboard. What should you do?
 
 A. Use Shared VPC to connect all projects, and link Stackdriver to one of the projects
-
 B. For each project, create a Stackdriver account. In each project, create a service account for that project and grant it the role of Stackdriver Account Editor in all other projects.
-
 C. Configure a single Stackdriver account, and link all projects to the same account
-
 D. Configure a single Stackdriver account for one of the projects. In Stackdriver, create a Group and add the other project names as criteria for that Group
 
-Answer: C
-
-
+Answer: C?
 
 Question 33
 
 You are deploying an application to Compute Engine VM in a managed instance group. The application mus be running at all times, but only a single instance of the VM should run per GCP project. How should you configure the instance group?
 
 A. Set autoscaling to On, set the minimum number of instances to 1, and then set the maximum number of instances to 1
-
 B. Set autoscaling to Off, set the minimum number of instances to 1, and then set the maximum number of instances to 1
-
 C. Set autoscaling to On, set the minimum number of instances to 1, and then set the maximum number of instances to 2
-
 D. Set autoscaling to Off, set the minimum number of instances to 1, and then set the maximum number of instances to 2
 
 Answer: A
-
-
 
 Question 34
 
