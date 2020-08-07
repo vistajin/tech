@@ -421,7 +421,7 @@ B. Run gcloud iam roles describe roles/spanner.databaseUser. Add the users to a 
 C. Run gcloud iam roles describe roles/spanner.viewer --project my-project. Add the users to the role
 D. Run gcloud iam roles describe roles/spanner.viewer ---project my-project. Add the users to a new group. Add the group to the role
 
-Answer: B?
+Answer: B
 
 Question 39
 
@@ -508,16 +508,11 @@ Question 44
 You need to select and configure compute resources for a set of batch processing jobs. These jobs take around 2 hours to complete and are run nightly. You want to minimize service costs. What should you do?
 
 A. Select Google Kubernetes Engine. Use a single-node cluster with a small instance type
-
 B. Select Google Kubernetes Engine. Use a three-node cluster with micro instance types
-
 C. Select Compute Engine. Use preemtible VM instances of the appropriate standard machine type
-
 D. Select Compute Engine. Use VM instance types that support micro bursting
 
 Answer: C
-
-
 
 Question 45
 
