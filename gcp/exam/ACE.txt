@@ -519,112 +519,77 @@ Question 45
 You recently deployed a new version of an application to App Engine and then discovered a bug in the release. You need to immediately revert to the prior version of the application. What should you do?
 
 A. Run gcloud app restore
-
 B. On the App Engine page of the GCP Console, select the application that needs to be reverted and click Revert.
-
 C. On the App Engine Versions page of the GCP Console, rout 100% of the traffic to the previous version.
-
 D. Deploy the original version as a separate application. Then go to App Engine settings and split traffic between applications so that the original version serves 100% of the requests.
 
 Answer: C
 
-
-
-Question 46
+*Question 46
 
 You deployed an App Engine application using gcloud app deploy. but it did not deploy to the intended project. You want to find out why this happened and where the application deployed. What should you do?
 
 A. Check the app.yaml file for your application and check project settings.
-
 B. Check the web-application.xml file for your application and check project setting
-
 C. Go the Deployment Manger and review settings for deployment of applications
-
 D. Go to Cloud Shell and run gcloud config list to review the Google Cloud configuration used for deployment
 
 Answer: D
 
-
-
 Question 47
 
-You want to configure 10 Compute Engine instances for availability when maintenance occurs. Your requirements stat that these instances should attempt to automatically restart if they crash. Also, the instances should be highly available including during system maintenance. What should you do?
+You want to configure 10 Compute Engine instances for availability when maintenance occurs. Your requirements state that these instances should attempt to automatically restart if they crash. Also, the instances should be highly available including during system maintenance. What should you do?
 
-A. Create an instance template for the instances. Set the "Automatic Restart" to ON, set "On-host maintenance" to Migrate VM instance. Add the instance template to and instance group.
-
-B. Create an instance template for the instances. Set "Automatic Restart" to OFF. Set "On-host maintenance" to Terminate VM instances. Add the instance template to and instance group.
-
+A. Create an instance template for the instances. Set the "Automatic Restart" to ON, set "On-host maintenance" to Migrate VM instance. Add the instance template to an instance group.
+B. Create an instance template for the instances. Set the "Automatic Restart" to OFF, Set "On-host maintenance" to Terminate VM instances. Add the instance template to an instance group.
 C. Create an instance group for the instances. Set the "Autohealing" health check to healthy (HTTP)
-
 D. Create an instance group for the instance. Verify that the "Advanced creation options" setting for "do not retry machine creation" is set to OFF.
 
 Answer: A
 
-
-
 Question 48
 
-You host a static website on cloud Storage. Recently, you began to include links to PDF files on this site. Currently, when users click on the links to these PDF files, their browsers prompt them to save the file onto their local system. Instead, you want the clicked PDF files to be displayed within the browser window directly, without prompting the user to save the file locally. What should you do?
+You host a static website on Cloud Storage. Recently, you began to include links to PDF files on this site. Currently, when users click on the links to these PDF files, their browsers prompt them to save the file onto their local system. Instead, you want the clicked PDF files to be displayed within the browser window directly, without prompting the user to save the file locally. What should you do?
 
 A. Enable Cloud CDN on the website frontend
-
 B. Enable "Share publicly" on the PDF file objects.
-
 C. Set Content-Type metadata to application/pdf on the PDF file objects.
-
 D. Add a label to the storage bucket with a key of Content-Type and value of application/pdf 
 
 Answer: C
-
-
 
 Question 49
 
 You have a virtual machine that is currently configured with 2 vCPUs and 4 GB of memory. It is running out of memory. You want to upgrade the virtual machine to have 8 GB of memory. What should you do?
 
 A. Rely on live migration to move the workload to a machine with more memory
-
 B. Use gcloud to add metadata to the VM. Set the key to required-memory-size and the value to 8 GB
-
 C. Stop the VM, change the machine type to n1-standard-8, and start the VM
-
 D. Stop the VM, increase the memory to 8 GB, and start the VM
 
 Answer: D
 
-
-
 Question 50
 
-You have production and test workloads that you want to deploy on Compute Engine. Production VMs need to be in a different subnet than th test VMs. All the VMs must be able to reach each other over Internal IP without creating additional routes. You need to set up VPC and the 2 subnets. Which configuration meets these requirements?
+You have production and test workloads that you want to deploy on Compute Engine. Production VMs need to be in a different subnet than the test VMs. All the VMs must be able to reach each other over Internal IP without creating additional routes. You need to set up VPC and the 2 subnets. Which configuration meets these requirements?
 
 A. Create a single custom VPC with 2 subnets. Create each subnet in a different region and with a different CIDR range.
-
 B. Create a single custom VPC with 2 subnets. Create each subnet in the same region and with the same CIDR range.
-
 C. Create 2 custom VPCs, each with a single subnet. Create each subnet in a different region and with a different CIDR range
-
 D. Create 2 custom VPCs, each with a single subnet. Create each subnet in the same region and with the same CIDR range
 
 Answer: A
 
-
-
-Question 51
+*Question 51
 
 You need to create an autoscaling managed instance group for an HTTPS web application. You want to make sure that unhealthy VMs are recreated. What should you do?
 
 A. Create a health check on port 443 and use that when creating the Manged Instance Group
-
 B. Select a health check on port 443 and use that when creating the Managed Instance Group
-
 C. In the Instance Template, add the label "health-check"
-
 D. In the Instance Template, add a start up script that sends a heartbeat to the metadata server.
 
 Answer: A
-
-
 
 Question 52
 
