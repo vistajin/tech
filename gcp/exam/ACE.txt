@@ -737,7 +737,7 @@ D. 1. Using Cloud VPN or Interconnect, Create a tunnel to a VPC in GCP 2.  Use C
 
 Answer: D 
 
-Question 64
+*Question 64
 
 You want to deploy an application on Cloud Run that processes messages from a Cloud Pub/Sub topic. You want to follow Google-recommended practices. What should you do?
 
@@ -753,7 +753,7 @@ Answer: CCCCCCCC?
 
 
 
-Question 65
+*Question 65
 
 You need to deploy an application, which is packaged in a container image, in a new project. The application exposes an HTTP endpoint and receives very few requests per day. You want to minimize costs. What should you do?
 
@@ -769,7 +769,7 @@ Answer: AAAAAAAAAAAAA?
 
 
 
-Question 66
+*Question 66
 
 Your company has an existing GCP organization with hundreds of projects and a billing account. Your company recently acquired another company that also has hundreds of projects and its own billing account. You would like to consolidate all GCP costs of both GCP organizations onto a single invoice. You would like to consolidate all costs as of tomorrow. What should you do?
 
@@ -785,7 +785,7 @@ Answer: DDDDDDDDDDDDDDDD?
 
 
 
-Question 67
+*Question 67
 
 You built an application on Google Platform that uses Cloud Spanner. Your support team needs to monitor the environment but should not have access to table data. You need a streamlines solution to grant the correct permissions to your support team, and you want to follow Google-recommended practices. What should you do?
 
@@ -801,7 +801,7 @@ Answer: D???
 
 
 
-Question 68
+*Question 68
 
 For analysis purposes, you need to send all the logs from all of your Compute Engine instances to BigQuery dataset called platform logs. You have already installed the Stackdriver Logging agent on all the instances. You want to minimize cost. What should you do?
 
@@ -815,7 +815,7 @@ D. 1. Create a Cloud Function that has the BigQuery User role on the platform-lo
 
 Answer: B???
 
-Question 69
+*Question 69
 
 You are using Deployment Manager to create a Google Kubernetes Engine cluster. Using the same Deployment Manager deployment, you also want to create a DaemonSet in the kube-system namespace of the cluster. You want a solution that uses the fewest possible services. What should you do?
 
@@ -829,7 +829,7 @@ D. In the cluster's definition in Deployment Manager, add a metadata that has ku
 
 Answer: ??
 
-Question 70
+*Question 70
 
 You are building an application that will run in your data center. The application will use Google Cloud Platfor (GCP) services like AutoML. You created a service account that has appropriate access to AutoML. You need to enable authentication to the APIs from your on-premises environment. What should you do?
 
@@ -1606,7 +1606,7 @@ D. Internal TCP/UDP Load Balancer. Add a firewall rule allowing ingress traffic 
 
 Answer: A
 
-Question 128
+*Question 128
 
 You have an application on a general-purpose Compute Engine instance that is experiencing excessive disk read throttling on its Zonal SSD Persistent Disk. The application primarily reads large files from disk. The disk size is currently 350 GB. You want to provide the maximum amount of throughput while minimizing costs. What should you do?
 
@@ -1616,27 +1616,3 @@ C. Migrate to use a Local SSD on the instance
 D. Migrate to use a Regional SSD on the instance
 
 Answer: C?
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- 
- 
