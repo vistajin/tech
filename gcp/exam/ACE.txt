@@ -1627,3 +1627,7 @@ C. Create a new VPC network for the VMs. Enable VPC Peering between the VMs' VPC
 D. Create a new VPC network for the VMs with a subnet of 172.32.0.0/16. Enable VPC network Peering between the Dataproc VPC network and the VMs VPC network. Config a custom Route exchange.
 
 Answer: C?
+
+Question 130
+
+You manage an App Engine Service that aggregates and visualizes data from BigQuery. The application is deployed with the default App Engine Service account. The data that needs to be visualized resides in a different project managed by another theam. You do not have access to thsi project, but you want your application to be able to read data from the BigQuery dataset. What should you do?
