@@ -1631,3 +1631,22 @@ Answer: C?
 Question 130
 
 You manage an App Engine Service that aggregates and visualizes data from BigQuery. The application is deployed with the default App Engine Service account. The data that needs to be visualized resides in a different project managed by another theam. You do not have access to thsi project, but you want your application to be able to read data from the BigQuery dataset. What should you do?
+
+A. Ask the other team to grant your default App Engine Service account the role of BigQuery Job User.
+B. Ask the other team to grant your default App Engine Service account the role of BigQuery Data Viewer
+C. In Cloud Iam of your project. ensure that the default App Engine service account has the role of BigQuery Data Viewer.
+D. In Cloud Iam of your project, grant a newly created service account from the other team the role of BigQuery Job User in your project.
+
+Answer: 
+
+Question 131
+
+You need to create a copy of a custom Compute Engine virtual machine (VM) to facilitate an expected increase in application traffic due to a business acquisition.
+What should you do?
+
+A. Create a Compute Engine snapshot of your base VM. Create your images from that snapshot
+B. Create a Compute Engine snapshot of your base VM. Create your instances from that snapshot
+C. Create a custom Compute Engine image from a snapshot. Create your images from that image
+D. Create a custom Compute Engine image from a snapshot. Create your instances from that image.
+
+Answer: D?
