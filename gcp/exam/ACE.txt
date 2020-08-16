@@ -1650,3 +1650,14 @@ C. Create a custom Compute Engine image from a snapshot. Create your images from
 D. Create a custom Compute Engine image from a snapshot. Create your instances from that image.
 
 Answer: D?
+
+Question 132
+
+You have deployed an application on a single Compute Engine instance. The application writes logs to disk. Users start reporting errors with the application. You want to diagnose the problem. What should you do?
+
+A. Navigate to Cloud Logging and view the application logs
+B. Connect to the instanace's serial console and read the application logs.
+C. Configure a Health Check on the instance and set a Low Healthy Threshold value
+D. Install and configure the Cloud Logging Agent and view the logs from Cloud Logging.
+
+Answer: 
