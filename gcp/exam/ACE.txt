@@ -1660,4 +1660,18 @@ B. Connect to the instanace's serial console and read the application logs.
 C. Configure a Health Check on the instance and set a Low Healthy Threshold value
 D. Install and configure the Cloud Logging Agent and view the logs from Cloud Logging.
 
-Answer: 
+Answer: D?
+
+Question 133
+
+An application generates daily reports in a Compute Engine virtual machine (VM). The VM is in the project corp-iot-insights. Your team operates only in the project corp-aggregate-reports and needs a copy of the daily exports in the bucket corp-aggregate-reports-storage. You want to configure access so that the daily reports from the VM are available in the bucket copt-aggregate-reports-storage and use as few steps as possible while follow Google-recommended practices. What should you do?
+
+A. Move both projects under the same folder.
+B. Grant the VM service Account the role Storage Object Creator on corp-aggregate-reports storage.
+C. Create a Shared VPC network between both projects. Grant the VM Service Account the role Storage Object Creator on corp-iot-insights
+D. Make corp-aggregate-reports-storage public and create a folder with a pseudo-randomized suffix name. Share the folder with the IoT team.
+
+Answer: B
+
+
+
