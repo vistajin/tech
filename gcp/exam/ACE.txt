@@ -1673,5 +1673,16 @@ D. Make corp-aggregate-reports-storage public and create a folder with a pseudo-
 
 Answer: B
 
+Question 134
+
+You built an application on your development laptop that uses Google Cloud services. Your application uses Appliation Default Credentials for authentication and works fine on your development laptop. You want to migrate this appliation to a Compute Engine virtual machine (VM) and set up authentication using Google-recommended practices and minimal changes. What should you do?
+
+A. Assign appropriate access for Google services to the service account used by the Compute Engine VM
+B. Create a service account with appropriate access for Google services and configure the application to use this account
+C. Store credentials for service accounts with appropriate access for Google services in a config files, and deploy this config file with your application
+D. Store credentials for your user account with appropriate access for Google services in a config file, and deploy this config file with your application 
+
+Answer: 
+
 
 
