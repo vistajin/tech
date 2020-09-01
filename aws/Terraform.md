@@ -55,6 +55,17 @@ resource "aws_instance" "kaeptn-eichhorn" {
 
 
 
+### Install
+
+https://releases.hashicorp.com/terraform
+
+```sh
+terraform version
+Terraform v0.13.1
+```
+
+
+
 ### 命令
 
 ```sh
@@ -79,3 +90,7 @@ https://github.com/hashicorp/terraform
 https://aws.amazon.com/cn/blogs/china/aws-china-region-guide-series-terraform1/
 
 https://jaxenter.com/tutorial-aws-terraform-147881.html
+
+
+
+https://www.bilibili.com/video/av625164720/
